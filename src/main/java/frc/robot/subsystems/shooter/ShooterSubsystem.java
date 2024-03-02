@@ -6,16 +6,18 @@ import com.ctre.phoenix6.hardware.TalonFX;
 import static frc.robot.Constants.*;
 
 public class ShooterSubsystem extends SubsystemBase {
-    private final TalonFX leftTopMotor;
-    private final TalonFX leftBottomMotor;
-    private final TalonFX rightTopMotor;
-    private final TalonFX rightBottomMotor;
+    private final TalonFX leftShooter;
+    private final TalonFX rightShooter;
+    private final TalonFX feeder;
+    private final TalonFX leftPivot;
+    private final TalonFX rightPivot;
 
     public ShooterSubsystem() {
-        leftTopMotor = new TalonFX(LEFT_TOP_SHOOTERFEEDER_ID, CANBUS_NAME);
-        leftBottomMotor = new TalonFX(LEFT_BOTTOM_SHOOTER_ID, CANBUS_NAME);
-        rightTopMotor = new TalonFX(RIGHT_TOP_SHOOTERFEEDER_ID, CANBUS_NAME);
-        rightBottomMotor = new TalonFX(RIGHT_BOTTOM_SHOOTER_ID, CANBUS_NAME);
+        leftShooter = new TalonFX(LEFT_SHOOTER_ID, CANBUS_NAME);
+        rightShooter = new TalonFX(RIGHT_SHOOTER_ID, CANBUS_NAME);
+        feeder = new TalonFX(FEEDER_ID, CANBUS_NAME);
+        leftPivot = new TalonFX(LEFT_SHOOTER_PIVOT_ID, CANBUS_NAME);
+        rightPivot = new TalonFX(RIGHT_SHOOTER_PIVOT_ID, CANBUS_NAME);
     }
     
 }
