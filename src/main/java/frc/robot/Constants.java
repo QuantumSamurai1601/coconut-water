@@ -1,7 +1,7 @@
 package frc.robot;
 
 public final class Constants {
-    public static String CANBUS_NAME = "rio";
+    public static final String CANBUS_NAME = "rio";
 
     public static final int PDH_ID = 1;
 
