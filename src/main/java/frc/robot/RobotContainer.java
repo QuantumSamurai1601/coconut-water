@@ -13,6 +13,7 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import edu.wpi.first.wpilibj2.command.button.POVButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.generated.TunerConstants;
 import frc.robot.subsystems.climber.ClimberSubsystem;
@@ -20,7 +21,7 @@ import frc.robot.subsystems.intake.IntakeSubsystem;
 
 public class RobotContainer {
   private double MaxSpeed = TunerConstants.kSpeedAt12VoltsMps; // kSpeedAt12VoltsMps desired top speed
-  private double MaxAngularRate = 2 * Math.PI; // 3/4 of a rotation per second max angular velocity
+  private double MaxAngularRate = 3 * Math.PI; // 3/4 of a rotation per second max angular velocity
 
   /* Setting up bindings for necessary control of the swerve drive platform */
   private final CommandXboxController joystick = new CommandXboxController(0); // My joystick
@@ -58,13 +59,12 @@ public class RobotContainer {
     joystick.leftBumper().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldRelative()));
 
     // Climber
-    climber.setDefaultCommand(
-      climber.climb(operator.getRightY())
-    );
+    operator.povUp().onTrue(climber.extend()).onFalse(climber.stop());
+    operator.povDown().onTrue(climber.retract()).onFalse(climber.stop());
 
     //Intake
-    new Trigger(() -> (Math.abs(operator.getLeftX()) > 0.1))
-      .onTrue(intake.pivot(operator.getLeftY()/2));
+    //new Trigger(() -> (Math.abs(operator.getLeftX()) > 0.1))
+    //  .onTrue(intake.pivot(operator.getLeftY()/2));
     
     operator.a().onTrue(intake.chomp()).onFalse(intake.stop());
     operator.y().onTrue(intake.vomit()).onFalse(intake.stop());
@@ -80,7 +80,5 @@ public class RobotContainer {
   }
 
   public Command getAutonomousCommand() {
-    return drivetrain.applyRequest(() -> fieldDrive.withVelocityX(0.5 * MaxSpeed)
-    .withVelocityY(0 * MaxSpeed)).withTimeout(3);
-  }
+    return drivetrain.applyRequest(() -> fieldDrive.withVelocityY(0.5 * MaxSpeed)).withTimeout(3);  }
 }
