@@ -27,9 +27,23 @@ public class ClimberSubsystem extends SubsystemBase {
         rightRequest = new Follower(LEFT_CLIMBER_ID, false);
     }
 
-    public Command climb(double speed) {
-        return this.run(() -> {
-            leftClimber.setControl(leftRequest.withOutput(speed));
+    public Command extend() {
+        return this.runOnce(() -> {
+            leftClimber.setControl(leftRequest.withOutput(0.5));
+            rightClimber.setControl(rightRequest);
+        });
+    }
+
+    public Command retract() {
+        return this.runOnce(() -> {
+            leftClimber.setControl(leftRequest.withOutput(-0.5));
+            rightClimber.setControl(rightRequest);
+        });
+    }
+
+    public Command stop() {
+        return this.runOnce(() -> {
+            leftClimber.setControl(leftRequest.withOutput(0.0));
             rightClimber.setControl(rightRequest);
         });
     }
