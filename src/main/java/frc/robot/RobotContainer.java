@@ -12,9 +12,11 @@ import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
-import edu.wpi.first.wpilibj2.command.button.POVButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+import edu.wpi.first.math.MathUtil;
+
 import frc.robot.generated.TunerConstants;
 import frc.robot.subsystems.climber.ClimberSubsystem;
 import frc.robot.subsystems.intake.IntakeSubsystem;
@@ -46,9 +48,8 @@ public class RobotContainer {
 
   private void configureBindings() {
     drivetrain.setDefaultCommand( // Drivetrain will execute this command periodically
-        drivetrain.applyRequest(() -> fieldDrive.withVelocityX((-joystick.getLeftY() * MaxSpeed) * 1) // Drive forward with
-                                                                                           // negative Y (forward)
-            .withVelocityY((-joystick.getLeftX() * MaxSpeed) * 1) // Drive left with negative X (left)
+        drivetrain.applyRequest(() -> fieldDrive.withVelocityX((-joystick.getLeftY() * MaxSpeed) * 0.5) // Drive forward with negative Y (forward)
+            .withVelocityY((-joystick.getLeftX() * MaxSpeed) * 0.5) // Drive left with negative X (left)
             .withRotationalRate(-joystick.getRightX() * MaxAngularRate) // Drive counterclockwise with negative X (left)
         ));
 
@@ -63,8 +64,17 @@ public class RobotContainer {
     operator.povDown().onTrue(climber.retract()).onFalse(climber.stop());
 
     //Intake
-    //new Trigger(() -> (Math.abs(operator.getLeftX()) > 0.1))
-    //  .onTrue(intake.pivot(operator.getLeftY()/2));
+    intake.setDefaultCommand(intake.pivot(MathUtil.applyDeadband(operator.getRawAxis(1), 0.1)));
+
+    /* 
+      new Trigger(() -> Math.abs(operator.getRawAxis(1)) > 0.1)
+      .whileTrue(new InstantCommand(() -> intake.pivot(operator.getLeftY()/2))
+    );
+
+    new Trigger(() -> Math.abs(operator.getRawAxis(1)) <= 0.1)
+      .whileTrue(new InstantCommand(() -> intake.pivot(0))
+    ); 
+    */
     
     operator.a().onTrue(intake.chomp()).onFalse(intake.stop());
     operator.y().onTrue(intake.vomit()).onFalse(intake.stop());
@@ -80,5 +90,6 @@ public class RobotContainer {
   }
 
   public Command getAutonomousCommand() {
-    return drivetrain.applyRequest(() -> fieldDrive.withVelocityY(0.5 * MaxSpeed)).withTimeout(3);  }
+    return drivetrain.applyRequest(() -> fieldDrive.withVelocityY(-0.5 * MaxSpeed)).withTimeout(3);
+  }
 }

@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import com.ctre.phoenix6.controls.DutyCycleOut;
 import com.ctre.phoenix6.controls.Follower;
+import com.ctre.phoenix6.controls.NeutralOut;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 
@@ -15,6 +16,7 @@ public class ClimberSubsystem extends SubsystemBase {
     private final TalonFX rightClimber;
     private final DutyCycleOut leftRequest;
     private final Follower rightRequest;
+    private final NeutralOut brakeRequest;
 
     public ClimberSubsystem() {
         leftClimber = new TalonFX(LEFT_CLIMBER_ID, CANBUS_NAME);
@@ -25,25 +27,26 @@ public class ClimberSubsystem extends SubsystemBase {
 
         leftRequest = new DutyCycleOut(0.0, true, false, false, false);
         rightRequest = new Follower(LEFT_CLIMBER_ID, false);
+        brakeRequest = new NeutralOut();
     }
 
     public Command extend() {
         return this.runOnce(() -> {
-            leftClimber.setControl(leftRequest.withOutput(0.5));
+            leftClimber.setControl(leftRequest.withOutput(0.3));
             rightClimber.setControl(rightRequest);
         });
     }
 
     public Command retract() {
         return this.runOnce(() -> {
-            leftClimber.setControl(leftRequest.withOutput(-0.5));
+            leftClimber.setControl(leftRequest.withOutput(-0.3));
             rightClimber.setControl(rightRequest);
         });
     }
 
     public Command stop() {
         return this.runOnce(() -> {
-            leftClimber.setControl(leftRequest.withOutput(0.0));
+            leftClimber.setControl(brakeRequest);
             rightClimber.setControl(rightRequest);
         });
     }
