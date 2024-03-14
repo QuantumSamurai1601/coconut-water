@@ -64,7 +64,7 @@ public class RobotContainer {
     operator.povDown().onTrue(climber.retract()).onFalse(climber.stop());
 
     //Intake
-    intake.setDefaultCommand(intake.pivot(MathUtil.applyDeadband(operator.getRawAxis(1), 0.1)));
+    // intake.setDefaultCommand(intake.pivot(MathUtil.applyDeadband(operator.getRawAxis(1), 0.1)));
 
     /* 
       new Trigger(() -> Math.abs(operator.getRawAxis(1)) > 0.1)
