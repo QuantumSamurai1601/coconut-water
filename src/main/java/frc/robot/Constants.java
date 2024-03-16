@@ -22,7 +22,7 @@ public final class Constants {
     public static final int RIGHT_SHOOTER_PIVOT_ID = 9;
 
     /* Shooter Kraken IDs */
-    public static final int LEFT_SHOOTER_ID = 10;
-    public static final int RIGHT_SHOOTER_ID = 11;
+    public static final int TOP_SHOOTER_ID = 10;
+    public static final int BOTTOM_SHOOTER_ID = 11;
     public static final int FEEDER_ID = 12;
 }
