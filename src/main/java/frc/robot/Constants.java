@@ -5,9 +5,8 @@ public final class Constants {
 
     public static final int PDH_ID = 1;
 
-    /* Intake Redline IDs */
-    public static final int LEFT_INTAKE_ID = 2;
-    public static final int RIGHT_INTAKE_ID = 3;
+    /* Intake Kraken IDs */
+    public static final int INTAKE_ID = 3;
 
     /* Intake Pivot Falcon IDs */
     public static final int LEFT_INTAKE_PIVOT_ID = 4;

@@ -37,8 +37,7 @@ public class RobotContainer {
 
   private final SwerveRequest.FieldCentric fieldDrive = new SwerveRequest.FieldCentric()
       .withDeadband(MaxSpeed * 0.1).withRotationalDeadband(MaxAngularRate * 0.1) // Add a 10% deadband
-      .withDriveRequestType(DriveRequestType.OpenLoopVoltage); // I want field-centric
-                                                               // driving in open loop
+      .withDriveRequestType(DriveRequestType.OpenLoopVoltage); // I want field-centric driving in open loop
 
   private final SwerveRequest.RobotCentric robotDrive = new SwerveRequest.RobotCentric()
       .withDeadband(MaxSpeed * 0.1).withRotationalDeadband(MaxAngularRate * 0.1) // Add a 10% deadband
@@ -67,21 +66,11 @@ public class RobotContainer {
 
     //Intake
     // intake.setDefaultCommand(intake.pivot(MathUtil.applyDeadband(operator.getRawAxis(1), 0.1)));
-
-    /* 
-      new Trigger(() -> Math.abs(operator.getRawAxis(1)) > 0.1)
-      .whileTrue(new InstantCommand(() -> intake.pivot(operator.getLeftY()/2))
-    );
-
-    new Trigger(() -> Math.abs(operator.getRawAxis(1)) <= 0.1)
-      .whileTrue(new InstantCommand(() -> intake.pivot(0))
-    ); 
-    */
     
-    operator.a().onTrue(intake.chomp()).onFalse(intake.stop());
-    operator.y().onTrue(intake.vomit()).onFalse(intake.stop());
+    // operator.a().onTrue(intake.chomp()).onFalse(intake.stop());
+    // operator.y().onTrue(intake.vomit()).onFalse(intake.stop());
 
-    shooter.setDefaultCommand(shooter.shootTest());
+    // shooter.setDefaultCommand(shooter.shootTest());
 
     if (Utils.isSimulation()) {
       drivetrain.seedFieldRelative(new Pose2d(new Translation2d(), Rotation2d.fromDegrees(90)));
