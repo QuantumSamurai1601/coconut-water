@@ -32,7 +32,7 @@ public class ClimberSubsystem extends SubsystemBase {
 
     public Command extend() {
         return this.runOnce(() -> {
-            leftClimber.setControl(leftRequest.withOutput(0.3));
+            leftClimber.setControl(leftRequest.withOutput(0.65));
             rightClimber.setControl(rightRequest);
         });
     }

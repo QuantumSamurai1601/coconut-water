@@ -1,5 +1,6 @@
 package frc.robot.subsystems.shooter;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -7,11 +8,14 @@ import com.ctre.phoenix6.BaseStatusSignal;
 import com.ctre.phoenix6.StatusSignal;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.hardware.TalonFX;
+import com.ctre.phoenix6.signals.GravityTypeValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 import com.ctre.phoenix6.controls.Follower;
+import com.ctre.phoenix6.controls.MotionMagicVoltage;
 import com.ctre.phoenix6.controls.NeutralOut;
 import com.ctre.phoenix6.controls.PositionTorqueCurrentFOC;
 import com.ctre.phoenix6.controls.VelocityTorqueCurrentFOC;
+import com.ctre.phoenix6.controls.VoltageOut;
 
 import static frc.robot.Constants.*;
 import static frc.robot.subsystems.shooter.ShooterConstants.*;
@@ -24,16 +28,19 @@ public class ShooterSubsystem extends SubsystemBase {
     // Shooter Pivot Motors
     private final TalonFX leaderPivot;
     private final TalonFX followerPivot;
+    private final DigitalInput forwardLimit;
     // Shooter and Feeder Control Requests
     private final VelocityTorqueCurrentFOC leaderShooterRequest;
     private final Follower followerShooterRequest;
     private final VelocityTorqueCurrentFOC feederRequest;
+    private final Follower tempFeederFollower;
     // Shooter Pivot Control Requests
-    private final PositionTorqueCurrentFOC leaderPivotRequest;
+    private final MotionMagicVoltage leaderPivotRequest;
     private final Follower followerPivotRequest;
     // Leader Configs
     private final TalonFXConfiguration shooterConfig;
     private final TalonFXConfiguration pivotConfig;
+    private final TalonFXConfiguration currentLimit;
     // Neutral request, determined by NeutralModeValue of motor
     private final NeutralOut neutral;
     // Motor Telemetry
@@ -55,17 +62,25 @@ public class ShooterSubsystem extends SubsystemBase {
         leaderShooter = new TalonFX(TOP_SHOOTER_ID, CANBUS_NAME);
         followerShooter = new TalonFX(BOTTOM_SHOOTER_ID, CANBUS_NAME);
         leaderShooterRequest =  new VelocityTorqueCurrentFOC(0.0);
-        followerShooterRequest = new Follower(BOTTOM_SHOOTER_ID, false);
+        followerShooterRequest = new Follower(TOP_SHOOTER_ID, false);
 
         feeder = new TalonFX(FEEDER_ID, CANBUS_NAME);
         feederRequest = new VelocityTorqueCurrentFOC(0.0);
+        tempFeederFollower = new Follower(INTAKE_ID, false);
 
+        forwardLimit = new DigitalInput(3);
         leaderPivot = new TalonFX(LEFT_SHOOTER_PIVOT_ID, CANBUS_NAME);
         followerPivot = new TalonFX(RIGHT_SHOOTER_PIVOT_ID, CANBUS_NAME);
-        leaderPivotRequest = new PositionTorqueCurrentFOC(0.0);
+        leaderPivotRequest = new MotionMagicVoltage(0.0).withEnableFOC(true);
         followerPivotRequest = new Follower(LEFT_SHOOTER_PIVOT_ID, true);
 
         neutral = new NeutralOut();
+
+        currentLimit = new TalonFXConfiguration();
+        currentLimit.CurrentLimits.SupplyCurrentLimit = SUPPLY_CURRENT_LIMIT;
+        currentLimit.CurrentLimits.SupplyCurrentLimitEnable = true;
+        leaderShooter.getConfigurator().apply(currentLimit);
+        leaderPivot.getConfigurator().apply(currentLimit);
 
         shooterConfig = new TalonFXConfiguration();
         shooterConfig.Slot0.kS = 0.0;
@@ -74,16 +89,25 @@ public class ShooterSubsystem extends SubsystemBase {
         shooterConfig.Slot0.kI = 0.0;
         shooterConfig.Slot0.kD = 0.0;
         shooterConfig.MotorOutput.NeutralMode = NeutralModeValue.Coast;
-        shooterConfig.CurrentLimits.SupplyCurrentLimit = 60;
-        shooterConfig.CurrentLimits.SupplyCurrentLimitEnable = true;
         leaderShooter.getConfigurator().apply(shooterConfig);
 
         pivotConfig = new TalonFXConfiguration();
-        pivotConfig.Slot0.kP = 0.0;
+        pivotConfig.Slot0.kG = 0.03;
+        pivotConfig.Slot0.kS = 0.32;
+        pivotConfig.Slot0.kV = 0.125;
+        pivotConfig.Slot0.kA = 0.02069;
+        pivotConfig.Slot0.kP = 90.0;
         pivotConfig.Slot0.kI = 0.0;
-        pivotConfig.Slot0.kD = 0.0;
+        pivotConfig.Slot0.kD = 0.1;
+        pivotConfig.Slot0.GravityType = GravityTypeValue.Arm_Cosine;
+        pivotConfig.MotionMagic.MotionMagicAcceleration = 2;
+        pivotConfig.MotionMagic.MotionMagicCruiseVelocity = 96.667*0.85;
         pivotConfig.MotorOutput.NeutralMode = NeutralModeValue.Brake;
         pivotConfig.Feedback.SensorToMechanismRatio = 133.33;
+        pivotConfig.SoftwareLimitSwitch.ForwardSoftLimitEnable = true;
+        pivotConfig.SoftwareLimitSwitch.ReverseSoftLimitEnable = true;
+        pivotConfig.SoftwareLimitSwitch.ForwardSoftLimitThreshold = 0.181885;
+        pivotConfig.SoftwareLimitSwitch.ReverseSoftLimitThreshold = 0.0;
         leaderPivot.getConfigurator().apply(pivotConfig);
 
         leaderPivot.setPosition(0);
@@ -102,7 +126,39 @@ public class ShooterSubsystem extends SubsystemBase {
         pivotFollowerTorqueCurrent = followerPivot.getTorqueCurrent();
         pivotFollowerTempC = followerPivot.getDeviceTemp();
 
+        followerShooter.setControl(followerShooterRequest);
         followerPivot.setControl(followerPivotRequest);
+        feeder.setControl(tempFeederFollower);
+    }
+    // Method takes rotations per second, standardizing revolutions per minute
+    public void shootVelocity(double rpm) {
+        leaderShooter.setControl(leaderShooterRequest.withVelocity(rpm/60));
+        followerShooter.setControl(followerShooterRequest);
+    }
+    public void shootVoltage(double voltage) {
+        leaderShooter.setControl(new VoltageOut(voltage));
+        followerShooter.setControl(followerShooterRequest);
+    }
+    public void shooterIntake() {
+        leaderShooter.setControl(new VoltageOut(2.7));
+        followerShooter.setControl(followerShooterRequest);
+    }
+    public void feed() {
+        feeder.setControl(new VoltageOut(0.375));
+    }
+    public void feedShooter() {
+        feeder.setControl(new VoltageOut(-3));
+    }
+    public void feedStop() {
+        feeder.setControl(neutral);
+    }
+    public void pivot(double angle) {
+        leaderPivot.setControl(leaderPivotRequest.withPosition(angle));
+        followerPivot.setControl(followerPivotRequest);
+    }
+    public void stop() {
+        leaderShooter.setControl(neutral);
+        followerShooter.setControl(followerShooterRequest);
     }
 
     @Override
@@ -116,6 +172,7 @@ public class ShooterSubsystem extends SubsystemBase {
         SmartDashboard.putNumber("Shooter/Top Temp C", shooterLeaderTempC.getValueAsDouble());
         SmartDashboard.putNumber("Shooter/Bottom Temp C", shooterFollowerTempC.getValueAsDouble());
         
+        SmartDashboard.putBoolean("Shooter/Pivot Forward Limit", !forwardLimit.get());
         SmartDashboard.putNumber("Shooter/Left Pivot Position", pivotLeaderPosition.getValueAsDouble());
         SmartDashboard.putNumber("Shooter/Right Pivot Position", pivotFollowerPosition.getValueAsDouble());
         SmartDashboard.putNumber("Shooter/Left Pivot Torque Current", pivotLeaderTorqueCurrent.getValueAsDouble());
