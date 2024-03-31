@@ -134,10 +134,16 @@ public class RobotContainer {
 
   public RobotContainer() {
     configureBindings();
+
     autoChooser.setDefaultOption("Autonomous Disabled", nothing);
     autoChooser.addOption("Mobility Auto", mobilityAuto);
     Shuffleboard.getTab("SmartDashboard")
       .add("Auto Chooser", autoChooser);
+
+    drivetrain.applyCurrentLimit(0);
+    drivetrain.applyCurrentLimit(1);
+    drivetrain.applyCurrentLimit(2);
+    drivetrain.applyCurrentLimit(3);
   }
 
   public Command getAutonomousCommand() {

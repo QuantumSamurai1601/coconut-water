@@ -64,7 +64,7 @@ public class IntakeSubsystem extends SubsystemBase {
         // Current Limit Config
         currentLimit = new TalonFXConfiguration();
         currentLimit.CurrentLimits.SupplyCurrentLimit = SUPPLY_CURRENT_LIMIT;
-        currentLimit.CurrentLimits.StatorCurrentLimitEnable = true;
+        currentLimit.CurrentLimits.SupplyCurrentLimitEnable = false;
         intake.getConfigurator().apply(currentLimit);
         leaderIntakePivot.getConfigurator().apply(currentLimit);
 
@@ -79,7 +79,6 @@ public class IntakeSubsystem extends SubsystemBase {
         pivotConfig.MotionMagic.MotionMagicAcceleration = 2;
         pivotConfig.MotionMagic.MotionMagicCruiseVelocity = 96.667*0.5;
         pivotConfig.MotorOutput.NeutralMode = NeutralModeValue.Brake;
-        pivotConfig.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
         pivotConfig.SoftwareLimitSwitch.ForwardSoftLimitEnable = true;
         pivotConfig.SoftwareLimitSwitch.ForwardSoftLimitThreshold = 0.34;
         pivotConfig.SoftwareLimitSwitch.ReverseSoftLimitEnable = true;
@@ -131,6 +130,6 @@ public class IntakeSubsystem extends SubsystemBase {
         SmartDashboard.putNumber("Intake/Roller Output Voltage", rollerAppliedVoltage.getValueAsDouble());
         SmartDashboard.putNumber("Intake/Roller Motor TempC", rollerTempC.getValueAsDouble());
         SmartDashboard.putBoolean("Intake/Forward Limit", forwardLimit.get());
-        SmartDashboard.putBoolean("Intake/Has Note", beamBreak.get());
+        SmartDashboard.putBoolean("Intake/Has Note", !beamBreak.get());
     }
 }
