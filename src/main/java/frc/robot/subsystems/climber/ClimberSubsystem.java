@@ -11,6 +11,8 @@ import com.ctre.phoenix6.signals.NeutralModeValue;
 
 import static frc.robot.Constants.*;
 
+import java.util.function.DoubleSupplier;
+
 public class ClimberSubsystem extends SubsystemBase {
     private final TalonFX leftClimber;
     private final TalonFX rightClimber;
@@ -30,19 +32,19 @@ public class ClimberSubsystem extends SubsystemBase {
         brakeRequest = new NeutralOut();
     }
 
-    public Command extend() {
+    public Command control(double output) {
         return this.runOnce(() -> {
-            leftClimber.setControl(leftRequest.withOutput(0.65));
+            leftClimber.setControl(leftRequest.withOutput(output));
             rightClimber.setControl(rightRequest);
         });
     }
 
-    public Command retract() {
+    /* public Command retract(DoubleSupplier output) {
         return this.runOnce(() -> {
             leftClimber.setControl(leftRequest.withOutput(-0.3));
             rightClimber.setControl(rightRequest);
         });
-    }
+    } */
 
     public Command stop() {
         return this.runOnce(() -> {
