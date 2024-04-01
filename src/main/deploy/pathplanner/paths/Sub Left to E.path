@@ -1,0 +1,58 @@
+{
+  "version": 1.0,
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 0.8025123429381728,
+        "y": 6.68
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 2.0245068479958848,
+        "y": 7.530410582449663
+      },
+      "isLocked": false,
+      "linkedName": "Sub Left"
+    },
+    {
+      "anchor": {
+        "x": 7.580926306890783,
+        "y": 5.79664060091479
+      },
+      "prevControl": {
+        "x": 6.99604004805974,
+        "y": 6.3188604748710775
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "E (Wall-E) "
+    }
+  ],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 0.5,
+      "rotationDegrees": 0,
+      "rotateFast": false
+    }
+  ],
+  "constraintZones": [],
+  "eventMarkers": [],
+  "globalConstraints": {
+    "maxVelocity": 3.0,
+    "maxAcceleration": 3.0,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 720.0
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": 0,
+    "rotateFast": false
+  },
+  "reversed": false,
+  "folder": "Sub Left",
+  "previewStartingState": {
+    "rotation": 61.2284251628478,
+    "velocity": 0
+  },
+  "useDefaultConstraints": true
+}

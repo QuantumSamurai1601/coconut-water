@@ -1,0 +1,25 @@
+{
+  "robotWidth": 1.0524,
+  "robotLength": 1.0524,
+  "holonomicMode": true,
+  "pathFolders": [
+    "A (Ariel) ",
+    "B (Belle)",
+    "C (Cinderella)",
+    "D (Dinosaur)",
+    "E (Wall-E)",
+    "F (Failure)",
+    "G (Golf)",
+    "H (Herucles) ",
+    "Sub Front",
+    "Sub Left",
+    "Sub Right",
+    "Wong Lie"
+  ],
+  "autoFolders": [],
+  "defaultMaxVel": 3.0,
+  "defaultMaxAccel": 3.0,
+  "defaultMaxAngVel": 540.0,
+  "defaultMaxAngAccel": 720.0,
+  "maxModuleSpeed": 4.5
+}

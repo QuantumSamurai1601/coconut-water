@@ -1,0 +1,58 @@
+{
+  "version": 1.0,
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 7.466037934620398,
+        "y": 4.073315016859041
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 6.693152521165095,
+        "y": 6.621748001765724
+      },
+      "isLocked": false,
+      "linkedName": "F (Failure) "
+    },
+    {
+      "anchor": {
+        "x": 4.332718690882675,
+        "y": 6.517304026974466
+      },
+      "prevControl": {
+        "x": 5.982933492584543,
+        "y": 6.673969989161352
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "Wong Left"
+    }
+  ],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 0.5,
+      "rotationDegrees": 20.0,
+      "rotateFast": false
+    }
+  ],
+  "constraintZones": [],
+  "eventMarkers": [],
+  "globalConstraints": {
+    "maxVelocity": 3.0,
+    "maxAcceleration": 3.0,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 720.0
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": 13.495733280795884,
+    "rotateFast": false
+  },
+  "reversed": false,
+  "folder": "F (Failure)",
+  "previewStartingState": {
+    "rotation": 0,
+    "velocity": 0
+  },
+  "useDefaultConstraints": true
+}

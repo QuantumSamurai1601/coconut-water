@@ -1,0 +1,58 @@
+{
+  "version": 1.0,
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 0.8025123429381728,
+        "y": 6.68
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 1.8025123429381726,
+        "y": 6.68
+      },
+      "isLocked": false,
+      "linkedName": "Sub Left"
+    },
+    {
+      "anchor": {
+        "x": 7.580926306890783,
+        "y": 7.467744197574909
+      },
+      "prevControl": {
+        "x": 6.580926306890783,
+        "y": 7.467744197574909
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "D (Dinosaur) "
+    }
+  ],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 0.25,
+      "rotationDegrees": 0,
+      "rotateFast": false
+    }
+  ],
+  "constraintZones": [],
+  "eventMarkers": [],
+  "globalConstraints": {
+    "maxVelocity": 3.0,
+    "maxAcceleration": 3.0,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 720.0
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": 0,
+    "rotateFast": false
+  },
+  "reversed": false,
+  "folder": "Sub Left",
+  "previewStartingState": {
+    "rotation": 60.856389344640334,
+    "velocity": 0
+  },
+  "useDefaultConstraints": true
+}

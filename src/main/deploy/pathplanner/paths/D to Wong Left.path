@@ -1,0 +1,58 @@
+{
+  "version": 1.0,
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 7.580926306890783,
+        "y": 7.467744197574909
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 7.069150830413621,
+        "y": 7.290189440429772
+      },
+      "isLocked": false,
+      "linkedName": "D (Dinosaur) "
+    },
+    {
+      "anchor": {
+        "x": 4.332718690882675,
+        "y": 6.517304026974466
+      },
+      "prevControl": {
+        "x": 4.990715732067597,
+        "y": 6.684414386640477
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "Wong Left"
+    }
+  ],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 0.5,
+      "rotationDegrees": 20.0,
+      "rotateFast": false
+    }
+  ],
+  "constraintZones": [],
+  "eventMarkers": [],
+  "globalConstraints": {
+    "maxVelocity": 3.0,
+    "maxAcceleration": 3.0,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 720.0
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": 20.282559088916607,
+    "rotateFast": false
+  },
+  "reversed": false,
+  "folder": "D (Dinosaur)",
+  "previewStartingState": {
+    "rotation": 0,
+    "velocity": 0
+  },
+  "useDefaultConstraints": true
+}

@@ -1,0 +1,52 @@
+{
+  "version": 1.0,
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 2.2349226035148164,
+        "y": 4.461799188415527
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 1.4999162406899846,
+        "y": 2.422415336633952
+      },
+      "isLocked": false,
+      "linkedName": "C (Cinderella)"
+    },
+    {
+      "anchor": {
+        "x": 7.504193570808328,
+        "y": 2.453471943513874
+      },
+      "prevControl": {
+        "x": 6.210168284144891,
+        "y": 0.48655350778545065
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "G (Golf)"
+    }
+  ],
+  "rotationTargets": [],
+  "constraintZones": [],
+  "eventMarkers": [],
+  "globalConstraints": {
+    "maxVelocity": 3.0,
+    "maxAcceleration": 3.0,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 720.0
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": 0,
+    "rotateFast": false
+  },
+  "reversed": false,
+  "folder": "C (Cinderella)",
+  "previewStartingState": {
+    "rotation": -24.179107145984187,
+    "velocity": 0
+  },
+  "useDefaultConstraints": true
+}

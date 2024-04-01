@@ -1,0 +1,58 @@
+{
+  "version": 1.0,
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 7.580926306890783,
+        "y": 5.79664060091479
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 6.5887085463738355,
+        "y": 6.454637642099712
+      },
+      "isLocked": false,
+      "linkedName": "E (Wall-E) "
+    },
+    {
+      "anchor": {
+        "x": 4.332718690882675,
+        "y": 6.517304026974466
+      },
+      "prevControl": {
+        "x": 5.166768460763387,
+        "y": 6.5019437825135205
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "Wong Left"
+    }
+  ],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 0.5,
+      "rotationDegrees": 20.0,
+      "rotateFast": false
+    }
+  ],
+  "constraintZones": [],
+  "eventMarkers": [],
+  "globalConstraints": {
+    "maxVelocity": 3.0,
+    "maxAcceleration": 3.0,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 720.0
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": 18.43494882292208,
+    "rotateFast": false
+  },
+  "reversed": false,
+  "folder": "E (Wall-E)",
+  "previewStartingState": {
+    "rotation": 0,
+    "velocity": 0
+  },
+  "useDefaultConstraints": true
+}

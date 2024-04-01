@@ -1,0 +1,58 @@
+{
+  "version": 1.0,
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 2.2349226035148164,
+        "y": 4.461799188415527
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 2.048582962235282,
+        "y": 7.091258570915628
+      },
+      "isLocked": false,
+      "linkedName": "C (Cinderella)"
+    },
+    {
+      "anchor": {
+        "x": 7.466037934620398,
+        "y": 4.073315016859041
+      },
+      "prevControl": {
+        "x": 6.355099116251196,
+        "y": 2.898616642126096
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "F (Failure) "
+    }
+  ],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 0.75,
+      "rotationDegrees": 0,
+      "rotateFast": false
+    }
+  ],
+  "constraintZones": [],
+  "eventMarkers": [],
+  "globalConstraints": {
+    "maxVelocity": 3.0,
+    "maxAcceleration": 3.0,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 720.0
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": 0,
+    "rotateFast": false
+  },
+  "reversed": false,
+  "folder": "C (Cinderella)",
+  "previewStartingState": {
+    "rotation": -26.795238804947182,
+    "velocity": 0
+  },
+  "useDefaultConstraints": true
+}

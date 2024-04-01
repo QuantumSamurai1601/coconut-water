@@ -3,35 +3,35 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 0.6705067055358577,
-        "y": 6.657255416646533
+        "x": 0.8025123429381728,
+        "y": 6.68
       },
       "prevControl": null,
       "nextControl": {
-        "x": 0.6705067055251585,
-        "y": 6.65534182774201
+        "x": 0.8025123429274735,
+        "y": 6.678086411095476
       },
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "Sub Left"
     },
     {
       "anchor": {
-        "x": 2.174587587823497,
-        "y": 7.001701420223855
+        "x": 2.36,
+        "y": 6.68
       },
       "prevControl": {
-        "x": 0.866718084865313,
-        "y": 6.97861795637521
+        "x": 1.2633382646917966,
+        "y": 6.742666384874754
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "A (Ariel)"
     }
   ],
   "rotationTargets": [
     {
-      "waypointRelativePos": 0.5,
-      "rotationDegrees": 0,
+      "waypointRelativePos": 0.4,
+      "rotationDegrees": 35.0,
       "rotateFast": false
     }
   ],
@@ -86,13 +86,13 @@
   },
   "goalEndState": {
     "velocity": 0.0,
-    "rotation": -0.01834204489113116,
+    "rotation": 35.217592968192776,
     "rotateFast": false
   },
   "reversed": false,
-  "folder": null,
+  "folder": "Sub Left",
   "previewStartingState": {
-    "rotation": 60.06848815949223,
+    "rotation": 59.420773127511005,
     "velocity": 0
   },
   "useDefaultConstraints": true

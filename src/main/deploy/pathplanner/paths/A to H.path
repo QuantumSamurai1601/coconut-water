@@ -1,0 +1,63 @@
+{
+  "version": 1.0,
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 2.36,
+        "y": 6.68
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 4.6982726026468535,
+        "y": 3.477984360554095
+      },
+      "isLocked": false,
+      "linkedName": "A (Ariel)"
+    },
+    {
+      "anchor": {
+        "x": 7.455593537141273,
+        "y": 0.7728854134553063
+      },
+      "prevControl": {
+        "x": 7.612259499328159,
+        "y": 4.856644827793473
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "H (Hercules)"
+    }
+  ],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 0.7,
+      "rotationDegrees": 0,
+      "rotateFast": false
+    },
+    {
+      "waypointRelativePos": 0.6,
+      "rotationDegrees": 35.0,
+      "rotateFast": false
+    }
+  ],
+  "constraintZones": [],
+  "eventMarkers": [],
+  "globalConstraints": {
+    "maxVelocity": 3.0,
+    "maxAcceleration": 3.0,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 720.0
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": 0,
+    "rotateFast": false
+  },
+  "reversed": false,
+  "folder": "A (Ariel) ",
+  "previewStartingState": {
+    "rotation": 31.79345681809909,
+    "velocity": 0
+  },
+  "useDefaultConstraints": true
+}

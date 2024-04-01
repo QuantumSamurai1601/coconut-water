@@ -1,0 +1,58 @@
+{
+  "version": 1.0,
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 7.504193570808328,
+        "y": 2.453471943513874
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 6.90886291449816,
+        "y": 5.085460108253563
+      },
+      "isLocked": false,
+      "linkedName": "G (Golf)"
+    },
+    {
+      "anchor": {
+        "x": 4.332718690882675,
+        "y": 6.517304026974466
+      },
+      "prevControl": {
+        "x": 3.5389444824691183,
+        "y": 3.206430026091605
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "Wong Left"
+    }
+  ],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 0.5,
+      "rotationDegrees": 20.0,
+      "rotateFast": false
+    }
+  ],
+  "constraintZones": [],
+  "eventMarkers": [],
+  "globalConstraints": {
+    "maxVelocity": 3.0,
+    "maxAcceleration": 3.0,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 720.0
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": 13.781597235653605,
+    "rotateFast": false
+  },
+  "reversed": false,
+  "folder": "G (Golf)",
+  "previewStartingState": {
+    "rotation": 0,
+    "velocity": 0
+  },
+  "useDefaultConstraints": true
+}

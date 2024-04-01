@@ -1,0 +1,58 @@
+{
+  "version": 1.0,
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 2.181172810182771,
+        "y": 5.566863856374023
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 2.2960611824531547,
+        "y": 4.908866815189101
+      },
+      "isLocked": false,
+      "linkedName": "B (Belle)"
+    },
+    {
+      "anchor": {
+        "x": 2.2349226035148164,
+        "y": 4.461799188415527
+      },
+      "prevControl": {
+        "x": 2.182700616119187,
+        "y": 5.057129844725694
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "C (Cinderella)"
+    }
+  ],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 0.4,
+      "rotationDegrees": -25.0,
+      "rotateFast": false
+    }
+  ],
+  "constraintZones": [],
+  "eventMarkers": [],
+  "globalConstraints": {
+    "maxVelocity": 3.0,
+    "maxAcceleration": 3.0,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 720.0
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": -24.863696571751845,
+    "rotateFast": false
+  },
+  "reversed": false,
+  "folder": "B (Belle)",
+  "previewStartingState": {
+    "rotation": 0,
+    "velocity": 0
+  },
+  "useDefaultConstraints": true
+}

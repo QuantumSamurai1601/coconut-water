@@ -1,0 +1,49 @@
+{
+  "version": 1.0,
+  "startingPose": {
+    "position": {
+      "x": 0.8,
+      "y": 6.68
+    },
+    "rotation": 60.0
+  },
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Sub Left to A"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "A to B"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "B to C"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "C to D"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "D to Wong Left"
+          }
+        }
+      ]
+    }
+  },
+  "folder": null,
+  "choreoAuto": false
+}
