@@ -8,8 +8,8 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.9848542395223037,
-        "y": 5.46705073613714
+        "x": 1.7842857059759927,
+        "y": 5.807084998393916
       },
       "isLocked": false,
       "linkedName": null
@@ -20,15 +20,21 @@
         "y": 5.5410316277334815
       },
       "prevControl": {
-        "x": 1.901478536053158,
-        "y": 6.271396077786225
+        "x": 2.0767288353915134,
+        "y": 6.14130571772594
       },
       "nextControl": null,
       "isLocked": false,
       "linkedName": "Sub Front"
     }
   ],
-  "rotationTargets": [],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 0.5,
+      "rotationDegrees": 0,
+      "rotateFast": false
+    }
+  ],
   "constraintZones": [],
   "eventMarkers": [],
   "globalConstraints": {
@@ -45,7 +51,7 @@
   "reversed": false,
   "folder": "Sub Front",
   "previewStartingState": {
-    "rotation": 0,
+    "rotation": 52.125016348901795,
     "velocity": 0
   },
   "useDefaultConstraints": true

@@ -3,40 +3,45 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 2.36,
-        "y": 6.68
+        "x": 4.332718690882675,
+        "y": 6.517304026974466
       },
       "prevControl": null,
       "nextControl": {
-        "x": 4.6982726026468535,
-        "y": 3.477984360554095
+        "x": 4.374496280799177,
+        "y": 3.6450947202148862
       },
       "isLocked": false,
-      "linkedName": "A (Ariel)"
+      "linkedName": "Wong Left"
     },
     {
       "anchor": {
-        "x": 7.580926306890783,
-        "y": 0.7833298109344314
+        "x": 7.539148716974281,
+        "y": 4.1046482092964185
       },
       "prevControl": {
-        "x": 7.737592269077669,
-        "y": 4.867089225272598
+        "x": 6.5887085463738355,
+        "y": 3.822649477360024
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "H (Harvey)"
+      "linkedName": "F (Failure) "
     }
   ],
   "rotationTargets": [
     {
-      "waypointRelativePos": 0.7,
+      "waypointRelativePos": 0.5,
+      "rotationDegrees": -40.0,
+      "rotateFast": false
+    },
+    {
+      "waypointRelativePos": 0.8,
       "rotationDegrees": 0,
       "rotateFast": false
     },
     {
-      "waypointRelativePos": 0.6,
-      "rotationDegrees": 35.0,
+      "waypointRelativePos": 0.35,
+      "rotationDegrees": 30.0,
       "rotateFast": false
     }
   ],
@@ -54,9 +59,9 @@
     "rotateFast": false
   },
   "reversed": false,
-  "folder": "A (Ariel) ",
+  "folder": "Wong Lie",
   "previewStartingState": {
-    "rotation": 31.79345681809909,
+    "rotation": 0,
     "velocity": 0
   },
   "useDefaultConstraints": true

@@ -32,13 +32,13 @@
         {
           "type": "path",
           "data": {
-            "pathName": "C to D"
+            "pathName": "C to F"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "D to Wong Left"
+            "pathName": "F to Wong Mid"
           }
         }
       ]

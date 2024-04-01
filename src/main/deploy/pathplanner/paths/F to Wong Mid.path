@@ -3,40 +3,35 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 2.36,
-        "y": 6.68
+        "x": 7.539148716974281,
+        "y": 4.1046482092964185
       },
       "prevControl": null,
       "nextControl": {
-        "x": 4.6982726026468535,
-        "y": 3.477984360554095
+        "x": 6.411153789228701,
+        "y": 3.4779843605488736
       },
       "isLocked": false,
-      "linkedName": "A (Ariel)"
+      "linkedName": "F (Failure) "
     },
     {
       "anchor": {
-        "x": 7.580926306890783,
-        "y": 0.7833298109344314
+        "x": 4.249163511049669,
+        "y": 5.316198316875005
       },
       "prevControl": {
-        "x": 7.737592269077669,
-        "y": 4.867089225272598
+        "x": 4.123830741300159,
+        "y": 4.7208676605648385
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "H (Harvey)"
+      "linkedName": "Wong Mid"
     }
   ],
   "rotationTargets": [
     {
-      "waypointRelativePos": 0.7,
+      "waypointRelativePos": 0.5,
       "rotationDegrees": 0,
-      "rotateFast": false
-    },
-    {
-      "waypointRelativePos": 0.6,
-      "rotationDegrees": 35.0,
       "rotateFast": false
     }
   ],
@@ -54,9 +49,9 @@
     "rotateFast": false
   },
   "reversed": false,
-  "folder": "A (Ariel) ",
+  "folder": "F (Failure)",
   "previewStartingState": {
-    "rotation": 31.79345681809909,
+    "rotation": 0,
     "velocity": 0
   },
   "useDefaultConstraints": true

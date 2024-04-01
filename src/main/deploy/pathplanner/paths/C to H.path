@@ -16,16 +16,16 @@
     },
     {
       "anchor": {
-        "x": 7.455593537141273,
-        "y": 0.7728854134553063
+        "x": 7.580926306890783,
+        "y": 0.7833298109344314
       },
       "prevControl": {
-        "x": 5.857600722835033,
-        "y": 1.4413268521141291
+        "x": 5.982933492584543,
+        "y": 1.4517712495932544
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "H (Hercules)"
+      "linkedName": "H (Harvey)"
     }
   ],
   "rotationTargets": [

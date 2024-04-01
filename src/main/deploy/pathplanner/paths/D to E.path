@@ -3,43 +3,32 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 2.36,
-        "y": 6.68
+        "x": 7.580926306890783,
+        "y": 7.467744197574909
       },
       "prevControl": null,
       "nextControl": {
-        "x": 4.6982726026468535,
-        "y": 3.477984360554095
+        "x": 7.580926306890783,
+        "y": 6.882857938743868
       },
       "isLocked": false,
-      "linkedName": "A (Ariel)"
+      "linkedName": "D (Dinosaur) "
     },
     {
       "anchor": {
         "x": 7.580926306890783,
-        "y": 0.7833298109344314
+        "y": 5.79664060091479
       },
       "prevControl": {
-        "x": 7.737592269077669,
-        "y": 4.867089225272598
+        "x": 7.528704319495153,
+        "y": 6.4024156547040825
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "H (Harvey)"
+      "linkedName": "E (Wall-E) "
     }
   ],
-  "rotationTargets": [
-    {
-      "waypointRelativePos": 0.7,
-      "rotationDegrees": 0,
-      "rotateFast": false
-    },
-    {
-      "waypointRelativePos": 0.6,
-      "rotationDegrees": 35.0,
-      "rotateFast": false
-    }
-  ],
+  "rotationTargets": [],
   "constraintZones": [],
   "eventMarkers": [],
   "globalConstraints": {
@@ -54,9 +43,9 @@
     "rotateFast": false
   },
   "reversed": false,
-  "folder": "A (Ariel) ",
+  "folder": "D (Dinosaur)",
   "previewStartingState": {
-    "rotation": 31.79345681809909,
+    "rotation": 0,
     "velocity": 0
   },
   "useDefaultConstraints": true
