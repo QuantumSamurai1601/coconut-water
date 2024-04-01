@@ -11,15 +11,17 @@ import com.ctre.phoenix6.mechanisms.swerve.SwerveModule.DriveRequestType;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
-
+import frc.robot.commands.intake.IntakeGround;
 import frc.robot.generated.TunerConstants;
 import frc.robot.subsystems.climber.ClimberSubsystem;
 import frc.robot.subsystems.intake.IntakeSubsystem;
+import frc.robot.subsystems.led.LEDSubsystem;
 import frc.robot.subsystems.shooter.ShooterSubsystem;
 
 public class RobotContainer {
@@ -34,6 +36,7 @@ public class RobotContainer {
   private final ClimberSubsystem climber = new ClimberSubsystem();
   private final IntakeSubsystem intake = new IntakeSubsystem();
   private final ShooterSubsystem shooter = new ShooterSubsystem();
+  private final LEDSubsystem led = new LEDSubsystem();
   // Auto chooser
   private final SendableChooser<Command> autoChooser = new SendableChooser<Command>();
 
@@ -47,6 +50,9 @@ public class RobotContainer {
   
   private final SwerveRequest.SwerveDriveBrake brake = new SwerveRequest.SwerveDriveBrake();
   private final SwerveRequest.PointWheelsAt point = new SwerveRequest.PointWheelsAt();
+
+  private Command runAuto = drivetrain.getAutoPath("Tests");
+
   private final Telemetry logger = new Telemetry(MaxSpeed);
 
   private final Command mobilityAuto = drivetrain.applyRequest(() -> fieldDrive.withVelocityY(-0.5 * MaxSpeed)).withTimeout(2);
@@ -67,18 +73,17 @@ public class RobotContainer {
 
     // Driver feed shooter
     joystick.x().whileTrue(
-      Commands.startEnd(() -> shooter.feedShooter(),() -> shooter.feedStop())
+      Commands.startEnd(() -> shooter.feedToShooter(),() -> shooter.feedStop())
     );
 
     // Operator climber
-    operator.povUp().onTrue(climber.extend()).onFalse(climber.stop());
-    operator.povDown().onTrue(climber.retract()).onFalse(climber.stop());
+    climber.setDefaultCommand(climber.control(MathUtil.applyDeadband(operator.getLeftY()/2, 0.1)));
 
     // Operator source intake
     operator.x().whileTrue(
       Commands.startEnd(() -> {
         shooter.shooterIntake();
-        shooter.feed();
+        shooter.feedFromSource();
       },
       () -> {
         shooter.stop();
@@ -108,25 +113,17 @@ public class RobotContainer {
     //operator.x().onTrue(
     //  Commands.runOnce(() -> shooter.pivot(0.0))
     //);
-    // Operator run intake
-    operator.povRight().whileTrue(
-      Commands.startEnd(() -> {
-        intake.intake();
-        shooter.feedShooter();
-      }, 
-      () -> {
-        intake.stop();
-        shooter.feedStop();
-      })
+
+    // Operator intake sequence
+    operator.leftTrigger().whileTrue(
+      new IntakeGround(intake, shooter)
     );
-    // Operatr pivot intake down
-    operator.povLeft().onTrue(
-      Commands.runOnce(()-> intake.pivot(0))
+    // Operator intake retract
+    operator.rightTrigger().onTrue(
+      Commands.runOnce(() -> intake.pivotUp())
     );
-    operator.rightStick().onTrue(
-      Commands.runOnce(() -> intake.pivot(0.33))
-    );
-        if (Utils.isSimulation()) {
+
+    if (Utils.isSimulation()) {
       drivetrain.seedFieldRelative(new Pose2d(new Translation2d(), Rotation2d.fromDegrees(90)));
     }
     drivetrain.registerTelemetry(logger::telemeterize);
@@ -147,6 +144,6 @@ public class RobotContainer {
   }
 
   public Command getAutonomousCommand() {
-    return autoChooser.getSelected();
+    return runAuto;
   }
 }

@@ -15,6 +15,7 @@ import com.ctre.phoenix6.controls.MotionMagicVoltage;
 import com.ctre.phoenix6.controls.NeutralOut;
 import com.ctre.phoenix6.controls.PositionTorqueCurrentFOC;
 import com.ctre.phoenix6.controls.VelocityTorqueCurrentFOC;
+import com.ctre.phoenix6.controls.VelocityVoltage;
 import com.ctre.phoenix6.controls.VoltageOut;
 
 import static frc.robot.Constants.*;
@@ -30,9 +31,9 @@ public class ShooterSubsystem extends SubsystemBase {
     private final TalonFX followerPivot;
     private final DigitalInput forwardLimit;
     // Shooter and Feeder Control Requests
-    private final VelocityTorqueCurrentFOC leaderShooterRequest;
+    private final VelocityVoltage leaderShooterRequest;
     private final Follower followerShooterRequest;
-    private final VelocityTorqueCurrentFOC feederRequest;
+    private final VoltageOut feederRequest;
     private final Follower tempFeederFollower;
     // Shooter Pivot Control Requests
     private final MotionMagicVoltage leaderPivotRequest;
@@ -61,11 +62,12 @@ public class ShooterSubsystem extends SubsystemBase {
     public ShooterSubsystem() {
         leaderShooter = new TalonFX(TOP_SHOOTER_ID, CANBUS_NAME);
         followerShooter = new TalonFX(BOTTOM_SHOOTER_ID, CANBUS_NAME);
-        leaderShooterRequest =  new VelocityTorqueCurrentFOC(0.0);
+        leaderShooterRequest =  new VelocityVoltage(0.0);
         followerShooterRequest = new Follower(TOP_SHOOTER_ID, false);
 
         feeder = new TalonFX(FEEDER_ID, CANBUS_NAME);
-        feederRequest = new VelocityTorqueCurrentFOC(0.0);
+        feederRequest = new VoltageOut(0.0);
+        feeder.setNeutralMode(NeutralModeValue.Brake);
         tempFeederFollower = new Follower(INTAKE_ID, false);
 
         forwardLimit = new DigitalInput(3);
@@ -128,11 +130,11 @@ public class ShooterSubsystem extends SubsystemBase {
 
         followerShooter.setControl(followerShooterRequest);
         followerPivot.setControl(followerPivotRequest);
-        feeder.setControl(tempFeederFollower);
+        // feeder.setControl(tempFeederFollower);
     }
     // Method takes rotations per second, standardizing revolutions per minute
-    public void shootVelocity(double rpm) {
-        leaderShooter.setControl(leaderShooterRequest.withVelocity(rpm/60));
+    public void shootVelocity(double rps) {
+        leaderShooter.setControl(leaderShooterRequest.withVelocity(rps));
         followerShooter.setControl(followerShooterRequest);
     }
     public void shootVoltage(double voltage) {
@@ -143,10 +145,13 @@ public class ShooterSubsystem extends SubsystemBase {
         leaderShooter.setControl(new VoltageOut(2.7));
         followerShooter.setControl(followerShooterRequest);
     }
-    public void feed() {
+    public void feedFromSource() {
         feeder.setControl(new VoltageOut(0.375));
     }
-    public void feedShooter() {
+    public void feedFromIntake() {
+        feeder.setControl(feederRequest.withOutput(-1));
+    }
+    public void feedToShooter() {
         feeder.setControl(new VoltageOut(-3));
     }
     public void feedStop() {
