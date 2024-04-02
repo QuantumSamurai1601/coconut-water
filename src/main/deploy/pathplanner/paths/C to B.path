@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 2.181172810182771,
-        "y": 4.428424531149317
+        "x": 2.2020616051410227,
+        "y": 4.417980133670191
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.1587562092881036,
-        "y": 4.812825773048137
+        "x": 2.179645004246355,
+        "y": 4.802381375569011
       },
       "isLocked": false,
       "linkedName": "C (Cinderella)"
@@ -20,8 +20,8 @@
         "y": 5.566863856374023
       },
       "prevControl": {
-        "x": 2.191617207661897,
-        "y": 5.222198739562874
+        "x": 1.3247322168944597,
+        "y": 5.326642714354132
       },
       "nextControl": null,
       "isLocked": false,
@@ -51,7 +51,7 @@
   "reversed": false,
   "folder": "C (Cinderella)",
   "previewStartingState": {
-    "rotation": -31.49853733821945,
+    "rotation": -32.47119229084851,
     "velocity": 0
   },
   "useDefaultConstraints": true
