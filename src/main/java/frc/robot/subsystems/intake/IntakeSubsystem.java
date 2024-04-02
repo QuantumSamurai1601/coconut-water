@@ -5,9 +5,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import com.ctre.phoenix6.hardware.TalonFX;
-import com.ctre.phoenix6.controls.VoltageOut;
-import com.ctre.phoenix6.controls.PositionTorqueCurrentFOC;
-import com.ctre.phoenix6.controls.StaticBrake;
 import com.ctre.phoenix6.controls.VelocityVoltage;
 import com.ctre.phoenix6.BaseStatusSignal;
 import com.ctre.phoenix6.StatusSignal;
@@ -117,7 +114,7 @@ public class IntakeSubsystem extends SubsystemBase {
         intake.setControl(intakeRequest.withVelocity(-27));
     }
     public void eject() {
-        intake.setControl(intakeRequest.withVelocity(20));
+        intake.setControl(intakeRequest.withVelocity(27));
     }
     public void stop() {
         intake.setControl(neutral);
