@@ -3,32 +3,38 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 7.580926306890783,
-        "y": 7.467744197574909
+        "x": 0.7711791505007954,
+        "y": 4.292647363920682
       },
       "prevControl": null,
       "nextControl": {
-        "x": 7.591370704369908,
-        "y": 6.673969989161352
+        "x": 1.6380641412682322,
+        "y": 4.167314594171174
       },
       "isLocked": false,
-      "linkedName": "D (Dinosaur) "
+      "linkedName": "Sub Right"
     },
     {
       "anchor": {
-        "x": 7.580926306890783,
-        "y": 0.7833298109344314
+        "x": 2.181172810182771,
+        "y": 4.428424531149317
       },
       "prevControl": {
-        "x": 6.4320425841869495,
-        "y": 0.7102190285805515
+        "x": 1.136733062270196,
+        "y": 4.553757300898827
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "H (Harvey)"
+      "linkedName": "C (Cinderella)"
     }
   ],
-  "rotationTargets": [],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 0.5,
+      "rotationDegrees": 0,
+      "rotateFast": false
+    }
+  ],
   "constraintZones": [],
   "eventMarkers": [],
   "globalConstraints": {
@@ -43,9 +49,9 @@
     "rotateFast": false
   },
   "reversed": false,
-  "folder": "D (Dinosaur)",
+  "folder": "Sub Right",
   "previewStartingState": {
-    "rotation": 0,
+    "rotation": -58.62699485989149,
     "velocity": 0
   },
   "useDefaultConstraints": true

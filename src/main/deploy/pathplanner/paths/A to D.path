@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 2.36,
-        "y": 6.68
+        "x": 2.2438391950575256,
+        "y": 6.684414386640477
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.36,
-        "y": 6.68
+        "x": 3.2438391950575256,
+        "y": 6.684414386640477
       },
       "isLocked": false,
       "linkedName": "A (Ariel)"

@@ -2,10 +2,10 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 0.8,
-      "y": 6.68
+      "x": 1.44,
+      "y": 5.54
     },
-    "rotation": 60.0
+    "rotation": 0
   },
   "command": {
     "type": "sequential",
@@ -14,7 +14,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Sub Left to A"
+            "pathName": "Sub Front to A"
           }
         },
         {
@@ -32,7 +32,19 @@
         {
           "type": "path",
           "data": {
-            "pathName": "C to F"
+            "pathName": "C to G"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "G to Wong Mid"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Wong Mid to F"
           }
         },
         {

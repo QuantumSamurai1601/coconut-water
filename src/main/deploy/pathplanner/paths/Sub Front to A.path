@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 7.580926306890783,
-        "y": 7.467744197574909
+        "x": 1.4437834806867724,
+        "y": 5.5410316277334815
       },
       "prevControl": null,
       "nextControl": {
-        "x": 7.591370704369908,
-        "y": 6.673969989161352
+        "x": 1.7947301034551182,
+        "y": 5.838418190831293
       },
       "isLocked": false,
-      "linkedName": "D (Dinosaur) "
+      "linkedName": "Sub Front"
     },
     {
       "anchor": {
-        "x": 7.580926306890783,
-        "y": 0.7833298109344314
+        "x": 2.2438391950575256,
+        "y": 6.684414386640477
       },
       "prevControl": {
-        "x": 6.4320425841869495,
-        "y": 0.7102190285805515
+        "x": 1.7007305261429866,
+        "y": 6.590414809328346
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "H (Harvey)"
+      "linkedName": "A (Ariel)"
     }
   ],
   "rotationTargets": [],
@@ -39,11 +39,11 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 0,
+    "rotation": 29.744881296942165,
     "rotateFast": false
   },
   "reversed": false,
-  "folder": "D (Dinosaur)",
+  "folder": "Sub Front",
   "previewStartingState": {
     "rotation": 0,
     "velocity": 0

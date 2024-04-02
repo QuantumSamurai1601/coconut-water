@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 7.580926306890783,
-        "y": 7.467744197574909
+        "x": 7.539148716974281,
+        "y": 4.1046482092964185
       },
       "prevControl": null,
       "nextControl": {
-        "x": 7.591370704369908,
-        "y": 6.673969989161352
+        "x": 7.455593537141273,
+        "y": 3.4362067706323707
       },
       "isLocked": false,
-      "linkedName": "D (Dinosaur) "
+      "linkedName": "F (Failure) "
     },
     {
       "anchor": {
-        "x": 7.580926306890783,
-        "y": 0.7833298109344314
+        "x": 7.504193570808328,
+        "y": 2.453471943513874
       },
       "prevControl": {
-        "x": 6.4320425841869495,
-        "y": 0.7102190285805515
+        "x": 6.504193570808328,
+        "y": 2.453471943513874
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "H (Harvey)"
+      "linkedName": "G (Golf)"
     }
   ],
   "rotationTargets": [],
@@ -43,7 +43,7 @@
     "rotateFast": false
   },
   "reversed": false,
-  "folder": "D (Dinosaur)",
+  "folder": "F (Failure)",
   "previewStartingState": {
     "rotation": 0,
     "velocity": 0

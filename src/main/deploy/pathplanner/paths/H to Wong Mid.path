@@ -4,31 +4,37 @@
     {
       "anchor": {
         "x": 7.580926306890783,
-        "y": 7.467744197574909
+        "y": 0.7833298109344314
       },
       "prevControl": null,
       "nextControl": {
-        "x": 7.591370704369908,
-        "y": 6.673969989161352
+        "x": 7.298927574954387,
+        "y": 4.867089225272599
       },
       "isLocked": false,
-      "linkedName": "D (Dinosaur) "
+      "linkedName": "H (Harvey)"
     },
     {
       "anchor": {
-        "x": 7.580926306890783,
-        "y": 0.7833298109344314
+        "x": 4.249163511049669,
+        "y": 5.316198316875005
       },
       "prevControl": {
-        "x": 6.4320425841869495,
-        "y": 0.7102190285805515
+        "x": 4.228274716091418,
+        "y": 3.9688710420677835
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "H (Harvey)"
+      "linkedName": "Wong Mid"
     }
   ],
-  "rotationTargets": [],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 0.6,
+      "rotationDegrees": -20.0,
+      "rotateFast": false
+    }
+  ],
   "constraintZones": [],
   "eventMarkers": [],
   "globalConstraints": {
@@ -43,7 +49,7 @@
     "rotateFast": false
   },
   "reversed": false,
-  "folder": "D (Dinosaur)",
+  "folder": "H (Herucles) ",
   "previewStartingState": {
     "rotation": 0,
     "velocity": 0

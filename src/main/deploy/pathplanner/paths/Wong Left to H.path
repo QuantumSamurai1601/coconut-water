@@ -3,16 +3,16 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 7.580926306890783,
-        "y": 7.467744197574909
+        "x": 4.332718690882675,
+        "y": 6.517304026974466
       },
       "prevControl": null,
       "nextControl": {
-        "x": 7.591370704369908,
-        "y": 6.673969989161352
+        "x": 3.5389444824691183,
+        "y": 3.3839847832367425
       },
       "isLocked": false,
-      "linkedName": "D (Dinosaur) "
+      "linkedName": "Wong Left"
     },
     {
       "anchor": {
@@ -20,15 +20,21 @@
         "y": 0.7833298109344314
       },
       "prevControl": {
-        "x": 6.4320425841869495,
-        "y": 0.7102190285805515
+        "x": 7.2049279976422556,
+        "y": 5.316198316875005
       },
       "nextControl": null,
       "isLocked": false,
       "linkedName": "H (Harvey)"
     }
   ],
-  "rotationTargets": [],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 0.5,
+      "rotationDegrees": -45.0,
+      "rotateFast": false
+    }
+  ],
   "constraintZones": [],
   "eventMarkers": [],
   "globalConstraints": {
@@ -43,7 +49,7 @@
     "rotateFast": false
   },
   "reversed": false,
-  "folder": "D (Dinosaur)",
+  "folder": "Wong Lie",
   "previewStartingState": {
     "rotation": 0,
     "velocity": 0
