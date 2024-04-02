@@ -17,6 +17,7 @@ public class IntakeGround extends Command {
 
     @Override
     public void initialize() {
+        shooter.pivot(0.005);
         intake.pivotDown();
         shooter.feedFromIntake();
         intake.intake();
@@ -28,6 +29,7 @@ public class IntakeGround extends Command {
         intake.stop();
         if (intake.getBeamBreak()) {
             intake.pivotUp();
+            shooter.pivot(0.1);
         }
     }
 
