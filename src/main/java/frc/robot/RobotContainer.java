@@ -116,7 +116,7 @@ public class RobotContainer {
 
     // Operator intake sequence
     operator.leftTrigger().whileTrue(
-      new IntakeGround(intake, shooter)
+      new IntakeGround(intake, shooter, led)
     );
     // Operator intake retract
     operator.rightTrigger().onTrue(
