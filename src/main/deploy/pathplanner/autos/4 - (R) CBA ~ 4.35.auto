@@ -5,7 +5,7 @@
       "x": 0.7711791505007954,
       "y": 4.292647363920682
     },
-    "rotation": -60.10109816138543
+    "rotation": -59.65675111576036
   },
   "command": {
     "type": "sequential",
@@ -38,7 +38,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "C to F"
+            "pathName": "C to B"
           }
         },
         {
@@ -48,9 +48,21 @@
           }
         },
         {
+          "type": "named",
+          "data": {
+            "name": "shootNote"
+          }
+        },
+        {
           "type": "path",
           "data": {
-            "pathName": "F to Wong Mid"
+            "pathName": "B to A"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "intakeNote"
           }
         },
         {

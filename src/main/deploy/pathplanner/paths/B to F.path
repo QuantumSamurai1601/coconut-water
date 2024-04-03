@@ -38,8 +38,8 @@
   "constraintZones": [],
   "eventMarkers": [
     {
-      "name": "intakePivotDown",
-      "waypointRelativePos": 0.65,
+      "name": "intakeGround",
+      "waypointRelativePos": 0.85,
       "command": {
         "type": "parallel",
         "data": {

@@ -2,37 +2,43 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 0.7711791505007954,
-      "y": 4.4
+      "x": 0.8234011378964239,
+      "y": 6.799302758910862
     },
-    "rotation": -61.31385242626056
+    "rotation": 59.27202945776151
   },
   "command": {
     "type": "sequential",
     "data": {
       "commands": [
         {
-          "type": "path",
+          "type": "named",
           "data": {
-            "pathName": "Sub Right to C"
+            "name": "shootNote"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "C to B"
+            "pathName": "Sub Left to A"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "intakeNote"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "B to F"
+            "pathName": "A to Sub Front"
           }
         },
         {
-          "type": "path",
+          "type": "named",
           "data": {
-            "pathName": "F to Wong Mid"
+            "name": "shootNote"
           }
         }
       ]

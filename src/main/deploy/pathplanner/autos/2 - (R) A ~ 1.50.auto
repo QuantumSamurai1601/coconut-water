@@ -5,7 +5,7 @@
       "x": 0.8234011378964239,
       "y": 6.799302758910862
     },
-    "rotation": 59.27202945776151
+    "rotation": 60.13
   },
   "command": {
     "type": "sequential",
@@ -14,7 +14,7 @@
         {
           "type": "named",
           "data": {
-            "name": "shootPreload"
+            "name": "shootNote"
           }
         },
         {
@@ -27,12 +27,6 @@
           "type": "named",
           "data": {
             "name": "intakeNote"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "A to Sub Front"
           }
         },
         {

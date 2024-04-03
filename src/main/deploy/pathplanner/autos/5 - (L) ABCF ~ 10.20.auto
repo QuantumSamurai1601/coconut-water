@@ -2,10 +2,10 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 0.7711791505007954,
-      "y": 4.292647363920682
+      "x": 0.8,
+      "y": 6.68
     },
-    "rotation": -60.10109816138543
+    "rotation": 60.13
   },
   "command": {
     "type": "sequential",
@@ -20,7 +20,43 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Sub Right to C"
+            "pathName": "Sub Left to A"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "intakeNote"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "shootNote"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "A to B"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "intakeNote"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "shootNote"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "B to C"
           }
         },
         {
@@ -45,6 +81,12 @@
           "type": "named",
           "data": {
             "name": "intakeNote"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "shootNote"
           }
         },
         {

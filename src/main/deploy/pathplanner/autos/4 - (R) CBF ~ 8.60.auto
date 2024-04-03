@@ -3,9 +3,9 @@
   "startingPose": {
     "position": {
       "x": 0.7711791505007954,
-      "y": 4.292647363920682
+      "y": 4.4
     },
-    "rotation": -60.10109816138543
+    "rotation": -61.31385242626056
   },
   "command": {
     "type": "sequential",
@@ -38,13 +38,37 @@
         {
           "type": "path",
           "data": {
-            "pathName": "C to F"
+            "pathName": "C to B"
           }
         },
         {
           "type": "named",
           "data": {
             "name": "intakeNote"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "shootNote"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "B to F"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "intakeNote"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "shootNote"
           }
         },
         {
