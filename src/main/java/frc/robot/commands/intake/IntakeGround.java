@@ -40,6 +40,5 @@ public class IntakeGround extends Command {
     @Override
     public boolean isFinished() {
         return intake.getBeamBreak();
-    }
-    
+    } 
 }

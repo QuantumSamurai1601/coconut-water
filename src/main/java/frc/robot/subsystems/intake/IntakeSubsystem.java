@@ -65,7 +65,7 @@ public class IntakeSubsystem extends SubsystemBase {
         currentLimit = new TalonFXConfiguration();
         currentLimit.CurrentLimits.SupplyCurrentLimit = SUPPLY_CURRENT_LIMIT;
         currentLimit.CurrentLimits.SupplyCurrentLimitEnable = true;
-        intake.getConfigurator().apply(currentLimit);
+        // intake.getConfigurator().apply(currentLimit);
         leaderIntakePivot.getConfigurator().apply(currentLimit);
 
         // Left/Leader Pivot Config
