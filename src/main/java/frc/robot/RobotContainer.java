@@ -7,6 +7,7 @@ package frc.robot;
 import com.ctre.phoenix6.Utils;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveRequest;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveModule.DriveRequestType;
+import com.pathplanner.lib.auto.NamedCommands;
 
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
@@ -68,7 +69,7 @@ public class RobotContainer {
     joystick.a().whileTrue(drivetrain.applyRequest(() -> brake));
     joystick.b().whileTrue(drivetrain.applyRequest(() -> point.withModuleDirection(new Rotation2d(-joystick.getLeftY(), -joystick.getLeftX()))));
 
-    // reset the field-centric heading on left bumper press
+    // reset the field-centric heading on b press
     joystick.b().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldRelative()));
 
     // Driver feed shooter
@@ -77,7 +78,9 @@ public class RobotContainer {
     );
 
     // Operator climber
-    climber.setDefaultCommand(climber.control(MathUtil.applyDeadband(operator.getLeftY()/2, 0.1)));
+    climber.setDefaultCommand(
+      climber.control(operator::getLeftY, operator::getRightY)
+    );
 
     // Operator source intake
     operator.x().whileTrue(
@@ -90,13 +93,13 @@ public class RobotContainer {
         shooter.feedStop();
       })
     );
-    // Operator run shooter low preset
-    operator.leftBumper().whileTrue(
-      Commands.startEnd(() -> shooter.shootVoltage(-2), () -> shooter.stop())   
-    );
     // Operator run shooter medium preset
+    operator.leftBumper().whileTrue(
+      Commands.startEnd(() -> shooter.shootVoltage(-20), () -> shooter.stop())   
+    );
+    // Operator run shooter high preset
     operator.rightBumper().whileTrue(
-      Commands.startEnd(() -> shooter.shootVelocity(-45), () -> shooter.stop())   
+      Commands.startEnd(() -> shooter.shootVelocity(-35), () -> shooter.stop())   
     );
     // Operator run shooter high preset
     operator.b().whileTrue(
@@ -138,6 +141,8 @@ public class RobotContainer {
 
   public RobotContainer() {
     configureBindings();
+
+    NamedCommands.registerCommand("intakeGround", new IntakeGround(intake, shooter, led).withTimeout(2.5));
 
     autoChooser.setDefaultOption("Autonomous Disabled", nothing);
     autoChooser.addOption("Mobility Auto", mobilityAuto);

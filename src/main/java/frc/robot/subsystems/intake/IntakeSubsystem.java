@@ -12,6 +12,7 @@ import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.controls.Follower;
 import com.ctre.phoenix6.controls.MotionMagicVoltage;
 import com.ctre.phoenix6.controls.NeutralOut;
+import com.ctre.phoenix6.controls.VelocityTorqueCurrentFOC;
 import com.ctre.phoenix6.signals.GravityTypeValue;
 import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
@@ -27,7 +28,7 @@ public class IntakeSubsystem extends SubsystemBase {
     private final TalonFX followerIntakePivot;
     private final DigitalInput beamBreak;
     // Intake Control Requests
-    private final VelocityVoltage intakeRequest;
+    private final VelocityTorqueCurrentFOC intakeRequest;
     // Intake Pivot Control Requests
     private final MotionMagicVoltage leaderPivotRequest;
     private final Follower followerPivotRequest;
@@ -51,7 +52,7 @@ public class IntakeSubsystem extends SubsystemBase {
         //Intake Rollers
         intake = new TalonFX(INTAKE_ID, CANBUS_NAME);
         beamBreak = new DigitalInput(INTAKE_BEAM_BREAK);
-        intakeRequest = new VelocityVoltage(0).withEnableFOC(true);
+        intakeRequest = new VelocityTorqueCurrentFOC(0).withSlot(1);
         intake.setInverted(true);
                 
         // Intake Pivot
@@ -94,6 +95,9 @@ public class IntakeSubsystem extends SubsystemBase {
         rollerConfig.Slot0.kV = 0.31607;
         rollerConfig.Slot0.kA = 0.0090014;
         rollerConfig.Slot0.kP = 0.1267;
+        rollerConfig.Slot1.kS = 16;
+        rollerConfig.Slot1.kP = 29;
+        rollerConfig.Feedback.SensorToMechanismRatio = 2.5;
         rollerConfig.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
         intake.getConfigurator().apply(rollerConfig);
 
@@ -111,10 +115,10 @@ public class IntakeSubsystem extends SubsystemBase {
     }
 
     public void intake() {
-        intake.setControl(intakeRequest.withVelocity(-27));
+        intake.setControl(intakeRequest.withVelocity(-8.5));
     }
     public void eject() {
-        intake.setControl(intakeRequest.withVelocity(27));
+        intake.setControl(intakeRequest.withVelocity(9));
     }
     public void stop() {
         intake.setControl(neutral);

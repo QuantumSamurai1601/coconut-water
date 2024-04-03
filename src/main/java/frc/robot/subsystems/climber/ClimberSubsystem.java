@@ -17,7 +17,7 @@ public class ClimberSubsystem extends SubsystemBase {
     private final TalonFX leftClimber;
     private final TalonFX rightClimber;
     private final DutyCycleOut leftRequest;
-    private final Follower rightRequest;
+    private final DutyCycleOut rightRequest;
     private final NeutralOut brakeRequest;
 
     public ClimberSubsystem() {
@@ -27,24 +27,17 @@ public class ClimberSubsystem extends SubsystemBase {
         leftClimber.setNeutralMode(NeutralModeValue.Brake);
         rightClimber.setNeutralMode(NeutralModeValue.Brake);
 
-        leftRequest = new DutyCycleOut(0.0, true, false, false, false);
-        rightRequest = new Follower(LEFT_CLIMBER_ID, false);
+        leftRequest = new DutyCycleOut(0.0).withEnableFOC(true);
+        rightRequest = new DutyCycleOut(0.0).withEnableFOC(true);
         brakeRequest = new NeutralOut();
     }
 
-    public Command control(double output) {
+    public Command control(DoubleSupplier leftOutput, DoubleSupplier rightOutput) {
         return this.runOnce(() -> {
-            leftClimber.setControl(leftRequest.withOutput(output));
-            rightClimber.setControl(rightRequest);
+            leftClimber.setControl(leftRequest.withOutput(leftOutput.getAsDouble() * 0.5));
+            rightClimber.setControl(rightRequest.withOutput(rightOutput.getAsDouble() * 0.5));
         });
     }
-
-    /* public Command retract(DoubleSupplier output) {
-        return this.runOnce(() -> {
-            leftClimber.setControl(leftRequest.withOutput(-0.3));
-            rightClimber.setControl(rightRequest);
-        });
-    } */
 
     public Command stop() {
         return this.runOnce(() -> {
