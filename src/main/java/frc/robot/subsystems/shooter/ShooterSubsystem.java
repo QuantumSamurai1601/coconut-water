@@ -13,10 +13,13 @@ import com.ctre.phoenix6.signals.NeutralModeValue;
 import com.ctre.phoenix6.controls.Follower;
 import com.ctre.phoenix6.controls.MotionMagicVoltage;
 import com.ctre.phoenix6.controls.NeutralOut;
+import com.ctre.phoenix6.controls.VelocityTorqueCurrentFOC;
 import com.ctre.phoenix6.controls.VelocityVoltage;
 import com.ctre.phoenix6.controls.VoltageOut;
 
 import static frc.robot.Constants.*;
+
+import java.util.function.DoubleSupplier;
 
 public class ShooterSubsystem extends SubsystemBase {
     // Shooter and Feeder Motors
@@ -28,7 +31,7 @@ public class ShooterSubsystem extends SubsystemBase {
     private final TalonFX followerPivot;
     // Shooter and Feeder Control Requests
     private final VelocityVoltage topShooterRequest;
-    private final VelocityVoltage bottomShooterRequest;
+    private final VelocityTorqueCurrentFOC bottomShooterRequest;
     private final VoltageOut feederRequest;
     // Shooter Pivot Control Requests
     private final MotionMagicVoltage leaderPivotRequest;
@@ -62,7 +65,7 @@ public class ShooterSubsystem extends SubsystemBase {
         topShooter = new TalonFX(TOP_SHOOTER_ID, CANBUS_NAME);
         bottomShooter = new TalonFX(BOTTOM_SHOOTER_ID, CANBUS_NAME);
         topShooterRequest =  new VelocityVoltage(0.0);
-        bottomShooterRequest = new VelocityVoltage(0.0);
+        bottomShooterRequest = new VelocityTorqueCurrentFOC(0.0).withSlot(1);
         // Feeder Motor and Control Request
         feeder = new TalonFX(FEEDER_ID, CANBUS_NAME);
         feederRequest = new VoltageOut(0.0);
@@ -90,7 +93,7 @@ public class ShooterSubsystem extends SubsystemBase {
         topShooterConfig.Slot0.kP = 0.16118;
         topShooterConfig.Slot0.kI = 0.0;
         topShooterConfig.Slot0.kD = 0.0;
-        topShooterConfig.Feedback.SensorToMechanismRatio = 0.75;
+        // topShooterConfig.Feedback.SensorToMechanismRatio = 0.6666666667;
         topShooterConfig.MotorOutput.NeutralMode = NeutralModeValue.Coast;
         topShooter.getConfigurator().apply(topShooterConfig);
         // Bottom Shooter Config
@@ -101,7 +104,9 @@ public class ShooterSubsystem extends SubsystemBase {
         bottomShooterConfig.Slot0.kP = 0.18765;
         bottomShooterConfig.Slot0.kI = 0.0;
         bottomShooterConfig.Slot0.kD = 0.0;
-        topShooterConfig.Feedback.SensorToMechanismRatio = 0.75;
+        bottomShooterConfig.Slot1.kS = 14.5;
+        bottomShooterConfig.Slot1.kP = 41.25;
+        bottomShooterConfig.Feedback.SensorToMechanismRatio = 0.6666666667;
         bottomShooterConfig.MotorOutput.NeutralMode = NeutralModeValue.Coast;
         bottomShooter.getConfigurator().apply(bottomShooterConfig);
         // Shooter Pivot Config
@@ -189,12 +194,17 @@ public class ShooterSubsystem extends SubsystemBase {
         topShooter.setControl(neutral);
         bottomShooter.setControl(neutral);
     }
-    public double getShootingAngle(double distance) {
-        return treeMap.get(distance);
+    public double getShootingAngle(DoubleSupplier distance) {
+        return treeMap.get(distance.getAsDouble());
     }
     public boolean flywheelsAtTarget() {
-        return topShooter.getClosedLoopError().refresh().getValueAsDouble() < 0.75 
-            && bottomShooter.getClosedLoopError().refresh().getValueAsDouble() < 0.75;
+        if (Math.abs(topShooter.getVelocity().getValueAsDouble())>= 7.5) {
+            System.out.println("fnat");
+            return false;
+        }  
+        else {
+            return topShooter.getClosedLoopError().refresh().getValueAsDouble() < 2 && bottomShooter.getClosedLoopError().refresh().getValueAsDouble() < 2;
+        }
     }
     @Override
     public void periodic() {
