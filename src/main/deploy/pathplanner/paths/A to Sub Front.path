@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 2.4527271446400407,
-        "y": 6.538192821932718
+        "x": 2.2542835925366513,
+        "y": 6.684414386640477
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.7842857059759927,
-        "y": 5.807084998393916
+        "x": 1.5858421538726033,
+        "y": 5.953306563101675
       },
       "isLocked": false,
       "linkedName": null
@@ -30,13 +30,24 @@
   ],
   "rotationTargets": [
     {
-      "waypointRelativePos": 0.5,
+      "waypointRelativePos": 0.8,
       "rotationDegrees": 0,
       "rotateFast": false
     }
   ],
   "constraintZones": [],
-  "eventMarkers": [],
+  "eventMarkers": [
+    {
+      "name": "shooterSequence",
+      "waypointRelativePos": 0.65,
+      "command": {
+        "type": "parallel",
+        "data": {
+          "commands": []
+        }
+      }
+    }
+  ],
   "globalConstraints": {
     "maxVelocity": 3.0,
     "maxAcceleration": 3.0,
@@ -51,7 +62,7 @@
   "reversed": false,
   "folder": "A (Ariel) ",
   "previewStartingState": {
-    "rotation": 52.125016348901795,
+    "rotation": 26.565051177078146,
     "velocity": 0
   },
   "useDefaultConstraints": true

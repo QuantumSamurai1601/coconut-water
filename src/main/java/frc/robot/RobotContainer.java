@@ -74,7 +74,17 @@ public class RobotContainer {
 
     // Driver feed shooter
     joystick.x().whileTrue(
-      Commands.startEnd(() -> shooter.feedToShooter(),() -> shooter.feedStop())
+      Commands.startEnd(() -> {
+        shooter.feedToShooter();
+      },
+      () -> {
+        shooter.feedStop();
+        if (!intake.getBeamBreak()) {
+          led.noNote();
+        } else {
+          led.greenTwinkleToes();
+        } 
+      })
     );
 
     // Operator climber
@@ -99,7 +109,15 @@ public class RobotContainer {
     );
     // Operator run shooter high preset
     operator.rightBumper().whileTrue(
-      Commands.startEnd(() -> shooter.shootVelocity(-35), () -> shooter.stop())   
+      Commands.startEnd(() -> {
+        shooter.shootVelocity(-45);
+        if (shooter.flywheelsAtTarget()) {
+          led.shooterRunway();
+        }
+      },
+      () -> {
+        shooter.stop();
+      })    
     );
     // Operator run shooter high preset
     operator.b().whileTrue(
