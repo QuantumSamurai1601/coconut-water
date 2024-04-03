@@ -96,7 +96,7 @@ public class RobotContainer {
     );
     // Operator run shooter medium preset
     operator.rightBumper().whileTrue(
-      Commands.startEnd(() -> shooter.shootVoltage(-5), () -> shooter.stop())   
+      Commands.startEnd(() -> shooter.shootVelocity(-45), () -> shooter.stop())   
     );
     // Operator run shooter high preset
     operator.b().whileTrue(
@@ -108,7 +108,7 @@ public class RobotContainer {
     );
     // Operator pivot half
     operator.a().onTrue(
-      Commands.runOnce(() -> shooter.pivot(0.1))
+      Commands.runOnce(() -> shooter.pivot(0.08))
     );
     //operator.x().onTrue(
     //  Commands.runOnce(() -> shooter.pivot(0.0))
@@ -119,8 +119,15 @@ public class RobotContainer {
       new IntakeGround(intake, shooter, led)
     );
     // Operator intake retract
-    operator.rightTrigger().onTrue(
-      Commands.runOnce(() -> intake.pivotUp())
+    operator.rightTrigger().whileTrue(
+      Commands.startEnd(() -> {
+        intake.pivotUp();
+        intake.eject();
+      },
+      () -> {
+        intake.pivotUp();
+        intake.stop();
+      })
     );
 
     if (Utils.isSimulation()) {

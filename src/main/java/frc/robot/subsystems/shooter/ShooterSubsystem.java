@@ -90,7 +90,7 @@ public class ShooterSubsystem extends SubsystemBase {
         topShooterConfig.Slot0.kP = 0.16118;
         topShooterConfig.Slot0.kI = 0.0;
         topShooterConfig.Slot0.kD = 0.0;
-        topShooterConfig.Feedback.SensorToMechanismRatio = 1.5;
+        topShooterConfig.Feedback.SensorToMechanismRatio = 0.75;
         topShooterConfig.MotorOutput.NeutralMode = NeutralModeValue.Coast;
         topShooter.getConfigurator().apply(topShooterConfig);
         // Bottom Shooter Config
@@ -101,7 +101,7 @@ public class ShooterSubsystem extends SubsystemBase {
         bottomShooterConfig.Slot0.kP = 0.18765;
         bottomShooterConfig.Slot0.kI = 0.0;
         bottomShooterConfig.Slot0.kD = 0.0;
-        topShooterConfig.Feedback.SensorToMechanismRatio = 1.5;
+        topShooterConfig.Feedback.SensorToMechanismRatio = 0.75;
         bottomShooterConfig.MotorOutput.NeutralMode = NeutralModeValue.Coast;
         bottomShooter.getConfigurator().apply(bottomShooterConfig);
         // Shooter Pivot Config
