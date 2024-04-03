@@ -40,6 +40,26 @@
           "commands": []
         }
       }
+    },
+    {
+      "name": "spoolShooter",
+      "waypointRelativePos": 0.95,
+      "command": {
+        "type": "parallel",
+        "data": {
+          "commands": []
+        }
+      }
+    },
+    {
+      "name": "spoolShooter",
+      "waypointRelativePos": 0,
+      "command": {
+        "type": "parallel",
+        "data": {
+          "commands": []
+        }
+      }
     }
   ],
   "globalConstraints": {

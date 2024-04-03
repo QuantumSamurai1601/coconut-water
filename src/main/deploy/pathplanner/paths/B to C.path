@@ -8,8 +8,8 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.2960611824531547,
-        "y": 4.908866815189101
+        "x": 2.0453956429541362,
+        "y": 4.919311212668227
       },
       "isLocked": false,
       "linkedName": "B (Belle)"
@@ -20,8 +20,8 @@
         "y": 4.417980133670191
       },
       "prevControl": {
-        "x": 2.149839617745393,
-        "y": 5.013310789980358
+        "x": 1.8782852832881245,
+        "y": 4.88797802023085
       },
       "nextControl": null,
       "isLocked": false,
@@ -36,7 +36,28 @@
     }
   ],
   "constraintZones": [],
-  "eventMarkers": [],
+  "eventMarkers": [
+    {
+      "name": "intakeGround",
+      "waypointRelativePos": 0.45,
+      "command": {
+        "type": "parallel",
+        "data": {
+          "commands": []
+        }
+      }
+    },
+    {
+      "name": "spoolShooter",
+      "waypointRelativePos": 0.85,
+      "command": {
+        "type": "parallel",
+        "data": {
+          "commands": []
+        }
+      }
+    }
+  ],
   "globalConstraints": {
     "maxVelocity": 3.0,
     "maxAcceleration": 3.0,

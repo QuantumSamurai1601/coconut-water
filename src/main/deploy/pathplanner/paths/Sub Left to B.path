@@ -8,8 +8,8 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.4605093841230943,
-        "y": 6.573940401010574
+        "x": 1.7633969110177412,
+        "y": 6.8619691437856165
       },
       "isLocked": false,
       "linkedName": "Sub Left"
@@ -20,8 +20,8 @@
         "y": 5.566863856374023
       },
       "prevControl": {
-        "x": 1.6067309488308548,
-        "y": 6.172638910163316
+        "x": 1.1680662547075735,
+        "y": 5.410197894187137
       },
       "nextControl": null,
       "isLocked": false,
@@ -36,7 +36,38 @@
     }
   ],
   "constraintZones": [],
-  "eventMarkers": [],
+  "eventMarkers": [
+    {
+      "name": "intakeGround",
+      "waypointRelativePos": 0.4,
+      "command": {
+        "type": "parallel",
+        "data": {
+          "commands": []
+        }
+      }
+    },
+    {
+      "name": "spoolShooter",
+      "waypointRelativePos": 0,
+      "command": {
+        "type": "parallel",
+        "data": {
+          "commands": []
+        }
+      }
+    },
+    {
+      "name": "spoolShooter",
+      "waypointRelativePos": 0.9,
+      "command": {
+        "type": "parallel",
+        "data": {
+          "commands": []
+        }
+      }
+    }
+  ],
   "globalConstraints": {
     "maxVelocity": 3.0,
     "maxAcceleration": 3.0,
