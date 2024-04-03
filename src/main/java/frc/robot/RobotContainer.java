@@ -8,6 +8,7 @@ import com.ctre.phoenix6.Utils;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveRequest;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveModule.DriveRequestType;
 import com.pathplanner.lib.auto.NamedCommands;
+import com.pathplanner.lib.commands.PathPlannerAuto;
 
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
@@ -18,6 +19,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import frc.robot.commands.autos.PrepareShooter;
+import frc.robot.commands.autos.ShootNote;
 import frc.robot.commands.intake.IntakeGround;
 import frc.robot.generated.TunerConstants;
 import frc.robot.subsystems.climber.ClimberSubsystem;
@@ -74,9 +77,7 @@ public class RobotContainer {
 
     // Driver feed shooter
     joystick.x().whileTrue(
-      Commands.startEnd(() -> {
-        shooter.feedToShooter();
-      },
+      Commands.startEnd(() -> shooter.feedToShooter(),
       () -> {
         shooter.feedStop();
         if (!intake.getBeamBreak()) {
@@ -161,11 +162,13 @@ public class RobotContainer {
     configureBindings();
 
     NamedCommands.registerCommand("intakeGround", new IntakeGround(intake, shooter, led).withTimeout(2.5));
+    NamedCommands.registerCommand("prepareShooter", new PrepareShooter(shooter, led));
+    NamedCommands.registerCommand("shootNote", new ShootNote(intake, shooter, led).withTimeout(3));
 
     autoChooser.setDefaultOption("Autonomous Disabled", nothing);
     autoChooser.addOption("Mobility Auto", mobilityAuto);
-    Shuffleboard.getTab("SmartDashboard")
-      .add("Auto Chooser", autoChooser);
+    autoChooser.addOption("2 Note Left A", new PathPlannerAuto("2 - (L) A ~ 1.43"));
+    Shuffleboard.getTab("SmartDashboard").add("Auto Chooser", autoChooser);
 
     drivetrain.applyCurrentLimit(0);
     drivetrain.applyCurrentLimit(1);
