@@ -33,10 +33,12 @@ public class LEDSubsystem extends SubsystemBase {
         candle.animate(new ColorFlowAnimation(227, 64, 175));
     }
 
-    public void noNote(){
+    public void shootingNote(){
         candle.animate(new StrobeAnimation(227, 64, 64));
     }
-    
+    public void noNote(){
+        candle.setLEDs(0, 0, 255);
+    }
 }
         
 
