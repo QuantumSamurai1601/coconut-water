@@ -8,8 +8,8 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.2423113891211086,
-        "y": 5.397712031879178
+        "x": 1.690286128663861,
+        "y": 5.316198316875005
       },
       "isLocked": false,
       "linkedName": "C (Cinderella)"
@@ -20,8 +20,8 @@
         "y": 6.684414386640477
       },
       "prevControl": {
-        "x": 2.1799003775106804,
-        "y": 5.780166192597016
+        "x": 1.6380641412682322,
+        "y": 6.1621945126841915
       },
       "nextControl": null,
       "isLocked": false,
@@ -41,7 +41,28 @@
     }
   ],
   "constraintZones": [],
-  "eventMarkers": [],
+  "eventMarkers": [
+    {
+      "name": "intakeGround",
+      "waypointRelativePos": 0.55,
+      "command": {
+        "type": "parallel",
+        "data": {
+          "commands": []
+        }
+      }
+    },
+    {
+      "name": "spoolShooter",
+      "waypointRelativePos": 0,
+      "command": {
+        "type": "parallel",
+        "data": {
+          "commands": []
+        }
+      }
+    }
+  ],
   "globalConstraints": {
     "maxVelocity": 3.0,
     "maxAcceleration": 3.0,

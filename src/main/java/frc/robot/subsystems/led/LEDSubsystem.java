@@ -20,24 +20,26 @@ public class LEDSubsystem extends SubsystemBase {
         candle.configBrightnessScalar(1);
         candle.setLEDs(0, 0, 255);
     }
-
+    //
     public void rainbow() {
         candle.animate(new RainbowAnimation());
     }
-
+    // Note inside the robot
     public void greenTwinkleToes(){
         candle.animate(new TwinkleOffAnimation(0, 255, 0)); 
     }
-
+    // Spooling shooter wheels
     public void shooterRunway(){ 
         candle.animate(new ColorFlowAnimation(227, 64, 175));
     }
-
+    // Note shooting
     public void shootingNote(){
         candle.animate(new StrobeAnimation(227, 64, 64));
     }
+    // No note inside robot
     public void noNote(){
         candle.setLEDs(0, 0, 255);
+        
     }
 }
         

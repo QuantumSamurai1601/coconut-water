@@ -3,45 +3,34 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 7.580926306890783,
-        "y": 7.467744197574909
+        "x": 2.0,
+        "y": 7.0
       },
       "prevControl": null,
       "nextControl": {
-        "x": 7.580926306890783,
-        "y": 6.882857938743868
+        "x": 3.0,
+        "y": 7.0
       },
       "isLocked": false,
-      "linkedName": "D (Dinosaur) "
+      "linkedName": null
     },
     {
       "anchor": {
-        "x": 7.580926306890783,
-        "y": 5.79664060091479
+        "x": 4.0,
+        "y": 6.0
       },
       "prevControl": {
-        "x": 6.964706855622362,
-        "y": 6.109972525288563
+        "x": 3.0,
+        "y": 6.0
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "E (Wall-E) "
+      "linkedName": null
     }
   ],
   "rotationTargets": [],
   "constraintZones": [],
-  "eventMarkers": [
-    {
-      "name": "intakeGround",
-      "waypointRelativePos": 0.65,
-      "command": {
-        "type": "parallel",
-        "data": {
-          "commands": []
-        }
-      }
-    }
-  ],
+  "eventMarkers": [],
   "globalConstraints": {
     "maxVelocity": 3.0,
     "maxAcceleration": 3.0,
@@ -54,7 +43,7 @@
     "rotateFast": false
   },
   "reversed": false,
-  "folder": "D (Dinosaur)",
+  "folder": "A (Ariel) ",
   "previewStartingState": {
     "rotation": 0,
     "velocity": 0
