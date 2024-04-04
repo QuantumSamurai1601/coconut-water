@@ -102,7 +102,7 @@ public class IntakeSubsystem extends SubsystemBase {
         intake.getConfigurator().apply(rollerConfig);
 
         // Intake retracted for start, set position to 0.34 rotations
-        leaderIntakePivot.setPosition(0.34);
+        leaderIntakePivot.setPosition(0.345);
 
         // Motor Telemetry
         pivotPosition = leaderIntakePivot.getPosition();
@@ -128,7 +128,7 @@ public class IntakeSubsystem extends SubsystemBase {
         followerIntakePivot.setControl(followerPivotRequest);
     }
     public void pivotDown() {
-        leaderIntakePivot.setControl(leaderPivotRequest.withPosition(0.01));
+        leaderIntakePivot.setControl(leaderPivotRequest.withPosition(0));
         followerIntakePivot.setControl(followerPivotRequest);
     }
     public boolean getBeamBreak() {

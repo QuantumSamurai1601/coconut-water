@@ -198,9 +198,12 @@ public class ShooterSubsystem extends SubsystemBase {
         return treeMap.get(distance.getAsDouble());
     }
     public boolean flywheelsAtTarget() {
-        return Math.abs(topShooter.getVelocity().getValueAsDouble())>= 7.5 
-            && topShooter.getClosedLoopError().refresh().getValueAsDouble() < 2 
-            && bottomShooter.getClosedLoopError().refresh().getValueAsDouble() < 2;
+        return Math.abs(topShooter.getVelocity().getValueAsDouble())>= 8
+            && topShooter.getClosedLoopError().refresh().getValueAsDouble() < 3.5 
+            && bottomShooter.getClosedLoopError().refresh().getValueAsDouble() < 3.5;
+    }
+    public boolean pivotAtTarget() {
+        return Math.abs(leaderPivot.getClosedLoopReference().refresh().getValueAsDouble() - pivotLeaderPosition.refresh().getValueAsDouble()) < 0.05;
     }
     @Override
     public void periodic() {

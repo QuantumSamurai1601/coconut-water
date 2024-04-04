@@ -161,13 +161,13 @@ public class RobotContainer {
   public RobotContainer() {
     configureBindings();
 
-    NamedCommands.registerCommand("intakeGround", new IntakeGround(intake, shooter, led).withTimeout(2.5));
-    NamedCommands.registerCommand("prepareShooter", new PrepareShooter(shooter, led));
+    NamedCommands.registerCommand("intakeGround", new IntakeGround(intake, shooter, led).withTimeout(1));
+    NamedCommands.registerCommand("prepareShooter", new PrepareShooter(shooter, led).until(shooter::flywheelsAtTarget));
     NamedCommands.registerCommand("shootNote", new ShootNote(intake, shooter, led).withTimeout(3));
 
     autoChooser.setDefaultOption("Autonomous Disabled", nothing);
     autoChooser.addOption("Mobility Auto", mobilityAuto);
-    autoChooser.addOption("2 Note Left A", new PathPlannerAuto("2 - (L) A ~ 1.43"));
+    autoChooser.addOption("2 Note Left A", new PathPlannerAuto("2 - (L) A ~ 2.93"));
     Shuffleboard.getTab("SmartDashboard").add("Auto Chooser", autoChooser);
 
     drivetrain.applyCurrentLimit(0);
@@ -177,6 +177,6 @@ public class RobotContainer {
   }
 
   public Command getAutonomousCommand() {
-    return runAuto;
+    return autoChooser.getSelected();
   }
 }
