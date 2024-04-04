@@ -8,27 +8,28 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.led.LEDSubsystem;
 import frc.robot.subsystems.shooter.ShooterSubsystem;
 
-public class PrepareShooter extends Command {
+public class SpoolShooter extends Command {
   private final ShooterSubsystem shooter;
   private final LEDSubsystem led;
-  /** Creates a new PrepareShooter. */
-  public PrepareShooter(ShooterSubsystem shooterSubsystem, LEDSubsystem ledSubsystem) {
+
+  /** Creates a new SpoolShooter. */
+  public SpoolShooter(ShooterSubsystem shooterSubsystem, LEDSubsystem ledSubsystem) {
     shooter = shooterSubsystem;
-    led = ledSubsystem;
+    led = ledSubsystem; 
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    shooter.pivot(0.18);
-   // shooter.shootVelocity(-40);
+    shooter.shootVelocity(-40);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    // if (shooter.flywheelsAtTarget()) {led.shooterRunway();}
+    if (shooter.flywheelsAtTarget())
+    led.shooterRunway();
   }
 
   // Called once the command ends or is interrupted.
@@ -38,6 +39,6 @@ public class PrepareShooter extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return shooter.pivotAtTarget();
+    return shooter.flywheelsAtTarget();
   }
 }

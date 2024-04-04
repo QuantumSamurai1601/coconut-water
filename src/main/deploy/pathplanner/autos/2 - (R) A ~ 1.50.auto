@@ -14,6 +14,12 @@
         {
           "type": "named",
           "data": {
+            "name": "prepareShooter"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
             "name": "shootNote"
           }
         },
@@ -26,7 +32,7 @@
         {
           "type": "named",
           "data": {
-            "name": "intakeNote"
+            "name": "prepareShooter"
           }
         },
         {
