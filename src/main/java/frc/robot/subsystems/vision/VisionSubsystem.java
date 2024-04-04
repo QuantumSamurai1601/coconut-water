@@ -32,6 +32,8 @@ public class VisionSubsystem extends SubsystemBase {
         meowRight = new PhotonCamera("meowRight");
         unicornLeftEstimator = new PhotonPoseEstimator(null, PoseStrategy.MULTI_TAG_PNP_ON_COPROCESSOR, null);
         meowRightEstimator = new PhotonPoseEstimator(null, PoseStrategy.MULTI_TAG_PNP_ON_COPROCESSOR, null);
+        unicornLeftEstimator.setMultiTagFallbackStrategy(PoseStrategy.LOWEST_AMBIGUITY);
+        meowRightEstimator.setMultiTagFallbackStrategy(PoseStrategy.LOWEST_AMBIGUITY);
     }
     // Return left camera
     public PhotonCamera getUnicornLeft() {
