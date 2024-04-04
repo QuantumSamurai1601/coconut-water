@@ -24,6 +24,7 @@ public class ShootNote extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    led.shootingNote();
     shooter.feedToShooter();
   }
 
@@ -35,6 +36,11 @@ public class ShootNote extends Command {
   @Override
   public void end(boolean interrupted) {
     shooter.feedStop();
+    if (!intake.getBeamBreak()) {
+      led.noNote();
+    } else {
+      led.greenTwinkleToes();
+    }
   }
 
   // Returns true when the command should end.

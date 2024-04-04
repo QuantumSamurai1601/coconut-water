@@ -198,13 +198,9 @@ public class ShooterSubsystem extends SubsystemBase {
         return treeMap.get(distance.getAsDouble());
     }
     public boolean flywheelsAtTarget() {
-        if (Math.abs(topShooter.getVelocity().getValueAsDouble())>= 7.5) {
-            System.out.println("fnat");
-            return false;
-        }  
-        else {
-            return topShooter.getClosedLoopError().refresh().getValueAsDouble() < 2 && bottomShooter.getClosedLoopError().refresh().getValueAsDouble() < 2;
-        }
+        return Math.abs(topShooter.getVelocity().getValueAsDouble())>= 7.5 
+            && topShooter.getClosedLoopError().refresh().getValueAsDouble() < 2 
+            && bottomShooter.getClosedLoopError().refresh().getValueAsDouble() < 2;
     }
     @Override
     public void periodic() {
