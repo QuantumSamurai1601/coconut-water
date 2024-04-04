@@ -30,6 +30,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Subsystem;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine;
 import frc.robot.generated.TunerConstants;
+import frc.robot.subsystems.vision.VisionSubsystem;
 
 /**
  * Class that extends the Phoenix SwerveDrivetrain class and implements
@@ -43,6 +44,8 @@ public class CommandSwerveDrivetrain extends SwerveDrivetrain implements Subsyst
     private SwerveModule swerveModule;
     private TalonFX driveMotor;
     private TalonFXConfiguration driveMotorConfig;
+
+    private VisionSubsystem vision;
 
     /* Blue alliance sees forward as 0 degrees (toward red alliance wall) */
     private final Rotation2d BlueAlliancePerspectiveRotation = Rotation2d.fromDegrees(0);
@@ -93,25 +96,27 @@ public class CommandSwerveDrivetrain extends SwerveDrivetrain implements Subsyst
     /* Change this to the sysid routine you want to test */
     private final SysIdRoutine RoutineToApply = SysIdRoutineSteer;
 
-    public CommandSwerveDrivetrain(SwerveDrivetrainConstants driveTrainConstants, double OdometryUpdateFrequency, SwerveModuleConstants... modules) {
+    public CommandSwerveDrivetrain(SwerveDrivetrainConstants driveTrainConstants, double OdometryUpdateFrequency, VisionSubsystem visionSubsystem, SwerveModuleConstants... modules) {
         super(driveTrainConstants, OdometryUpdateFrequency, modules);
         configurePathPlanner();
         applyCurrentLimit(0);
         applyCurrentLimit(1);
         applyCurrentLimit(2);
         applyCurrentLimit(3);
+        vision = visionSubsystem;
         if (Utils.isSimulation()) {
             startSimThread();
         }
     }
 
-    public CommandSwerveDrivetrain(SwerveDrivetrainConstants driveTrainConstants, SwerveModuleConstants... modules) {
+    public CommandSwerveDrivetrain(SwerveDrivetrainConstants driveTrainConstants, VisionSubsystem visionSubsystem, SwerveModuleConstants... modules) {
         super(driveTrainConstants, modules);
         configurePathPlanner();
         applyCurrentLimit(0);
         applyCurrentLimit(1);
         applyCurrentLimit(2);
         applyCurrentLimit(3);
+        vision = visionSubsystem;
         if (Utils.isSimulation()) {
             startSimThread();
         }
@@ -210,5 +215,21 @@ public class CommandSwerveDrivetrain extends SwerveDrivetrain implements Subsyst
                 hasAppliedOperatorPerspective = true;
             });
         }
+
+        var unicornVisionEst = vision.getEstimatedGlobalPoses(vision::getUnicornLeft, vision::getUnicornLeftEst);
+        var meowVisionEst = vision.getEstimatedGlobalPoses(vision::getMeowRight, vision::getMeowRightEst);
+
+        unicornVisionEst.ifPresent(
+            est -> {
+                var estPose = est.estimatedPose.toPose2d();
+                var estStdDevs = vision.getEstimationStdDevs(estPose, vision::getUnicornLeftEst, vision::getUnicornLeft);
+                this.addVisionMeasurement(est.estimatedPose.toPose2d(), est.timestampSeconds, estStdDevs);
+            });
+        meowVisionEst.ifPresent(
+            est -> {
+                var estPose = est.estimatedPose.toPose2d();
+                var estStdDevs = vision.getEstimationStdDevs(estPose, vision::getMeowRightEst, vision::getMeowRight);
+                this.addVisionMeasurement(est.estimatedPose.toPose2d(), est.timestampSeconds, estStdDevs);
+            });
     }
-}
+}   

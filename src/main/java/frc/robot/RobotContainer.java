@@ -23,10 +23,13 @@ import frc.robot.commands.autos.PrepareShooter;
 import frc.robot.commands.autos.ShootNote;
 import frc.robot.commands.intake.IntakeGround;
 import frc.robot.generated.TunerConstants;
+import frc.robot.generated.TunerConstants.*;
+import frc.robot.CommandSwerveDrivetrain;
 import frc.robot.subsystems.climber.ClimberSubsystem;
 import frc.robot.subsystems.intake.IntakeSubsystem;
 import frc.robot.subsystems.led.LEDSubsystem;
 import frc.robot.subsystems.shooter.ShooterSubsystem;
+import frc.robot.subsystems.vision.VisionSubsystem;
 
 public class RobotContainer {
   private double MaxSpeed = TunerConstants.kSpeedAt12VoltsMps; // kSpeedAt12VoltsMps desired top speed
@@ -36,11 +39,13 @@ public class RobotContainer {
   private final CommandXboxController joystick = new CommandXboxController(0); // My joystick
   private final CommandXboxController operator = new CommandXboxController(1); // Subsystem controller
   // Subsystems
-  private final CommandSwerveDrivetrain drivetrain = TunerConstants.DriveTrain; // My drivetrain
+  private final VisionSubsystem vision = new VisionSubsystem();
+  private final CommandSwerveDrivetrain drivetrain = new CommandSwerveDrivetrain(TunerConstants.DrivetrainConstants, vision, TunerConstants.FrontLeft, TunerConstants.FrontRight, TunerConstants.BackLeft, TunerConstants.BackRight); // My drivetrain
   private final ClimberSubsystem climber = new ClimberSubsystem();
   private final IntakeSubsystem intake = new IntakeSubsystem();
   private final ShooterSubsystem shooter = new ShooterSubsystem();
   private final LEDSubsystem led = new LEDSubsystem();
+  
   // Auto chooser
   private final SendableChooser<Command> autoChooser = new SendableChooser<Command>();
 
