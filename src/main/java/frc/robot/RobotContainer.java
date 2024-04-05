@@ -22,6 +22,7 @@ import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.commands.autos.PrepareShooter;
 import frc.robot.commands.autos.ShootNote;
+import frc.robot.commands.autos.SpoolShooter;
 import frc.robot.commands.intake.IntakeGround;
 import frc.robot.generated.TunerConstants;
 import frc.robot.generated.TunerConstants.*;
@@ -115,18 +116,8 @@ public class RobotContainer {
     operator.leftBumper().whileTrue(
       Commands.startEnd(() -> shooter.shootVoltage(-20), () -> shooter.stop())   
     );
-    // Operator run shooter high preset
-    operator.rightBumper().whileTrue(
-      Commands.startEnd(() -> {
-        shooter.shootVelocity(-45);
-        if (shooter.flywheelsAtTarget()) {
-          led.shooterRunway();
-        }
-      },
-      () -> {
-        shooter.stop();
-      })    
-    );
+    // Operator run shooter default preset
+    operator.rightBumper().whileTrue(new SpoolShooter(shooter, led));
     // Operator run shooter high preset
     operator.b().whileTrue(
       Commands.startEnd(() -> shooter.shootVoltage(-7.5), () -> shooter.stop())
