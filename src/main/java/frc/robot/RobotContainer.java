@@ -13,6 +13,7 @@ import com.pathplanner.lib.commands.PathPlannerAuto;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.net.PortForwarder;
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -38,6 +39,7 @@ public class RobotContainer {
   /* Setting up bindings for necessary control of the swerve drive platform */
   private final CommandXboxController joystick = new CommandXboxController(0); // My joystick
   private final CommandXboxController operator = new CommandXboxController(1); // Subsystem controller
+  private final CommandXboxController dev = new CommandXboxController(2);
   // Subsystems
   private final VisionSubsystem vision = new VisionSubsystem();
   private final CommandSwerveDrivetrain drivetrain = new CommandSwerveDrivetrain(TunerConstants.DrivetrainConstants, vision, TunerConstants.FrontLeft, TunerConstants.FrontRight, TunerConstants.BackLeft, TunerConstants.BackRight); // My drivetrain
@@ -157,6 +159,14 @@ public class RobotContainer {
       })
     );
 
+    // Dev controls
+    dev.povUp().onTrue(
+      Commands.runOnce(() -> shooter.devPivotUp())
+    );
+
+    dev.povDown().onTrue(
+      Commands.runOnce(() -> shooter.devPivotDown())
+    );
     if (Utils.isSimulation()) {
       drivetrain.seedFieldRelative(new Pose2d(new Translation2d(), Rotation2d.fromDegrees(90)));
     }
@@ -179,6 +189,7 @@ public class RobotContainer {
     drivetrain.applyCurrentLimit(1);
     drivetrain.applyCurrentLimit(2);
     drivetrain.applyCurrentLimit(3);
+    PortForwarder.add(5800, "photonvision.local", 5800);
   }
 
   public Command getAutonomousCommand() {

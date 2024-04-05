@@ -163,6 +163,14 @@ public class ShooterSubsystem extends SubsystemBase {
         topShooter.setControl(topShooterRequest.withVelocity(rps));
         bottomShooter.setControl(bottomShooterRequest.withVelocity(rps));
     }
+    public void devPivotUp() {
+        var curAng = leaderPivot.getPosition().getValueAsDouble();
+        leaderPivot.setControl(leaderPivotRequest.withPosition(curAng + 0.01));
+    }
+    public void devPivotDown() {
+        var curAng = leaderPivot.getPosition().getValueAsDouble();
+        leaderPivot.setControl(leaderPivotRequest.withPosition(curAng - 0.01));
+    }
     public void shootVoltage(double voltage) {
         topShooter.setControl(new VoltageOut(voltage));
         bottomShooter.setControl(new VoltageOut(voltage));
