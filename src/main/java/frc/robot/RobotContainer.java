@@ -175,7 +175,7 @@ public class RobotContainer {
     autoChooser.addOption("Mobility Auto", mobilityAuto);
     autoChooser.addOption("2 Note Left A", new PathPlannerAuto("2 - (L) A ~ 2.93"));
     autoChooser.addOption("2 Note Left A" , new PathPlannerAuto("2 - (L) A ~ 1.50"));
-    autoChooser.addOption("2 Note Front B", new PathPlannerAuto("2 - (Fr) B ~ .98"));
+    autoChooser.addOption("2 Note Front B", new PathPlannerAuto("2 - (Fr) B ~ 0.98"));
     autoChooser.addOption("3 Note Front BF", new PathPlannerAuto("3 - (Fr) BF ~ 6.20"));
     autoChooser.addOption("3 Note Right CF", new PathPlannerAuto("3 - (R) CF ~ 6.74"));
     autoChooser.addOption("4 Note Right CBA", new PathPlannerAuto(" 4 - (R) CBA ~ 4.35"));
