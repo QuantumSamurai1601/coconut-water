@@ -20,6 +20,12 @@
         {
           "type": "named",
           "data": {
+            "name": "spoolShooter"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
             "name": "shootNote"
           }
         },
@@ -33,6 +39,12 @@
           "type": "named",
           "data": {
             "name": "intakeNote"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "prepareShooter"
           }
         },
         {
