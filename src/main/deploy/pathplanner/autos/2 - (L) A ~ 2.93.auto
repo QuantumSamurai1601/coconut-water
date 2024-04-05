@@ -14,6 +14,12 @@
         {
           "type": "named",
           "data": {
+            "name": "spoolShooter"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
             "name": "prepareShooter"
           }
         },
@@ -36,9 +42,27 @@
           }
         },
         {
+          "type": "named",
+          "data": {
+            "name": "prepareShooter"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "shootNote"
+          }
+        },
+        {
           "type": "path",
           "data": {
             "pathName": "A to Sub Front"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "prepareShooter"
           }
         },
         {

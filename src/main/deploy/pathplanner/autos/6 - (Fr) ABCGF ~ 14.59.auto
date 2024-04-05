@@ -12,9 +12,39 @@
     "data": {
       "commands": [
         {
+          "type": "named",
+          "data": {
+            "name": "spoolShooter"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "prepareShooter"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "shootNote"
+          }
+        },
+        {
           "type": "path",
           "data": {
             "pathName": "Sub Front to A"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "prepareShooter"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "shootNote"
           }
         },
         {
@@ -24,9 +54,45 @@
           }
         },
         {
+          "type": "named",
+          "data": {
+            "name": "intakeNote"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "prepareShooter"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "shootNote"
+          }
+        },
+        {
           "type": "path",
           "data": {
             "pathName": "B to C"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "intakeNote"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "prepareShooter"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "shootNote"
           }
         },
         {
@@ -36,9 +102,27 @@
           }
         },
         {
+          "type": "named",
+          "data": {
+            "name": "intakeNote"
+          }
+        },
+        {
           "type": "path",
           "data": {
             "pathName": "G to Wong Mid"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "prepareShooter"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "shootNote"
           }
         },
         {
@@ -48,9 +132,27 @@
           }
         },
         {
+          "type": "named",
+          "data": {
+            "name": "intakeNote"
+          }
+        },
+        {
           "type": "path",
           "data": {
             "pathName": "F to Wong Mid"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "prepareShooter"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "shootNote"
           }
         }
       ]

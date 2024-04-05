@@ -39,11 +39,18 @@
   "eventMarkers": [
     {
       "name": "intakeGround",
-      "waypointRelativePos": 0.45,
+      "waypointRelativePos": 0.65,
       "command": {
         "type": "parallel",
         "data": {
-          "commands": []
+          "commands": [
+            {
+              "type": "named",
+              "data": {
+                "name": "intakeNote"
+              }
+            }
+          ]
         }
       }
     }

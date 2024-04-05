@@ -33,31 +33,35 @@
   "eventMarkers": [
     {
       "name": "intakeNote",
-      "waypointRelativePos": 0.15,
+      "waypointRelativePos": 0.45,
       "command": {
         "type": "parallel",
         "data": {
-          "commands": []
+          "commands": [
+            {
+              "type": "named",
+              "data": {
+                "name": "intakeNote"
+              }
+            }
+          ]
         }
       }
     },
     {
       "name": "spoolShooter",
-      "waypointRelativePos": 0.95,
+      "waypointRelativePos": 1.0,
       "command": {
         "type": "parallel",
         "data": {
-          "commands": []
-        }
-      }
-    },
-    {
-      "name": "spoolShooter",
-      "waypointRelativePos": 0,
-      "command": {
-        "type": "parallel",
-        "data": {
-          "commands": []
+          "commands": [
+            {
+              "type": "named",
+              "data": {
+                "name": "spoolShooter"
+              }
+            }
+          ]
         }
       }
     }

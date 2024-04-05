@@ -14,6 +14,18 @@
         {
           "type": "named",
           "data": {
+            "name": "spoolShooter"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "prepareShooter"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
             "name": "shootNote"
           }
         },
@@ -27,6 +39,12 @@
           "type": "named",
           "data": {
             "name": "intakeNote"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "prepareShooter"
           }
         },
         {
@@ -50,6 +68,12 @@
         {
           "type": "named",
           "data": {
+            "name": "prepareShooter"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
             "name": "shootNote"
           }
         },
@@ -66,12 +90,6 @@
           }
         },
         {
-          "type": "named",
-          "data": {
-            "name": "shootNote"
-          }
-        },
-        {
           "type": "path",
           "data": {
             "pathName": "E To Wong Left"
@@ -80,7 +98,7 @@
         {
           "type": "named",
           "data": {
-            "name": "intakeNote"
+            "name": "prepareShooter"
           }
         },
         {
@@ -102,15 +120,15 @@
           }
         },
         {
-          "type": "named",
-          "data": {
-            "name": "shootNote"
-          }
-        },
-        {
           "type": "path",
           "data": {
             "pathName": "F to Wong Mid"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "prepareShooter"
           }
         },
         {

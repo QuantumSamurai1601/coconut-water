@@ -14,7 +14,19 @@
         {
           "type": "named",
           "data": {
-            "name": "shootPreload"
+            "name": "spoolShooter"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "prepareShooter"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "shootNote"
           }
         },
         {
@@ -27,6 +39,12 @@
           "type": "named",
           "data": {
             "name": "intakeNote"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "prepareShooter"
           }
         },
         {
@@ -50,6 +68,12 @@
         {
           "type": "named",
           "data": {
+            "name": "prepareShooter"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
             "name": "shootNote"
           }
         },
@@ -66,15 +90,15 @@
           }
         },
         {
-          "type": "named",
-          "data": {
-            "name": "shootNote"
-          }
-        },
-        {
           "type": "path",
           "data": {
             "pathName": "F to Wong Mid"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "prepareShooter"
           }
         },
         {

@@ -39,21 +39,18 @@
   "eventMarkers": [
     {
       "name": "intakeGround",
-      "waypointRelativePos": 0.4,
+      "waypointRelativePos": 0.65,
       "command": {
         "type": "parallel",
         "data": {
-          "commands": []
-        }
-      }
-    },
-    {
-      "name": "spoolShooter",
-      "waypointRelativePos": 0,
-      "command": {
-        "type": "parallel",
-        "data": {
-          "commands": []
+          "commands": [
+            {
+              "type": "named",
+              "data": {
+                "name": "intakeNote"
+              }
+            }
+          ]
         }
       }
     },
@@ -63,7 +60,14 @@
       "command": {
         "type": "parallel",
         "data": {
-          "commands": []
+          "commands": [
+            {
+              "type": "named",
+              "data": {
+                "name": "spoolShooter"
+              }
+            }
+          ]
         }
       }
     }

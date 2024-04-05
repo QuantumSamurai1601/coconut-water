@@ -39,11 +39,18 @@
   "eventMarkers": [
     {
       "name": "spoolShooter",
-      "waypointRelativePos": 0.65,
+      "waypointRelativePos": 0.85,
       "command": {
         "type": "parallel",
         "data": {
-          "commands": []
+          "commands": [
+            {
+              "type": "named",
+              "data": {
+                "name": "spoolShooter"
+              }
+            }
+          ]
         }
       }
     }
