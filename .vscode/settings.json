@@ -1,4 +1,5 @@
 {
     "git.autofetch": true,
-    "git.autofetchPeriod": 45
+    "git.autofetchPeriod": 45,
+    "java.configuration.updateBuildConfiguration": "interactive"
 }
