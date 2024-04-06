@@ -198,6 +198,7 @@ public class RobotContainer {
 
     autoChooser.setDefaultOption("Autonomous Disabled", nothing);
     autoChooser.addOption("Mobility Auto", mobilityAuto); 
+    autoChooser.addOption("Test P", new PathPlannerAuto("TP"));
     autoChooser.addOption("2 Note Left A Mid", new PathPlannerAuto("2 - (L) A ~ 2.93"));
     autoChooser.addOption("2 Note Left A Left" , new PathPlannerAuto("2 - (L) A ~ 1.50"));
     autoChooser.addOption("2 Note Front B", new PathPlannerAuto("2 - (Fr) B ~ 0.98"));

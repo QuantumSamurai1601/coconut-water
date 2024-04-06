@@ -3,56 +3,40 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 2.388388169421654,
-        "y": 6.651185591813652
+        "x": 0.9220751308635481,
+        "y": 6.754968847933033
       },
       "prevControl": null,
       "nextControl": {
-        "x": 4.726660772068508,
-        "y": 3.4491699523677477
+        "x": 1.496151803492418,
+        "y": 6.965463627896954
       },
       "isLocked": false,
-      "linkedName": "A (Ariel)"
+      "linkedName": null
     },
     {
       "anchor": {
-        "x": 7.580926306890783,
-        "y": 0.7833298109344314
+        "x": 2.902639651433149,
+        "y": 6.984599516984582
       },
       "prevControl": {
-        "x": 7.737592269077669,
-        "y": 4.867089225272598
+        "x": 1.902639651433149,
+        "y": 6.984599516984582
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "H (Harvey)"
+      "linkedName": null
     }
   ],
   "rotationTargets": [
     {
-      "waypointRelativePos": 0.7,
+      "waypointRelativePos": 0.0,
       "rotationDegrees": 0,
-      "rotateFast": false
-    },
-    {
-      "waypointRelativePos": 0.6,
-      "rotationDegrees": 35.0,
       "rotateFast": false
     }
   ],
   "constraintZones": [],
-  "eventMarkers": [
-    {
-      "name": "intakeGround",
-      "waypointRelativePos": 0.7,
-      "command": {
-        "type": "parallel",
-        "data": {
-          "commands": []
-        }
-      }
-    }
-  ],
+  "eventMarkers": [],
   "globalConstraints": {
     "maxVelocity": 3.0,
     "maxAcceleration": 3.0,
@@ -65,9 +49,9 @@
     "rotateFast": false
   },
   "reversed": false,
-  "folder": "A (Ariel) ",
+  "folder": "Pathfinding Stuff",
   "previewStartingState": {
-    "rotation": 31.79345681809909,
+    "rotation": 57.99461679191652,
     "velocity": 0
   },
   "useDefaultConstraints": true
