@@ -2,8 +2,8 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 1.505719748036232,
-      "y": 5.5302719463247785
+      "x": 2.0,
+      "y": 7.0
     },
     "rotation": 0
   },
@@ -14,7 +14,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Test P"
+            "pathName": "5 Meters"
           }
         }
       ]
