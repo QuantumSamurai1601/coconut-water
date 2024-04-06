@@ -148,7 +148,7 @@ public class ShooterSubsystem extends SubsystemBase {
         followerPivot.setControl(followerPivotRequest);
 
         treeMap = new InterpolatingDoubleTreeMap();
-        treeMap.put(1.45, 0.18);
+        treeMap.put(1.45, 0.185);
         treeMap.put(2.352, 0.13);
         treeMap.put(3.254, 0.115);
     }
