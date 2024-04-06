@@ -16,7 +16,9 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.net.PortForwarder;
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
@@ -68,7 +70,7 @@ public class RobotContainer {
   private final Telemetry logger = new Telemetry(MaxSpeed);
 
   private final Command mobilityAuto = drivetrain.applyRequest(() -> fieldDrive.withVelocityY(-0.5 * MaxSpeed)).withTimeout(2);
-  private final Command nothing = null;
+  private final Command nothing = Commands.none();
 
   private void configureBindings() {
     drivetrain.setDefaultCommand( // Drivetrain will execute this command periodically
@@ -137,6 +139,8 @@ public class RobotContainer {
     // Operator intake sequence
     operator.leftTrigger().whileTrue(
       new IntakeGround(intake, shooter, led)
+    ).whileFalse(
+      Commands.runOnce(() -> shooter.stop())
     );
     // Operator intake retract
     operator.rightTrigger().whileTrue(
@@ -154,9 +158,19 @@ public class RobotContainer {
     dev.povUp().onTrue(
       Commands.runOnce(() -> shooter.devPivotUp())
     );
-
     dev.povDown().onTrue(
       Commands.runOnce(() -> shooter.devPivotDown())
+    );
+    dev.x().whileTrue(
+      Commands.startEnd(() -> shooter.feedToShooter(),
+      () -> {
+        shooter.feedStop();
+        if (!intake.getBeamBreak()) {
+          led.noNote();
+        } else {
+          led.greenTwinkleToes();
+        } 
+      })
     );
     if (Utils.isSimulation()) {
       drivetrain.seedFieldRelative(new Pose2d(new Translation2d(), Rotation2d.fromDegrees(90)));
@@ -178,12 +192,12 @@ public class RobotContainer {
     autoChooser.addOption("2 Note Front B", new PathPlannerAuto("2 - (Fr) B ~ 0.98"));
     autoChooser.addOption("3 Note Front BF", new PathPlannerAuto("3 - (Fr) BF ~ 6.20"));
     autoChooser.addOption("3 Note Right CF", new PathPlannerAuto("3 - (R) CF ~ 6.74"));
-    autoChooser.addOption("4 Note Right CBA", new PathPlannerAuto(" 4 - (R) CBA ~ 4.35"));
+    autoChooser.addOption("4 Note Right CBA", new PathPlannerAuto("4 - (R) CBA ~ 4.35"));
     autoChooser.addOption("4 Note Right CBF", new PathPlannerAuto("4 - (R) CBF ~ 8.60"));
     autoChooser.addOption("5 Note Left ABCF", new PathPlannerAuto("5 - (L) ABCF ~ 10.20"));
     autoChooser.addOption("5 Note Left BCEF", new PathPlannerAuto("5 - (L) BCEF ~ 13.96"));
     autoChooser.addOption("6 Note Left ABCFE", new PathPlannerAuto("6 - (L) ABCFE ~ 15.27"));
-    autoChooser.addOption("6 Note Front ABCGF", new PathPlannerAuto(" 6 - (Fr) ABCGF ~ 14.59"));
+    autoChooser.addOption("6 Note Front ABCGF", new PathPlannerAuto("6 - (Fr) ABCGF ~ 14.59"));
     Shuffleboard.getTab("SmartDashboard").add("Auto Chooser", autoChooser);
 
     drivetrain.applyCurrentLimit(0);

@@ -26,6 +26,8 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Notifier;
 import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
+import edu.wpi.first.wpilibj.smartdashboard.Field2d;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Subsystem;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine;
@@ -59,6 +61,8 @@ public class CommandSwerveDrivetrain extends SwerveDrivetrain implements Subsyst
     private final SwerveRequest.SysIdSwerveTranslation TranslationCharacterization = new SwerveRequest.SysIdSwerveTranslation();
     private final SwerveRequest.SysIdSwerveRotation RotationCharacterization = new SwerveRequest.SysIdSwerveRotation();
     private final SwerveRequest.SysIdSwerveSteerGains SteerCharacterization = new SwerveRequest.SysIdSwerveSteerGains();
+
+    private final Field2d field = new Field2d();
 
     /* Use one of these sysidroutines for your particular test */
     private SysIdRoutine SysIdRoutineTranslation = new SysIdRoutine(
@@ -104,6 +108,7 @@ public class CommandSwerveDrivetrain extends SwerveDrivetrain implements Subsyst
         applyCurrentLimit(2);
         applyCurrentLimit(3);
         vision = visionSubsystem;
+        SmartDashboard.putData("Field", field);
         if (Utils.isSimulation()) {
             startSimThread();
         }
@@ -117,6 +122,7 @@ public class CommandSwerveDrivetrain extends SwerveDrivetrain implements Subsyst
         applyCurrentLimit(2);
         applyCurrentLimit(3);
         vision = visionSubsystem;
+        SmartDashboard.putData("Field", field);
         if (Utils.isSimulation()) {
             startSimThread();
         }
@@ -231,5 +237,7 @@ public class CommandSwerveDrivetrain extends SwerveDrivetrain implements Subsyst
                 var estStdDevs = vision.getEstimationStdDevs(estPose, vision::getMeowRightEst, vision::getMeowRight);
                 this.addVisionMeasurement(est.estimatedPose.toPose2d(), est.timestampSeconds, estStdDevs);
             });
+        
+        field.setRobotPose(this.getState().Pose);
     }
 }   

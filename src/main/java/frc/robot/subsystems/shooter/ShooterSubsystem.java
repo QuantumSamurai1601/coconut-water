@@ -159,9 +159,9 @@ public class ShooterSubsystem extends SubsystemBase {
         treeMap.put(4.5, 0.10);
         treeMap.put(5.0, 0.09);
     }
-    public void shootVelocity(double rps) {
-        topShooter.setControl(topShooterRequest.withVelocity(rps));
-        bottomShooter.setControl(bottomShooterRequest.withVelocity(rps));
+    public void shootVelocity(double topRps, double bottomRps) {
+        topShooter.setControl(topShooterRequest.withVelocity(topRps));
+        bottomShooter.setControl(bottomShooterRequest.withVelocity(bottomRps));
     }
     public void devPivotUp() {
         var curAng = leaderPivot.getPosition().getValueAsDouble();
