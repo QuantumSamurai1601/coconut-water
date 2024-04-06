@@ -173,7 +173,7 @@ public class RobotContainer {
         } 
       })
     );
-    dev.y().whileTrue(
+    joystick.y().whileTrue(
       AutoBuilder.pathfindThenFollowPath(PathPlannerPath.fromPathFile("AlignToScore"), new PathConstraints(3, 3, Units.degreesToRadians(540), Units.degreesToRadians(720)))
     );
     dev.b().onTrue(
