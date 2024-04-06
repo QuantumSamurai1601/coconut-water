@@ -1,0 +1,122 @@
+{
+  "version": 1.0,
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 0.7711791504955733,
+        "y": 4.2822029664363335
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 2.348283169843563,
+        "y": 0.8877737857204655
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 7.748036666556794,
+        "y": 0.7624410159761787
+      },
+      "prevControl": {
+        "x": 6.620041738811214,
+        "y": 1.2637720949742148
+      },
+      "nextControl": {
+        "x": 8.6070686814475,
+        "y": 0.38064900935808726
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 8.30158973295046,
+        "y": 1.702436789097496
+      },
+      "prevControl": {
+        "x": 8.30158973295046,
+        "y": 1.2533276974950887
+      },
+      "nextControl": {
+        "x": 8.30158973295046,
+        "y": 2.5623095142853236
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 7.748036666556794,
+        "y": 3.457095565590623
+      },
+      "prevControl": {
+        "x": 7.674925884202914,
+        "y": 2.5484329849066825
+      },
+      "nextControl": {
+        "x": 7.799592351724576,
+        "y": 4.0978590812473605
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 8.30158973295046,
+        "y": 4.908866815189101
+      },
+      "prevControl": {
+        "x": 8.314312460049855,
+        "y": 4.587701592705983
+      },
+      "nextControl": {
+        "x": 8.288867005851063,
+        "y": 5.230032037672219
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 7.748036666556794,
+        "y": 7.4886329925331605
+      },
+      "prevControl": {
+        "x": 7.695814679155944,
+        "y": 7.16485667067504
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": null
+    }
+  ],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 0.5,
+      "rotationDegrees": 0,
+      "rotateFast": false
+    }
+  ],
+  "constraintZones": [],
+  "eventMarkers": [],
+  "globalConstraints": {
+    "maxVelocity": 3.0,
+    "maxAcceleration": 3.0,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 720.0
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": 0,
+    "rotateFast": false
+  },
+  "reversed": false,
+  "folder": "H (Herucles) ",
+  "previewStartingState": {
+    "rotation": -61.47688139368802,
+    "velocity": 0
+  },
+  "useDefaultConstraints": true
+}
