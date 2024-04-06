@@ -213,14 +213,14 @@ public class CommandSwerveDrivetrain extends SwerveDrivetrain implements Subsyst
         /* This allows us to correct the perspective in case the robot code restarts mid-match */
         /* Otherwise, only check and apply the operator perspective if the DS is disabled */
         /* This ensures driving behavior doesn't change until an explicit disable event occurs during testing*/
-        if (!hasAppliedOperatorPerspective || DriverStation.isDisabled()) {
-            DriverStation.getAlliance().ifPresent((allianceColor) -> {
-                this.setOperatorPerspectiveForward(
-                        allianceColor == Alliance.Red ? RedAlliancePerspectiveRotation
-                                : BlueAlliancePerspectiveRotation);
-                hasAppliedOperatorPerspective = true;
-            });
-        }
+        // if (!hasAppliedOperatorPerspective || DriverStation.isDisabled()) {
+        //     DriverStation.getAlliance().ifPresent((allianceColor) -> {
+        //         this.setOperatorPerspectiveForward(
+        //                 allianceColor == Alliance.Red ? RedAlliancePerspectiveRotation
+        //                         : BlueAlliancePerspectiveRotation);
+        //         hasAppliedOperatorPerspective = true;
+        //     });
+        // }
 
         var unicornVisionEst = vision.getEstimatedGlobalPoses(vision::getUnicornLeft, vision::getUnicornLeftEst);
         var meowVisionEst = vision.getEstimatedGlobalPoses(vision::getMeowRight, vision::getMeowRightEst);
