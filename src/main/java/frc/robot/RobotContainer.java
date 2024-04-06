@@ -7,12 +7,17 @@ package frc.robot;
 import com.ctre.phoenix6.Utils;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveRequest;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveModule.DriveRequestType;
+import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
 import com.pathplanner.lib.commands.PathPlannerAuto;
+import com.pathplanner.lib.commands.PathfindingCommand;
+import com.pathplanner.lib.path.PathConstraints;
+import com.pathplanner.lib.path.PathPlannerPath;
 
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.math.util.Units;
 import edu.wpi.first.net.PortForwarder;
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
@@ -90,11 +95,12 @@ public class RobotContainer {
       Commands.startEnd(() -> shooter.feedToShooter(),
       () -> {
         shooter.feedStop();
+        Commands.waitSeconds(0.5);
         if (!intake.getBeamBreak()) {
           led.noNote();
         } else {
           led.greenTwinkleToes();
-        } 
+        }
       })
     );
 
@@ -114,35 +120,23 @@ public class RobotContainer {
         shooter.feedStop();
       })
     );
-    // Operator run shooter medium preset
-    operator.leftBumper().whileTrue(
-      Commands.startEnd(() -> shooter.shootVoltage(-20), () -> shooter.stop())   
-    );
-    // Operator run shooter default preset
-    operator.rightBumper().whileTrue(new SpoolShooter(shooter, led));
-    // Operator run shooter high preset
-    operator.b().whileTrue(
-      Commands.startEnd(() -> shooter.shootVoltage(-7.5), () -> shooter.stop())
-    );
-    // Operator pivot full up
+    // Operator run shooter default
+    operator.b().whileTrue(new SpoolShooter(shooter, led))
+      .whileFalse(
+      Commands.runOnce(() -> shooter.stop()));
+    // Operator pivot sub base
     operator.y().onTrue(
-      Commands.runOnce(() -> shooter.pivot(0.18))
+      Commands.runOnce(() -> shooter.pivot(0.185))
     );
-    // Operator pivot half
+    // Operator pivot 6 feet
     operator.a().onTrue(
-      Commands.runOnce(() -> shooter.pivot(0.08))
+      Commands.runOnce(() -> shooter.pivot(0.115))
     );
-    //operator.x().onTrue(
-    //  Commands.runOnce(() -> shooter.pivot(0.0))
-    //);
-
     // Operator intake sequence
     operator.leftTrigger().whileTrue(
       new IntakeGround(intake, shooter, led)
-    ).whileFalse(
-      Commands.runOnce(() -> shooter.stop())
     );
-    // Operator intake retract
+    // Operator intake retract/eject
     operator.rightTrigger().whileTrue(
       Commands.startEnd(() -> {
         intake.pivotUp();
@@ -153,7 +147,7 @@ public class RobotContainer {
         intake.stop();
       })
     );
-
+    
     // Dev controls
     dev.povUp().onTrue(
       Commands.runOnce(() -> shooter.devPivotUp())
@@ -172,6 +166,9 @@ public class RobotContainer {
         } 
       })
     );
+    dev.y().whileTrue(
+      AutoBuilder.pathfindThenFollowPath(PathPlannerPath.fromPathFile("AlignToScore"), new PathConstraints(3, 3, Units.degreesToRadians(540), Units.degreesToRadians(720)), 0.5)
+    );
     if (Utils.isSimulation()) {
       drivetrain.seedFieldRelative(new Pose2d(new Translation2d(), Rotation2d.fromDegrees(90)));
     }
@@ -181,12 +178,12 @@ public class RobotContainer {
   public RobotContainer() {
     configureBindings();
 
-    NamedCommands.registerCommand("intakeGround", new IntakeGround(intake, shooter, led).withTimeout(1));
-    NamedCommands.registerCommand("prepareShooter", new PrepareShooter(shooter, led).until(shooter::flywheelsAtTarget));
+    NamedCommands.registerCommand("intakeGround", new IntakeGround(intake, shooter, led).withTimeout(5));
+    NamedCommands.registerCommand("prepareShooter", new PrepareShooter(shooter, led, drivetrain.getState().Pose::getX));
     NamedCommands.registerCommand("shootNote", new ShootNote(intake, shooter, led).withTimeout(3));
 
     autoChooser.setDefaultOption("Autonomous Disabled", nothing);
-    autoChooser.addOption("Mobility Auto", mobilityAuto);
+    autoChooser.addOption("Mobility Auto", mobilityAuto); 
     autoChooser.addOption("2 Note Left A", new PathPlannerAuto("2 - (L) A ~ 2.93"));
     autoChooser.addOption("2 Note Left A" , new PathPlannerAuto("2 - (L) A ~ 1.50"));
     autoChooser.addOption("2 Note Front B", new PathPlannerAuto("2 - (Fr) B ~ 0.98"));
@@ -198,13 +195,15 @@ public class RobotContainer {
     autoChooser.addOption("5 Note Left BCEF", new PathPlannerAuto("5 - (L) BCEF ~ 13.96"));
     autoChooser.addOption("6 Note Left ABCFE", new PathPlannerAuto("6 - (L) ABCFE ~ 15.27"));
     autoChooser.addOption("6 Note Front ABCGF", new PathPlannerAuto("6 - (Fr) ABCGF ~ 14.59"));
-    Shuffleboard.getTab("SmartDashboard").add("Auto Chooser", autoChooser);
+    SmartDashboard.putData("Auto Chooser", autoChooser);
 
     drivetrain.applyCurrentLimit(0);
     drivetrain.applyCurrentLimit(1);
     drivetrain.applyCurrentLimit(2);
     drivetrain.applyCurrentLimit(3);
     PortForwarder.add(5800, "photonvision.local", 5800);
+
+    PathfindingCommand.warmupCommand().schedule();
   }
 
   public Command getAutonomousCommand() {

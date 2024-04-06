@@ -93,7 +93,7 @@ public class ShooterSubsystem extends SubsystemBase {
         topShooterConfig.Slot0.kP = 0.16118;
         topShooterConfig.Slot0.kI = 0.0;
         topShooterConfig.Slot0.kD = 0.0;
-        // topShooterConfig.Feedback.SensorToMechanismRatio = 0.6666666667;
+        topShooterConfig.Feedback.SensorToMechanismRatio = 0.6666666667;
         topShooterConfig.MotorOutput.NeutralMode = NeutralModeValue.Coast;
         topShooter.getConfigurator().apply(topShooterConfig);
         // Bottom Shooter Config
@@ -115,12 +115,12 @@ public class ShooterSubsystem extends SubsystemBase {
         pivotConfig.Slot0.kS = 0.32;
         pivotConfig.Slot0.kV = 0.125;
         pivotConfig.Slot0.kA = 0.02069;
-        pivotConfig.Slot0.kP = 90.0;
+        pivotConfig.Slot0.kP = 300.0;
         pivotConfig.Slot0.kI = 0.0;
         pivotConfig.Slot0.kD = 0.1;
         pivotConfig.Slot0.GravityType = GravityTypeValue.Arm_Cosine;
-        pivotConfig.MotionMagic.MotionMagicAcceleration = 2.2;
-        pivotConfig.MotionMagic.MotionMagicCruiseVelocity = 2;
+        pivotConfig.MotionMagic.MotionMagicAcceleration = 2.5;
+        pivotConfig.MotionMagic.MotionMagicCruiseVelocity = 1;
         pivotConfig.MotorOutput.NeutralMode = NeutralModeValue.Brake;
         pivotConfig.Feedback.SensorToMechanismRatio = 133.33;
         pivotConfig.SoftwareLimitSwitch.ForwardSoftLimitEnable = true;
@@ -148,16 +148,9 @@ public class ShooterSubsystem extends SubsystemBase {
         followerPivot.setControl(followerPivotRequest);
 
         treeMap = new InterpolatingDoubleTreeMap();
-        treeMap.put(0.0, 0.18);
-        treeMap.put(1.0, 0.17);
-        treeMap.put(1.5, 0.16);
-        treeMap.put(2.0, 0.15);
-        treeMap.put(2.5, 0.14);
-        treeMap.put(3.0, 0.13);
-        treeMap.put(3.5, 0.12);
-        treeMap.put(4.0, 0.11);
-        treeMap.put(4.5, 0.10);
-        treeMap.put(5.0, 0.09);
+        treeMap.put(0.9017, 0.185);
+        treeMap.put(1.8034, 0.13);
+        treeMap.put(2.7051, 0.115);
     }
     public void shootVelocity(double topRps, double bottomRps) {
         topShooter.setControl(topShooterRequest.withVelocity(topRps));
@@ -202,8 +195,8 @@ public class ShooterSubsystem extends SubsystemBase {
         topShooter.setControl(neutral);
         bottomShooter.setControl(neutral);
     }
-    public double getShootingAngle(DoubleSupplier distance) {
-        return treeMap.get(distance.getAsDouble());
+    public double getShootingAngle(double distance) {
+        return treeMap.get(distance);
     }
     public boolean flywheelsAtTarget() {
         return Math.abs(topShooter.getVelocity().getValueAsDouble())>= 8
@@ -211,7 +204,7 @@ public class ShooterSubsystem extends SubsystemBase {
             && bottomShooter.getClosedLoopError().refresh().getValueAsDouble() < 3.5;
     }
     public boolean pivotAtTarget() {
-        return Math.abs(leaderPivot.getClosedLoopReference().refresh().getValueAsDouble() - pivotLeaderPosition.refresh().getValueAsDouble()) < 0.05;
+        return Math.abs(leaderPivot.getClosedLoopReference().refresh().getValueAsDouble() - pivotLeaderPosition.refresh().getValueAsDouble()) < 0.07;
     }
     @Override
     public void periodic() {
