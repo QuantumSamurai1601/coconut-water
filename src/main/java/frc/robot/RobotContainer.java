@@ -210,6 +210,8 @@ public class RobotContainer {
     autoChooser.addOption("5 Note Left BCEF", new PathPlannerAuto("5 - (L) BCEF ~ 13.96"));
     autoChooser.addOption("6 Note Left ABCFE", new PathPlannerAuto("6 - (L) ABCFE ~ 15.27"));
     autoChooser.addOption("6 Note Front ABCGF", new PathPlannerAuto("6 - (Fr) ABCGF ~ 14.59"));
+    autoChooser.addOption("2 Note Right H", new PathPlannerAuto("2 - (R) H ~ 6.77"));
+    autoChooser.addOption("Defense", new PathPlannerAuto("defensiveAuto"));
     SmartDashboard.putData("Auto Chooser", autoChooser);
 
     drivetrain.applyCurrentLimit(0);

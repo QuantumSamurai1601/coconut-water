@@ -8,8 +8,8 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 7.298927574954387,
-        "y": 4.867089225272599
+        "x": 7.5182599220160276,
+        "y": 4.835756032835222
       },
       "isLocked": false,
       "linkedName": "H (Harvey)"
@@ -20,8 +20,8 @@
         "y": 5.65041903620703
       },
       "prevControl": {
-        "x": 4.155163933737538,
-        "y": 4.303091761399807
+        "x": 3.8418320093637646,
+        "y": 4.146425799212922
       },
       "nextControl": null,
       "isLocked": false,
@@ -36,7 +36,25 @@
     }
   ],
   "constraintZones": [],
-  "eventMarkers": [],
+  "eventMarkers": [
+    {
+      "name": "spoolShooter",
+      "waypointRelativePos": 0.75,
+      "command": {
+        "type": "parallel",
+        "data": {
+          "commands": [
+            {
+              "type": "named",
+              "data": {
+                "name": "spoolShooter"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
   "globalConstraints": {
     "maxVelocity": 3.0,
     "maxAcceleration": 3.0,

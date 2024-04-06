@@ -2,10 +2,10 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 0.8234011378964239,
-      "y": 6.799302758910862
+      "x": 0.7398459580634182,
+      "y": 4.344869351316311
     },
-    "rotation": 60.13
+    "rotation": -59.53445508054013
   },
   "command": {
     "type": "sequential",
@@ -32,7 +32,19 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Sub Left to A"
+            "pathName": "Sub Right to H"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "intakeGround"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "H to Wong Mid"
           }
         },
         {
