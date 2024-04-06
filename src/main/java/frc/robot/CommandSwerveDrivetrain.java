@@ -239,5 +239,6 @@ public class CommandSwerveDrivetrain extends SwerveDrivetrain implements Subsyst
             });
         
         field.setRobotPose(this.getState().Pose);
+        SmartDashboard.putNumber("Shooting Distance", this.getState().Pose.getX());
     }
 }   

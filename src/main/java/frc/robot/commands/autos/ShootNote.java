@@ -38,6 +38,7 @@ public class ShootNote extends Command {
     shooter.feedStop();
     if (!intake.getBeamBreak()) {
       led.noNote();
+      shooter.stop();
     } else {
       led.greenTwinkleToes();
     }

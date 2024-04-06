@@ -115,7 +115,7 @@ public class IntakeSubsystem extends SubsystemBase {
     }
 
     public void intake() {
-        intake.setControl(intakeRequest.withVelocity(-8.5));
+        intake.setControl(intakeRequest.withVelocity(-8));
     }
     public void eject() {
         intake.setControl(intakeRequest.withVelocity(9));

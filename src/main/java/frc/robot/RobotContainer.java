@@ -54,7 +54,7 @@ public class RobotContainer {
   private final ClimberSubsystem climber = new ClimberSubsystem();
   private final IntakeSubsystem intake = new IntakeSubsystem();
   private final ShooterSubsystem shooter = new ShooterSubsystem();
-  private final LEDSubsystem led = new LEDSubsystem();
+  private final LEDSubsystem led = new LEDSubsystem(intake, shooter);
   
   // Auto chooser
   private final SendableChooser<Command> autoChooser = new SendableChooser<Command>();
@@ -79,10 +79,17 @@ public class RobotContainer {
 
   private void configureBindings() {
     drivetrain.setDefaultCommand( // Drivetrain will execute this command periodically
-        drivetrain.applyRequest(() -> fieldDrive.withVelocityX((-joystick.getLeftY() * MaxSpeed) * 1) // Drive forward with negative Y (forward)
-            .withVelocityY((-joystick.getLeftX() * MaxSpeed) * 1) // Drive left with negative X (left)
+      drivetrain.applyRequest(() -> fieldDrive.withVelocityX((-joystick.getLeftY() * MaxSpeed) * 1) // Drive forward with negative Y (forward)
+          .withVelocityY((-joystick.getLeftX() * MaxSpeed) * 1) // Drive left with negative X (left)
+          .withRotationalRate(-joystick.getRightX() * MaxAngularRate) // Drive counterclockwise with negative X (left)
+      ));
+    // Driver drive half speed
+    joystick.rightBumper().whileTrue(
+      drivetrain.applyRequest(() -> fieldDrive.withVelocityX((-joystick.getLeftY() * MaxSpeed) * 0.5) // Drive forward with negative Y (forward)
+            .withVelocityY((-joystick.getLeftX() * MaxSpeed) * 0.5) // Drive left with negative X (left)
             .withRotationalRate(-joystick.getRightX() * MaxAngularRate) // Drive counterclockwise with negative X (left)
-        ));
+        )
+    );
 
     joystick.a().whileTrue(drivetrain.applyRequest(() -> brake));
     joystick.b().whileTrue(drivetrain.applyRequest(() -> point.withModuleDirection(new Rotation2d(-joystick.getLeftY(), -joystick.getLeftX()))));
@@ -167,7 +174,13 @@ public class RobotContainer {
       })
     );
     dev.y().whileTrue(
-      AutoBuilder.pathfindThenFollowPath(PathPlannerPath.fromPathFile("AlignToScore"), new PathConstraints(3, 3, Units.degreesToRadians(540), Units.degreesToRadians(720)), 0.5)
+      AutoBuilder.pathfindThenFollowPath(PathPlannerPath.fromPathFile("AlignToScore"), new PathConstraints(3, 3, Units.degreesToRadians(540), Units.degreesToRadians(720)))
+    );
+    dev.b().onTrue(
+      Commands.runOnce(() -> {
+        shooter.pivot(0);
+        intake.pivotUp();
+      })
     );
     if (Utils.isSimulation()) {
       drivetrain.seedFieldRelative(new Pose2d(new Translation2d(), Rotation2d.fromDegrees(90)));
@@ -178,14 +191,15 @@ public class RobotContainer {
   public RobotContainer() {
     configureBindings();
 
-    NamedCommands.registerCommand("intakeGround", new IntakeGround(intake, shooter, led).withTimeout(5));
-    NamedCommands.registerCommand("prepareShooter", new PrepareShooter(shooter, led, drivetrain.getState().Pose::getX));
-    NamedCommands.registerCommand("shootNote", new ShootNote(intake, shooter, led).withTimeout(3));
+    NamedCommands.registerCommand("intakeGround", new IntakeGround(intake, shooter, led));
+    NamedCommands.registerCommand("prepareShooter", new PrepareShooter(shooter, led, drivetrain.getState().Pose::getX).withTimeout(1));
+    NamedCommands.registerCommand("spoolShooter", new SpoolShooter(shooter, led).withTimeout(1.2));
+    NamedCommands.registerCommand("shootNote", new ShootNote(intake, shooter, led).withTimeout(2));
 
     autoChooser.setDefaultOption("Autonomous Disabled", nothing);
     autoChooser.addOption("Mobility Auto", mobilityAuto); 
-    autoChooser.addOption("2 Note Left A", new PathPlannerAuto("2 - (L) A ~ 2.93"));
-    autoChooser.addOption("2 Note Left A" , new PathPlannerAuto("2 - (L) A ~ 1.50"));
+    autoChooser.addOption("2 Note Left A Mid", new PathPlannerAuto("2 - (L) A ~ 2.93"));
+    autoChooser.addOption("2 Note Left A Left" , new PathPlannerAuto("2 - (L) A ~ 1.50"));
     autoChooser.addOption("2 Note Front B", new PathPlannerAuto("2 - (Fr) B ~ 0.98"));
     autoChooser.addOption("3 Note Front BF", new PathPlannerAuto("3 - (Fr) BF ~ 6.20"));
     autoChooser.addOption("3 Note Right CF", new PathPlannerAuto("3 - (R) CF ~ 6.74"));

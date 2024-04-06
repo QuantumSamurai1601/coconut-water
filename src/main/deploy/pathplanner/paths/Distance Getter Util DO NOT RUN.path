@@ -3,52 +3,34 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 4.1760527286957885,
-        "y": 5.65041903620703
+        "x": 1.45,
+        "y": 5.589722591070332
       },
       "prevControl": null,
       "nextControl": {
-        "x": 4.823605372401586,
-        "y": 7.707965339594802
+        "x": 2.45,
+        "y": 5.589722591070332
       },
       "isLocked": false,
-      "linkedName": "Wong Mid"
+      "linkedName": null
     },
     {
       "anchor": {
-        "x": 7.580926306890783,
-        "y": 5.79664060091479
+        "x": 4.0,
+        "y": 6.0
       },
       "prevControl": {
-        "x": 6.65137493124859,
-        "y": 5.995084153018179
+        "x": 3.0,
+        "y": 6.0
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "E (Wall-E) "
+      "linkedName": null
     }
   ],
   "rotationTargets": [],
   "constraintZones": [],
-  "eventMarkers": [
-    {
-      "name": "intakeNote",
-      "waypointRelativePos": 0.7,
-      "command": {
-        "type": "parallel",
-        "data": {
-          "commands": [
-            {
-              "type": "named",
-              "data": {
-                "name": "intakeGround"
-              }
-            }
-          ]
-        }
-      }
-    }
-  ],
+  "eventMarkers": [],
   "globalConstraints": {
     "maxVelocity": 3.0,
     "maxAcceleration": 3.0,
@@ -61,7 +43,7 @@
     "rotateFast": false
   },
   "reversed": false,
-  "folder": "Wong Lie",
+  "folder": "Pathfinding Stuff",
   "previewStartingState": {
     "rotation": 0,
     "velocity": 0

@@ -7,6 +7,7 @@ package frc.robot.commands.autos;
 import java.util.function.DoubleSupplier;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.Commands;
 import frc.robot.subsystems.led.LEDSubsystem;
 import frc.robot.subsystems.shooter.ShooterSubsystem;
 
@@ -27,6 +28,7 @@ public class PrepareShooter extends Command {
   public void initialize() {
     var angle = shooter.getShootingAngle(distance);
     shooter.pivot(angle);
+    Commands.waitSeconds(1);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -40,8 +42,8 @@ public class PrepareShooter extends Command {
   public void end(boolean interrupted) {}
 
   // Returns true when the command should end.
-  @Override
-  public boolean isFinished() {
-    return shooter.pivotAtTarget();
-  }
+  // @Override
+  // public boolean isFinished() {
+  //   return shooter.pivotAtTarget();
+  // }
 }

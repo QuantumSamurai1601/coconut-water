@@ -31,7 +31,7 @@ public class ShooterSubsystem extends SubsystemBase {
     private final TalonFX followerPivot;
     // Shooter and Feeder Control Requests
     private final VelocityVoltage topShooterRequest;
-    private final VelocityTorqueCurrentFOC bottomShooterRequest;
+    private final VelocityVoltage bottomShooterRequest;
     private final VoltageOut feederRequest;
     // Shooter Pivot Control Requests
     private final MotionMagicVoltage leaderPivotRequest;
@@ -65,7 +65,7 @@ public class ShooterSubsystem extends SubsystemBase {
         topShooter = new TalonFX(TOP_SHOOTER_ID, CANBUS_NAME);
         bottomShooter = new TalonFX(BOTTOM_SHOOTER_ID, CANBUS_NAME);
         topShooterRequest =  new VelocityVoltage(0.0);
-        bottomShooterRequest = new VelocityTorqueCurrentFOC(0.0).withSlot(1);
+        bottomShooterRequest = new VelocityVoltage(0.0).withSlot(0);
         // Feeder Motor and Control Request
         feeder = new TalonFX(FEEDER_ID, CANBUS_NAME);
         feederRequest = new VoltageOut(0.0);
@@ -93,7 +93,7 @@ public class ShooterSubsystem extends SubsystemBase {
         topShooterConfig.Slot0.kP = 0.16118;
         topShooterConfig.Slot0.kI = 0.0;
         topShooterConfig.Slot0.kD = 0.0;
-        topShooterConfig.Feedback.SensorToMechanismRatio = 0.6666666667;
+        // topShooterConfig.Feedback.SensorToMechanismRatio = 0.6666666667;
         topShooterConfig.MotorOutput.NeutralMode = NeutralModeValue.Coast;
         topShooter.getConfigurator().apply(topShooterConfig);
         // Bottom Shooter Config
@@ -104,7 +104,7 @@ public class ShooterSubsystem extends SubsystemBase {
         bottomShooterConfig.Slot0.kP = 0.18765;
         bottomShooterConfig.Slot0.kI = 0.0;
         bottomShooterConfig.Slot0.kD = 0.0;
-        bottomShooterConfig.Slot1.kS = 14.5;
+        bottomShooterConfig.Slot1.kS = 14.85;
         bottomShooterConfig.Slot1.kP = 41.25;
         bottomShooterConfig.Feedback.SensorToMechanismRatio = 0.6666666667;
         bottomShooterConfig.MotorOutput.NeutralMode = NeutralModeValue.Coast;
@@ -148,9 +148,9 @@ public class ShooterSubsystem extends SubsystemBase {
         followerPivot.setControl(followerPivotRequest);
 
         treeMap = new InterpolatingDoubleTreeMap();
-        treeMap.put(0.9017, 0.185);
-        treeMap.put(1.8034, 0.13);
-        treeMap.put(2.7051, 0.115);
+        treeMap.put(1.45, 0.18);
+        treeMap.put(2.352, 0.13);
+        treeMap.put(3.254, 0.115);
     }
     public void shootVelocity(double topRps, double bottomRps) {
         topShooter.setControl(topShooterRequest.withVelocity(topRps));
@@ -200,11 +200,11 @@ public class ShooterSubsystem extends SubsystemBase {
     }
     public boolean flywheelsAtTarget() {
         return Math.abs(topShooter.getVelocity().getValueAsDouble())>= 8
-            && topShooter.getClosedLoopError().refresh().getValueAsDouble() < 3.5 
-            && bottomShooter.getClosedLoopError().refresh().getValueAsDouble() < 3.5;
+            && topShooter.getVelocity().getValueAsDouble() > -55
+            && bottomShooter.getVelocity().getValueAsDouble() > -65;
     }
     public boolean pivotAtTarget() {
-        return Math.abs(leaderPivot.getClosedLoopReference().refresh().getValueAsDouble() - pivotLeaderPosition.refresh().getValueAsDouble()) < 0.07;
+        return Math.abs(leaderPivot.getClosedLoopReference().refresh().getValueAsDouble() - pivotLeaderPosition.refresh().getValueAsDouble()) < 0.03;
     }
     @Override
     public void periodic() {

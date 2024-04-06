@@ -2,6 +2,8 @@ package frc.robot.subsystems.led;
 
 import edu.wpi.first.wpilibj.CAN;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.subsystems.intake.IntakeSubsystem;
+import frc.robot.subsystems.shooter.ShooterSubsystem;
 
 import com.ctre.phoenix.led.Animation;
 import com.ctre.phoenix.led.CANdle;
@@ -14,7 +16,12 @@ import com.ctre.phoenix.led.CANdle.LEDStripType;
 public class LEDSubsystem extends SubsystemBase {
     private final CANdle candle;
 
-    public LEDSubsystem() {
+    private final IntakeSubsystem intake;
+    private final ShooterSubsystem shooter;
+
+    public LEDSubsystem(IntakeSubsystem intakeSubsystem, ShooterSubsystem shooterSubsystem) {
+        intake = intakeSubsystem;
+        shooter = shooterSubsystem;
         candle = new CANdle(1, "Drivetrain");
         candle.configLEDType(LEDStripType.GRB);
         candle.configBrightnessScalar(1);
@@ -40,6 +47,15 @@ public class LEDSubsystem extends SubsystemBase {
     public void noNote(){
         candle.setLEDs(0, 0, 255);
         
+    }
+
+    @Override
+    public void periodic() {
+        if (!shooter.flywheelsAtTarget() && intake.getBeamBreak()) {
+            this.greenTwinkleToes();
+        } else if (!shooter.flywheelsAtTarget() && !intake.getBeamBreak()) {
+            this.noNote();
+        }
     }
 }
         
