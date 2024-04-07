@@ -157,6 +157,7 @@ public class RobotContainer {
         intake.stop();
       })
     );
+    operator.povDown().onTrue(Commands.runOnce(() -> shooter.stop()));
     
     // Dev controls
     dev.povUp().onTrue(
