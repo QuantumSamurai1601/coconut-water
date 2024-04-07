@@ -7,6 +7,7 @@ package frc.robot;
 import com.ctre.phoenix6.Utils;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveRequest;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveModule.DriveRequestType;
+import com.fasterxml.jackson.core.sym.Name;
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
 import com.pathplanner.lib.commands.PathPlannerAuto;
@@ -29,6 +30,7 @@ import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.commands.autos.IntakeForever;
 import frc.robot.commands.autos.PrepareShooter;
+import frc.robot.commands.autos.PrepareShooterLower;
 import frc.robot.commands.autos.ShootNote;
 import frc.robot.commands.autos.SpoolShooter;
 import frc.robot.commands.intake.IntakeGround;
@@ -195,7 +197,8 @@ public class RobotContainer {
     NamedCommands.registerCommand("intakeGround", new IntakeGround(intake, shooter, led).withTimeout(3));
     NamedCommands.registerCommand("intakeForever", new IntakeForever(intake, shooter, led));
     NamedCommands.registerCommand("prepareShooter", new PrepareShooter(shooter, led, drivetrain.getState().Pose::getX).withTimeout(1.5));
-    NamedCommands.registerCommand("spoolShooter", new SpoolShooter(shooter, led)  .withTimeout(1.2));
+    NamedCommands.registerCommand("prepareShooterLower", new PrepareShooterLower(shooter, led));
+    NamedCommands.registerCommand("spoolShooter", new SpoolShooter(shooter, led).withTimeout(1.2));
     NamedCommands.registerCommand("shootNote", new ShootNote(intake, shooter, led).withTimeout(2));
 
     autoChooser.setDefaultOption("Autonomous Disabled", nothing);

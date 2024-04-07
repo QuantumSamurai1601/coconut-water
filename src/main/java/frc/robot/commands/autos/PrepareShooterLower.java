@@ -5,31 +5,31 @@
 package frc.robot.commands.autos;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.Commands;
 import frc.robot.subsystems.led.LEDSubsystem;
 import frc.robot.subsystems.shooter.ShooterSubsystem;
 
-public class SpoolShooter extends Command {
+public class PrepareShooterLower extends Command {
   private final ShooterSubsystem shooter;
   private final LEDSubsystem led;
-
-  /** Creates a new SpoolShooter. */
-  public SpoolShooter(ShooterSubsystem shooterSubsystem, LEDSubsystem ledSubsystem) {
+  /** Creates a new PivotLower. */
+  public PrepareShooterLower(ShooterSubsystem shooterSubsystem, LEDSubsystem ledSubsystem) {
     shooter = shooterSubsystem;
-    led = ledSubsystem; 
+    led = ledSubsystem;
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    shooter.shootVelocity(-45, -50);
+    shooter.pivot(0.14);
+    Commands.waitSeconds(1);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (shooter.flywheelsAtTarget())
-    led.shooterRunway();
+    if (shooter.flywheelsAtTarget() && shooter.pivotAtTarget()) {led.rainbow();}
   }
 
   // Called once the command ends or is interrupted.
@@ -37,8 +37,8 @@ public class SpoolShooter extends Command {
   public void end(boolean interrupted) {}
 
   // Returns true when the command should end.
-  // @Override
-  // public boolean isFinished() {
-  //   return shooter.flywheelsAtTarget();
-  // }
+  @Override
+  public boolean isFinished() {
+    return false;
+  }
 }
