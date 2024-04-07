@@ -38,6 +38,12 @@
         {
           "type": "named",
           "data": {
+            "name": "intakeGround"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
             "name": "prepareShooter"
           }
         },

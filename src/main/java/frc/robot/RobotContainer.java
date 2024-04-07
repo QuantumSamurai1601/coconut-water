@@ -27,6 +27,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import frc.robot.commands.autos.IntakeForever;
 import frc.robot.commands.autos.PrepareShooter;
 import frc.robot.commands.autos.ShootNote;
 import frc.robot.commands.autos.SpoolShooter;
@@ -191,9 +192,10 @@ public class RobotContainer {
   public RobotContainer() {
     configureBindings();
 
-    NamedCommands.registerCommand("intakeGround", new IntakeGround(intake, shooter, led));
-    NamedCommands.registerCommand("prepareShooter", new PrepareShooter(shooter, led, drivetrain.getState().Pose::getX).withTimeout(1));
-    NamedCommands.registerCommand("spoolShooter", new SpoolShooter(shooter, led).withTimeout(1.2));
+    NamedCommands.registerCommand("intakeGround", new IntakeGround(intake, shooter, led).withTimeout(3));
+    NamedCommands.registerCommand("intakeForever", new IntakeForever(intake, shooter, led));
+    NamedCommands.registerCommand("prepareShooter", new PrepareShooter(shooter, led, drivetrain.getState().Pose::getX).withTimeout(1.5));
+    NamedCommands.registerCommand("spoolShooter", new SpoolShooter(shooter, led)  .withTimeout(1.2));
     NamedCommands.registerCommand("shootNote", new ShootNote(intake, shooter, led).withTimeout(2));
 
     autoChooser.setDefaultOption("Autonomous Disabled", nothing);
@@ -211,7 +213,7 @@ public class RobotContainer {
     autoChooser.addOption("6 Note Left ABCFE", new PathPlannerAuto("6 - (L) ABCFE ~ 15.27"));
     autoChooser.addOption("6 Note Front ABCGF", new PathPlannerAuto("6 - (Fr) ABCGF ~ 14.59"));
     autoChooser.addOption("2 Note Right H", new PathPlannerAuto("2 - (R) H ~ 6.77"));
-    autoChooser.addOption("Defense", new PathPlannerAuto("defensiveAuto"));
+    autoChooser.addOption("Defense", new PathPlannerAuto("Defense Auto"));
     SmartDashboard.putData("Auto Chooser", autoChooser);
 
     drivetrain.applyCurrentLimit(0);

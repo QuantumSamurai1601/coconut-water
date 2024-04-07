@@ -8,33 +8,27 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.5535594707553049,
-        "y": 6.975031572440766
+        "x": 1.2378173008094264,
+        "y": 6.4296587334433415
       },
       "isLocked": false,
       "linkedName": "Sub Left"
     },
     {
       "anchor": {
-        "x": 2.388388169421654,
-        "y": 6.651185591813652
+        "x": 2.4529462578738674,
+        "y": 6.678425291582518
       },
       "prevControl": {
-        "x": 2.4614989517755337,
-        "y": 6.4005200523146355
+        "x": 1.8980054743326267,
+        "y": 6.458362567074785
       },
       "nextControl": null,
       "isLocked": false,
       "linkedName": "A (Ariel)"
     }
   ],
-  "rotationTargets": [
-    {
-      "waypointRelativePos": 0.5,
-      "rotationDegrees": 0.0,
-      "rotateFast": false
-    }
-  ],
+  "rotationTargets": [],
   "constraintZones": [],
   "eventMarkers": [
     {
@@ -47,7 +41,7 @@
             {
               "type": "named",
               "data": {
-                "name": "intakeGround"
+                "name": "intakeForever"
               }
             },
             {

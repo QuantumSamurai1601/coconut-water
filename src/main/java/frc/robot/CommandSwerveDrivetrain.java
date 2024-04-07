@@ -229,13 +229,16 @@ public class CommandSwerveDrivetrain extends SwerveDrivetrain implements Subsyst
             est -> {
                 var estPose = est.estimatedPose.toPose2d();
                 var estStdDevs = vision.getEstimationStdDevs(estPose, vision::getUnicornLeftEst, vision::getUnicornLeft);
+                if (vision.sanityCheck(est.estimatedPose))
                 this.addVisionMeasurement(est.estimatedPose.toPose2d(), est.timestampSeconds, estStdDevs);
             });
         meowVisionEst.ifPresent(
             est -> {
                 var estPose = est.estimatedPose.toPose2d();
                 var estStdDevs = vision.getEstimationStdDevs(estPose, vision::getMeowRightEst, vision::getMeowRight);
+                if (vision.sanityCheck(est.estimatedPose)) 
                 this.addVisionMeasurement(est.estimatedPose.toPose2d(), est.timestampSeconds, estStdDevs);
+                
             });
         
         field.setRobotPose(this.getState().Pose);

@@ -14,12 +14,14 @@ import org.photonvision.targeting.PhotonPipelineResult;
 import edu.wpi.first.math.Matrix;
 import edu.wpi.first.math.VecBuilder;
 import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Pose3d;
 import edu.wpi.first.math.geometry.Rotation3d;
 import edu.wpi.first.math.geometry.Transform3d;
 import edu.wpi.first.math.geometry.Translation3d;
 import edu.wpi.first.math.numbers.N1;
 import edu.wpi.first.math.numbers.N3;
 import edu.wpi.first.math.util.Units;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class VisionSubsystem extends SubsystemBase {
@@ -36,8 +38,8 @@ public class VisionSubsystem extends SubsystemBase {
     public VisionSubsystem() {
         unicornLeft = new PhotonCamera("unicornLeft");
         meowRight = new PhotonCamera("meowRight");
-        unicornLeftTransform = new Transform3d(new Translation3d(Units.inchesToMeters(-11.302), Units.inchesToMeters(-12.747), Units.inchesToMeters(8.613)), new Rotation3d(0, Units.degreesToRadians(61.875), Units.degreesToRadians(210)));
-        meowRightTransform = new Transform3d(new Translation3d(Units.inchesToMeters(-11.302), Units.inchesToMeters(12.747), Units.inchesToMeters(8.613)), new Rotation3d(0, Units.degreesToRadians(61.875), Units.degreesToRadians(150)));
+        unicornLeftTransform = new Transform3d(new Translation3d(Units.inchesToMeters(-11.302), Units.inchesToMeters(-12.747), Units.inchesToMeters(8.613)), new Rotation3d(0, Units.degreesToRadians(-61.875), Units.degreesToRadians(210)));
+        meowRightTransform = new Transform3d(new Translation3d(Units.inchesToMeters(-11.302), Units.inchesToMeters(12.747), Units.inchesToMeters(8.613)), new Rotation3d(0, Units.degreesToRadians(-61.875), Units.degreesToRadians(150)));
         unicornLeftEstimator = new PhotonPoseEstimator(VisionConstants.kTagLayout, PoseStrategy.MULTI_TAG_PNP_ON_COPROCESSOR, unicornLeft, unicornLeftTransform);
         meowRightEstimator = new PhotonPoseEstimator(VisionConstants.kTagLayout, PoseStrategy.MULTI_TAG_PNP_ON_COPROCESSOR, meowRight, meowRightTransform);
         unicornLeftEstimator.setMultiTagFallbackStrategy(PoseStrategy.LOWEST_AMBIGUITY);
@@ -63,17 +65,24 @@ public class VisionSubsystem extends SubsystemBase {
     public PhotonPipelineResult getLatestResult (PhotonCamera camera) {
         return camera.getLatestResult();
     }
-
+    // 100% not stolen and made worse from 1155 SciBorgs
+    public boolean sanityCheck(Pose3d pose) {
+        return VisionConstants.inField(pose)
+            && Math.abs(pose.getZ()) < 0.305
+            && Math.abs(pose.getRotation().getX()) < 0.3
+            && Math.abs(pose.getRotation().getY()) < 0.3;
+    }
     public Optional<EstimatedRobotPose> getEstimatedGlobalPoses(Supplier<PhotonCamera> camera, Supplier<PhotonPoseEstimator> poseEstimator) {
         var visionEst = poseEstimator.get().update();
         double latestTimestamp = camera.get().getLatestResult().getTimestampSeconds();
+        if (latestTimestamp > Timer.getFPGATimestamp()) latestTimestamp = Timer.getFPGATimestamp();
         boolean newResult = Math.abs(latestTimestamp - lastEstTimestamp) > 1e-5;
 
         if (newResult) lastEstTimestamp = latestTimestamp;
         return visionEst;
     }
 
-     public Matrix<N3, N1> getEstimationStdDevs(Pose2d estimatedPose, Supplier<PhotonPoseEstimator> poseEstimator, Supplier<PhotonCamera> camera) {
+    public Matrix<N3, N1> getEstimationStdDevs(Pose2d estimatedPose, Supplier<PhotonPoseEstimator> poseEstimator, Supplier<PhotonCamera> camera) {
         var estStdDevs = kSingleTagStdDevs;
         var targets = camera.get().getLatestResult().getTargets();
         int numTags = 0;
