@@ -16,12 +16,12 @@
     },
     {
       "anchor": {
-        "x": 2.2020616051410227,
-        "y": 4.417980133670191
+        "x": 2.598948709347801,
+        "y": 4.292647363920682
       },
       "prevControl": {
-        "x": 1.1576218572284476,
-        "y": 4.543312903419701
+        "x": 1.5545089614352259,
+        "y": 4.417980133670191
       },
       "nextControl": null,
       "isLocked": false,
@@ -39,7 +39,7 @@
   "eventMarkers": [
     {
       "name": "intakeGround",
-      "waypointRelativePos": 0.5,
+      "waypointRelativePos": 0.7,
       "command": {
         "type": "parallel",
         "data": {
@@ -47,7 +47,7 @@
             {
               "type": "named",
               "data": {
-                "name": "intakeGround"
+                "name": "intakeForever"
               }
             }
           ]
@@ -56,7 +56,7 @@
     },
     {
       "name": "spoolShooter",
-      "waypointRelativePos": 0.85,
+      "waypointRelativePos": 1.0,
       "command": {
         "type": "parallel",
         "data": {

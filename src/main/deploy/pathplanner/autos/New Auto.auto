@@ -2,10 +2,10 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 0.7398459580634182,
-      "y": 4.344869351316311
+      "x": 0.7711791505007954,
+      "y": 4.292647363920682
     },
-    "rotation": -59.53445508054013
+    "rotation": -58.392497753751094
   },
   "command": {
     "type": "sequential",
@@ -38,13 +38,7 @@
         {
           "type": "named",
           "data": {
-            "name": "intakeGround"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "prepareShooterLower"
+            "name": "prepareShooter"
           }
         },
         {
