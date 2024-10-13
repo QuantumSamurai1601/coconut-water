@@ -38,8 +38,8 @@ public class VisionSubsystem extends SubsystemBase {
     public VisionSubsystem() {
         unicornLeft = new PhotonCamera("unicornLeft");
         meowRight = new PhotonCamera("meowRight");
-        unicornLeftTransform = new Transform3d(new Translation3d(Units.inchesToMeters(-11.302), Units.inchesToMeters(-12.747), Units.inchesToMeters(8.613)), new Rotation3d(0, Units.degreesToRadians(-61.875), Units.degreesToRadians(210)));
-        meowRightTransform = new Transform3d(new Translation3d(Units.inchesToMeters(-11.302), Units.inchesToMeters(12.747), Units.inchesToMeters(8.613)), new Rotation3d(0, Units.degreesToRadians(-61.875), Units.degreesToRadians(150)));
+        unicornLeftTransform = new Transform3d(new Translation3d(Units.inchesToMeters(-11.302), Units.inchesToMeters(-12.747), Units.inchesToMeters(8.613)), new Rotation3d(0, Units.degreesToRadians(-28.125), Units.degreesToRadians(210)));
+        meowRightTransform = new Transform3d(new Translation3d(Units.inchesToMeters(-11.302), Units.inchesToMeters(12.747), Units.inchesToMeters(8.613)), new Rotation3d(0, Units.degreesToRadians(-28.125), Units.degreesToRadians(150)));
         unicornLeftEstimator = new PhotonPoseEstimator(VisionConstants.kTagLayout, PoseStrategy.MULTI_TAG_PNP_ON_COPROCESSOR, unicornLeft, unicornLeftTransform);
         meowRightEstimator = new PhotonPoseEstimator(VisionConstants.kTagLayout, PoseStrategy.MULTI_TAG_PNP_ON_COPROCESSOR, meowRight, meowRightTransform);
         unicornLeftEstimator.setMultiTagFallbackStrategy(PoseStrategy.LOWEST_AMBIGUITY);
