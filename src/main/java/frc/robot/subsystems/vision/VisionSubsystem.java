@@ -15,12 +15,8 @@ import edu.wpi.first.math.Matrix;
 import edu.wpi.first.math.VecBuilder;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Pose3d;
-import edu.wpi.first.math.geometry.Rotation3d;
-import edu.wpi.first.math.geometry.Transform3d;
-import edu.wpi.first.math.geometry.Translation3d;
 import edu.wpi.first.math.numbers.N1;
 import edu.wpi.first.math.numbers.N3;
-import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -29,8 +25,6 @@ public class VisionSubsystem extends SubsystemBase {
     private final PhotonCamera meowRight;
     private final PhotonPoseEstimator unicornLeftEstimator;
     private final PhotonPoseEstimator meowRightEstimator;
-    private final Transform3d unicornLeftTransform;
-    private final Transform3d meowRightTransform;
     private double lastEstTimestamp = 0;
     // CAMERAS WERE NAMED LOOKING AT IT FROM THE INTAKE SIDE. Made a mistake, too lazy to change it
     // NCML - No case meow left. This cam is on the RSL side.
@@ -38,8 +32,7 @@ public class VisionSubsystem extends SubsystemBase {
     public VisionSubsystem() {
         unicornLeft = new PhotonCamera("unicornLeft");
         meowRight = new PhotonCamera("meowRight");
-        unicornLeftTransform = new Transform3d(new Translation3d(Units.inchesToMeters(-11.302), Units.inchesToMeters(-12.747), Units.inchesToMeters(8.613)), new Rotation3d(0, Units.degreesToRadians(-28.125), Units.degreesToRadians(210)));
-        meowRightTransform = new Transform3d(new Translation3d(Units.inchesToMeters(-11.302), Units.inchesToMeters(12.747), Units.inchesToMeters(8.613)), new Rotation3d(0, Units.degreesToRadians(-28.125), Units.degreesToRadians(150)));
+
         unicornLeftEstimator = new PhotonPoseEstimator(VisionConstants.kTagLayout, PoseStrategy.MULTI_TAG_PNP_ON_COPROCESSOR, unicornLeft, unicornLeftTransform);
         meowRightEstimator = new PhotonPoseEstimator(VisionConstants.kTagLayout, PoseStrategy.MULTI_TAG_PNP_ON_COPROCESSOR, meowRight, meowRightTransform);
         unicornLeftEstimator.setMultiTagFallbackStrategy(PoseStrategy.LOWEST_AMBIGUITY);
