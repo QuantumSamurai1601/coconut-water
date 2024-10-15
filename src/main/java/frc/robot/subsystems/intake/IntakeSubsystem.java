@@ -5,7 +5,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import com.ctre.phoenix6.hardware.TalonFX;
-import com.ctre.phoenix6.controls.VelocityVoltage;
 import com.ctre.phoenix6.BaseStatusSignal;
 import com.ctre.phoenix6.StatusSignal;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
@@ -13,9 +12,6 @@ import com.ctre.phoenix6.controls.Follower;
 import com.ctre.phoenix6.controls.MotionMagicVoltage;
 import com.ctre.phoenix6.controls.NeutralOut;
 import com.ctre.phoenix6.controls.VelocityTorqueCurrentFOC;
-import com.ctre.phoenix6.signals.GravityTypeValue;
-import com.ctre.phoenix6.signals.InvertedValue;
-import com.ctre.phoenix6.signals.NeutralModeValue;
 
 import static frc.robot.Constants.*;
 import static frc.robot.subsystems.intake.IntakeConstants.*;
@@ -41,10 +37,6 @@ public class IntakeSubsystem extends SubsystemBase {
     private final StatusSignal<Double> pivotPosition;
     private final StatusSignal<Double> pivotSupplyCurrent;
     private final StatusSignal<Double> pivotLeaderTempC;
-    // Leader pivot config
-    private final TalonFXConfiguration pivotConfig;
-    // Intake roller config
-    private final TalonFXConfiguration rollerConfig;
     // Current limit config
     private final TalonFXConfiguration currentLimit;
 
@@ -60,6 +52,8 @@ public class IntakeSubsystem extends SubsystemBase {
         followerIntakePivot =  new TalonFX(RIGHT_INTAKE_PIVOT_ID, CANBUS_NAME);
         leaderPivotRequest = new MotionMagicVoltage(0).withEnableFOC(true);
         followerPivotRequest = new Follower(LEFT_INTAKE_PIVOT_ID, true);
+
+        // Neutral Request
         neutral = new NeutralOut();
 
         // Current Limit Config
@@ -69,36 +63,8 @@ public class IntakeSubsystem extends SubsystemBase {
         // intake.getConfigurator().apply(currentLimit);
         leaderIntakePivot.getConfigurator().apply(currentLimit);
 
-        // Left/Leader Pivot Config
-        pivotConfig = new TalonFXConfiguration();
-        pivotConfig.Slot0.GravityType = GravityTypeValue.Arm_Cosine;
-        pivotConfig.Slot0.kG = 0.3;
-        pivotConfig.Slot0.kS = 0.5;
-        pivotConfig.Slot0.kV = 0.15;
-        pivotConfig.Slot0.kA = 0.02;
-        pivotConfig.Slot0.kP = 45;
-        pivotConfig.Slot0.kI = 0;
-        pivotConfig.Slot0.kD = 0.2; 
-        pivotConfig.MotionMagic.MotionMagicAcceleration = 4.2;
-        pivotConfig.MotionMagic.MotionMagicCruiseVelocity = 0.95;
-        pivotConfig.MotorOutput.NeutralMode = NeutralModeValue.Brake;
-        pivotConfig.SoftwareLimitSwitch.ForwardSoftLimitEnable = true;
-        pivotConfig.SoftwareLimitSwitch.ForwardSoftLimitThreshold = 0.345;
-        pivotConfig.SoftwareLimitSwitch.ReverseSoftLimitEnable = true;
-        pivotConfig.SoftwareLimitSwitch.ReverseSoftLimitThreshold = 0.0;
-        pivotConfig.Feedback.SensorToMechanismRatio = 25; // Intake pivot ratio is 25:1
+        // Apply pivot and roller config
         leaderIntakePivot.getConfigurator().apply(pivotConfig);
-
-        //Intake Roller Config
-        rollerConfig = new TalonFXConfiguration();
-        rollerConfig.Slot0.kS = 0.37043;
-        rollerConfig.Slot0.kV = 0.31607;
-        rollerConfig.Slot0.kA = 0.0090014;
-        rollerConfig.Slot0.kP = 0.1267;
-        rollerConfig.Slot1.kS = 16;
-        rollerConfig.Slot1.kP = 29;
-        rollerConfig.Feedback.SensorToMechanismRatio = 2.5;
-        rollerConfig.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
         intake.getConfigurator().apply(rollerConfig);
 
         // Intake retracted for start, set position to 0.34 rotations
