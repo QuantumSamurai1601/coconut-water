@@ -89,6 +89,7 @@ public class ShooterSubsystem extends SubsystemBase {
         // Set position to 0 for start, full down
         leaderPivot.setPosition(0);
 
+        // Motor Telemetry
         shooterTopVelocity = topShooter.getVelocity();
         shooterTopSupplyCurrnet = topShooter.getSupplyCurrent();
         shooterTopTempC = topShooter.getDeviceTemp();

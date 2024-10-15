@@ -6,6 +6,7 @@ import com.ctre.phoenix6.signals.NeutralModeValue;
 import edu.wpi.first.math.interpolation.InterpolatingDoubleTreeMap;
 
 public class ShooterConstants {
+    // Shooter Motor Configs
     public static final TalonFXConfiguration topShooterConfig = new TalonFXConfiguration();
     static {
     topShooterConfig.Slot0.kS = 0.21123;
