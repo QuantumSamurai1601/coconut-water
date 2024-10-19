@@ -20,7 +20,9 @@ import com.pathplanner.lib.util.HolonomicPathFollowerConfig;
 import com.pathplanner.lib.util.PIDConstants;
 import com.pathplanner.lib.util.ReplanningConfig;
 
+import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Notifier;
@@ -204,6 +206,13 @@ public class CommandSwerveDrivetrain extends SwerveDrivetrain implements Subsyst
         if (!status.isOK()) {
             System.out.println("Could not apply configs, error code: " + status.toString());
         }
+    }
+
+    public void makeForwardForwardSmh() {
+        DriverStation.getAlliance().ifPresent((allianceColor) -> {
+            this.seedFieldRelative(
+                allianceColor == Alliance.Red ? new Pose2d(new Translation2d(), Rotation2d.fromDegrees(180)) : new Pose2d(new Translation2d(), Rotation2d.fromDegrees(0)));
+        });
     }
 
     @Override
