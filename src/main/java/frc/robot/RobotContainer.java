@@ -101,15 +101,15 @@ public class RobotContainer {
 
     // Driver feed shooter
     joystick.x().whileTrue(
-      Commands.startEnd(() -> shooter.feedToShooter(),
+      Commands.startEnd(() -> {
+        led.shootingNote();
+        shooter.feedToShooter();
+      },
       () -> {
         shooter.feedStop();
         Commands.waitSeconds(0.5);
-        if (!intake.getBeamBreak()) {
-          led.noNote();
-        } else {
-          led.greenTwinkleToes();
-        }
+        if (!intake.getBeamBreak()) {led.noNote();} 
+        else {led.greenTwinkleToes();}
       })
     );
 
@@ -160,11 +160,11 @@ public class RobotContainer {
 
     // Operator shooter compensation angle controls
     operator.povUp().onTrue(Commands.runOnce(() -> {
-      shootingCompensationAngle +=0.1;
+      shootingCompensationAngle +=0.01;
       shooter.devPivotUp();
     }));
     operator.povDown().onTrue(Commands.runOnce(() -> {
-      shootingCompensationAngle -=0.1;
+      shootingCompensationAngle -=0.01;
       shooter.devPivotDown();
     }));
 
@@ -207,7 +207,7 @@ public class RobotContainer {
     NamedCommands.registerCommand("intakeForever", new IntakeForever(intake, shooter, led));
     NamedCommands.registerCommand("prepareShooter", new PrepareShooter(shooter, led, drivetrain.getState().Pose::getX).withTimeout(1.5));
     NamedCommands.registerCommand("prepareShooterLower", new PrepareShooterLower(shooter, led));
-    NamedCommands.registerCommand("spoolShooter", new SpoolShooter(shooter, led).withTimeout(1.2));
+    NamedCommands.registerCommand("spoolShooter", new SpoolShooter(shooter, led).withTimeout(2));
     NamedCommands.registerCommand("shootNote", new ShootNote(intake, shooter, led).withTimeout(2));
 
     autoChooser.setDefaultOption("Autonomous Disabled", nothing);

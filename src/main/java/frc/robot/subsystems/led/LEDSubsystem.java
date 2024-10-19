@@ -22,7 +22,7 @@ public class LEDSubsystem extends SubsystemBase {
         shooter = shooterSubsystem;
         candle = new CANdle(1, "Drivetrain");
         candle.configLEDType(LEDStripType.GRB);
-        candle.configBrightnessScalar(1);
+        candle.configBrightnessScalar(0.75);
         candle.setLEDs(0, 0, 255);
     }
     //
@@ -44,7 +44,6 @@ public class LEDSubsystem extends SubsystemBase {
     // No note inside robot
     public void noNote(){
         candle.setLEDs(0, 0, 255);
-        
     }
 
     @Override

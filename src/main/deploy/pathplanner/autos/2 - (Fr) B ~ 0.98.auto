@@ -12,15 +12,22 @@
     "data": {
       "commands": [
         {
-          "type": "named",
+          "type": "parallel",
           "data": {
-            "name": "prepareShooter"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "spoolShooter"
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "spoolShooter"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "prepareShooter"
+                }
+              }
+            ]
           }
         },
         {
@@ -42,9 +49,22 @@
           }
         },
         {
-          "type": "named",
+          "type": "parallel",
           "data": {
-            "name": "prepareShooter"
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "spoolShooter"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "prepareShooter"
+                }
+              }
+            ]
           }
         },
         {

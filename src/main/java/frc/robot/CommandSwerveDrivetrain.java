@@ -195,7 +195,7 @@ public class CommandSwerveDrivetrain extends SwerveDrivetrain implements Subsyst
         driveMotorConfig = new TalonFXConfiguration();
 
         driveMotor.getConfigurator().refresh(driveMotorConfig);
-        driveMotorConfig.CurrentLimits.SupplyCurrentLimit = 60;
+        driveMotorConfig.CurrentLimits.SupplyCurrentLimit = 50;
         driveMotorConfig.CurrentLimits.SupplyCurrentLimitEnable = true;
 
         StatusCode status = StatusCode.StatusCodeNotInitialized;

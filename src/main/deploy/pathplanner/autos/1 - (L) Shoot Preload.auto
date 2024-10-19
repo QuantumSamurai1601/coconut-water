@@ -35,12 +35,6 @@
           "data": {
             "name": "shootNote"
           }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "Sub Right to H"
-          }
         }
       ]
     }

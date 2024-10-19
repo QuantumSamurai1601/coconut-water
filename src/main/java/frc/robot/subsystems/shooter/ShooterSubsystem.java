@@ -153,10 +153,16 @@ public class ShooterSubsystem extends SubsystemBase {
     public double getShootingAngle(double distance) {
         return shooterTreeMap.get(distance);
     }
+    
+    // public boolean flywheelsAtTarget() {
+    //     return Math.abs(topShooter.getVelocity().getValueAsDouble())>= 8
+    //         && topShooter.getVelocity().getValueAsDouble() > -80
+    //         && bottomShooter.getVelocity().getValueAsDouble() > -80;
+    // }
+
     public boolean flywheelsAtTarget() {
-        return Math.abs(topShooter.getVelocity().getValueAsDouble())>= 8
-            && topShooter.getVelocity().getValueAsDouble() > -70
-            && bottomShooter.getVelocity().getValueAsDouble() > -70;
+        return topShooter.getClosedLoopError().refresh().getValueAsDouble() < 5
+            && bottomShooter.getClosedLoopError().refresh().getValueAsDouble() < 5;
     }
     public boolean pivotAtTarget() {
         return Math.abs(leaderPivot.getClosedLoopReference().refresh().getValueAsDouble() - pivotLeaderPosition.refresh().getValueAsDouble()) < 0.03;
