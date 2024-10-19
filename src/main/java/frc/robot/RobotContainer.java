@@ -40,6 +40,7 @@ import frc.robot.subsystems.vision.VisionSubsystem;
 public class RobotContainer {
   private double MaxSpeed = TunerConstants.kSpeedAt12VoltsMps; // kSpeedAt12VoltsMps desired top speed
   private double MaxAngularRate = 3 * Math.PI; // 3/4 of a rotation per second max angular velocity
+  public double shootingCompensationAngle = 0.0;
 
   /* Setting up bindings for necessary control of the swerve drive platform */
   private final CommandXboxController joystick = new CommandXboxController(0); // My joystick
@@ -91,8 +92,12 @@ public class RobotContainer {
     joystick.a().whileTrue(drivetrain.applyRequest(() -> brake));
     joystick.b().whileTrue(drivetrain.applyRequest(() -> point.withModuleDirection(new Rotation2d(-joystick.getLeftY(), -joystick.getLeftX()))));
 
-    // reset the field-centric heading on b press
-    joystick.b().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldRelative()));
+    // Reset the field-centric heading on b press
+    joystick.b().onTrue(drivetrain.runOnce(() -> drivetrain.makeForwardForwardSmh()));
+
+    // joystick.y().whileTrue(
+    //   AutoBuilder.pathfindThenFollowPath(PathPlannerPath.fromPathFile("AlignToScore"), new PathConstraints(3, 3, Units.degreesToRadians(540), Units.degreesToRadians(720)))
+    // );
 
     // Driver feed shooter
     joystick.x().whileTrue(
@@ -134,7 +139,7 @@ public class RobotContainer {
     );
     // Operator pivot 6 feet
     operator.a().onTrue(
-      Commands.runOnce(() -> shooter.pivot(0.115))
+      Commands.runOnce(() -> shooter.pivot(0.115 + shootingCompensationAngle))
     );
     // Operator intake sequence
     operator.leftTrigger().whileTrue(
@@ -151,8 +156,18 @@ public class RobotContainer {
         intake.stop();
       })
     );
-    operator.povDown().onTrue(Commands.runOnce(() -> shooter.stop()));
-    
+    operator.povLeft().onTrue(Commands.runOnce(() -> shooter.stop()));
+
+    // Operator shooter compensation angle controls
+    operator.povUp().onTrue(Commands.runOnce(() -> {
+      shootingCompensationAngle +=0.1;
+      shooter.devPivotUp();
+    }));
+    operator.povDown().onTrue(Commands.runOnce(() -> {
+      shootingCompensationAngle -=0.1;
+      shooter.devPivotDown();
+    }));
+
     // Dev controls
     dev.povUp().onTrue(
       Commands.runOnce(() -> shooter.devPivotUp())
@@ -160,6 +175,7 @@ public class RobotContainer {
     dev.povDown().onTrue(
       Commands.runOnce(() -> shooter.devPivotDown())
     );
+
     dev.x().whileTrue(
       Commands.startEnd(() -> shooter.feedToShooter(),
       () -> {
@@ -171,15 +187,13 @@ public class RobotContainer {
         } 
       })
     );
-    joystick.y().whileTrue(
-      AutoBuilder.pathfindThenFollowPath(PathPlannerPath.fromPathFile("AlignToScore"), new PathConstraints(3, 3, Units.degreesToRadians(540), Units.degreesToRadians(720)))
-    );
     dev.b().onTrue(
       Commands.runOnce(() -> {
         shooter.pivot(0);
         intake.pivotUp();
       })
     );
+
     if (Utils.isSimulation()) {
       drivetrain.seedFieldRelative(new Pose2d(new Translation2d(), Rotation2d.fromDegrees(90)));
     }
