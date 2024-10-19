@@ -2,6 +2,7 @@ package frc.robot.subsystems.shooter;
 
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.signals.GravityTypeValue;
+import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 import edu.wpi.first.math.interpolation.InterpolatingDoubleTreeMap;
 
@@ -9,26 +10,26 @@ public class ShooterConstants {
     // Shooter Motor Configs
     public static final TalonFXConfiguration topShooterConfig = new TalonFXConfiguration();
     static {
-    topShooterConfig.Slot0.kS = 0.21123;
-    topShooterConfig.Slot0.kV = 0.13574;
-    topShooterConfig.Slot0.kA = 0.029807;    
-    topShooterConfig.Slot0.kP = 0.16118;
+    topShooterConfig.Slot0.kS = 0.31;
+    topShooterConfig.Slot0.kV = 0.09;
+    topShooterConfig.Slot0.kA = 0.0;
+    topShooterConfig.Slot0.kP = 0.4;
     topShooterConfig.Slot0.kI = 0.0;
-    topShooterConfig.Slot0.kD = 0.0;
+    topShooterConfig.Slot0.kD = 0.001;
     topShooterConfig.MotorOutput.NeutralMode = NeutralModeValue.Coast;
+    topShooterConfig.Feedback.SensorToMechanismRatio = 0.625;
+    topShooterConfig.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
     }
 
     public static final TalonFXConfiguration bottomShooterConfig = new TalonFXConfiguration();
     static {
-    bottomShooterConfig.Slot0.kS = 0.39951;
-    bottomShooterConfig.Slot0.kV = 0.14081;
-    bottomShooterConfig.Slot0.kA = 0.037933;
-    bottomShooterConfig.Slot0.kP = 0.18765;
+    bottomShooterConfig.Slot0.kS = 0.27;
+    bottomShooterConfig.Slot0.kV = 0.0845;
+    bottomShooterConfig.Slot0.kA = 0.0;
+    bottomShooterConfig.Slot0.kP = 0.4;
     bottomShooterConfig.Slot0.kI = 0.0;
-    bottomShooterConfig.Slot0.kD = 0.0;
-    bottomShooterConfig.Slot1.kS = 14.85;
-    bottomShooterConfig.Slot1.kP = 41.25;
-    bottomShooterConfig.Feedback.SensorToMechanismRatio = 0.6666666667;
+    bottomShooterConfig.Slot0.kD = 0.001;
+    bottomShooterConfig.Feedback.SensorToMechanismRatio = 0.625;
     bottomShooterConfig.MotorOutput.NeutralMode = NeutralModeValue.Coast;
     }
 

@@ -62,6 +62,7 @@ public class ShooterSubsystem extends SubsystemBase {
         feeder = new TalonFX(FEEDER_ID, CANBUS_NAME);
         feederRequest = new VoltageOut(0.0);
         feeder.setNeutralMode(NeutralModeValue.Brake);
+        feeder.setInverted(true);
 
         // Shooter Pivot Motors and Control Requests
         leaderPivot = new TalonFX(LEFT_SHOOTER_PIVOT_ID, CANBUS_NAME);

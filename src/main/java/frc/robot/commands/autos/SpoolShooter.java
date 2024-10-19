@@ -22,7 +22,7 @@ public class SpoolShooter extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    shooter.shootVelocity(-45, -50);
+    shooter.shootVelocity(50, 50);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
