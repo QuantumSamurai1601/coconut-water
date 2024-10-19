@@ -33,7 +33,7 @@ public class IntakeGround extends Command {
         if (intake.getBeamBreak()) {
             intake.pivotUp();
             led.greenTwinkleToes();
-            shooter.pivot(0.1);
+            shooter.pivot(0.185);
         }
     }
 

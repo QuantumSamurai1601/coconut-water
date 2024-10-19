@@ -81,7 +81,7 @@ public class IntakeSubsystem extends SubsystemBase {
     }
 
     public void intake() {
-        intake.setControl(intakeRequest.withVelocity(-8));
+        intake.setControl(intakeRequest.withVelocity(-20));
     }
     public void eject() {
         intake.setControl(intakeRequest.withVelocity(9));

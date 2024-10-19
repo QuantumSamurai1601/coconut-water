@@ -128,13 +128,13 @@ public class ShooterSubsystem extends SubsystemBase {
         bottomShooter.setControl(new VoltageOut(2.7));
     }
     public void feedFromSource() {
-        feeder.setControl(new VoltageOut(0.375));
+        feeder.setControl(feederRequest.withOutput(-0.5));
     }
     public void feedFromIntake() {
-        feeder.setControl(feederRequest.withOutput(-1));
+        feeder.setControl(feederRequest.withOutput(-5.5));
     }
     public void feedToShooter() {
-        feeder.setControl(new VoltageOut(-3));
+        feeder.setControl(feederRequest.withOutput(-7.5));
     }
     public void feedStop() {
         feeder.setControl(neutral);
@@ -155,8 +155,8 @@ public class ShooterSubsystem extends SubsystemBase {
     }
     public boolean flywheelsAtTarget() {
         return Math.abs(topShooter.getVelocity().getValueAsDouble())>= 8
-            && topShooter.getVelocity().getValueAsDouble() > -55
-            && bottomShooter.getVelocity().getValueAsDouble() > -65;
+            && topShooter.getVelocity().getValueAsDouble() > -70
+            && bottomShooter.getVelocity().getValueAsDouble() > -70;
     }
     public boolean pivotAtTarget() {
         return Math.abs(leaderPivot.getClosedLoopReference().refresh().getValueAsDouble() - pivotLeaderPosition.refresh().getValueAsDouble()) < 0.03;

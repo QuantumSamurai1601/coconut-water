@@ -135,11 +135,11 @@ public class RobotContainer {
       Commands.runOnce(() -> shooter.stop()));
     // Operator pivot sub base
     operator.y().onTrue(
-      Commands.runOnce(() -> shooter.pivot(0.185))
+      Commands.runOnce(() -> shooter.pivot(0.175))
     );
     // Operator pivot 6 feet
     operator.a().onTrue(
-      Commands.runOnce(() -> shooter.pivot(0.115 + shootingCompensationAngle))
+      Commands.runOnce(() -> shooter.pivot(0.145 + shootingCompensationAngle))
     );
     // Operator intake sequence
     operator.leftTrigger().whileTrue(
@@ -211,8 +211,10 @@ public class RobotContainer {
     NamedCommands.registerCommand("shootNote", new ShootNote(intake, shooter, led).withTimeout(2));
 
     autoChooser.setDefaultOption("Autonomous Disabled", nothing);
-    autoChooser.addOption("Mobility Auto", mobilityAuto); 
+    autoChooser.addOption("Mobility Drive 2 Seconds", mobilityAuto); 
     autoChooser.addOption("Test P", new PathPlannerAuto("TP"));
+    autoChooser.addOption("1 Note Sub Side ", new PathPlannerAuto("1 - (R) Shoot Preload"));
+    autoChooser.addOption("1 Note Sub Front", new PathPlannerAuto("1 - (Fr) Shoot Preload"));
     autoChooser.addOption("2 Note Left A Mid", new PathPlannerAuto("2 - (L) A ~ 2.93"));
     autoChooser.addOption("2 Note Left A Left" , new PathPlannerAuto("2 - (L) A ~ 1.50"));
     autoChooser.addOption("2 Note Front B", new PathPlannerAuto("2 - (Fr) B ~ 0.98"));

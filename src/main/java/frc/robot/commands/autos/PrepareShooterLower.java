@@ -22,7 +22,7 @@ public class PrepareShooterLower extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    shooter.pivot(0.14);
+    shooter.pivot(0.145);
     Commands.waitSeconds(1);
   }
 

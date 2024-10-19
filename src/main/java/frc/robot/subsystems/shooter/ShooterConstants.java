@@ -23,14 +23,15 @@ public class ShooterConstants {
 
     public static final TalonFXConfiguration bottomShooterConfig = new TalonFXConfiguration();
     static {
-    bottomShooterConfig.Slot0.kS = 0.27;
-    bottomShooterConfig.Slot0.kV = 0.0845;
+    bottomShooterConfig.Slot0.kS = 0.2;
+    bottomShooterConfig.Slot0.kV = 0.08;
     bottomShooterConfig.Slot0.kA = 0.0;
     bottomShooterConfig.Slot0.kP = 0.4;
     bottomShooterConfig.Slot0.kI = 0.0;
     bottomShooterConfig.Slot0.kD = 0.001;
     bottomShooterConfig.Feedback.SensorToMechanismRatio = 0.625;
     bottomShooterConfig.MotorOutput.NeutralMode = NeutralModeValue.Coast;
+    bottomShooterConfig.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
     }
 
     public static final TalonFXConfiguration pivotConfig = new TalonFXConfiguration();
@@ -55,7 +56,7 @@ public class ShooterConstants {
 
     public static final InterpolatingDoubleTreeMap shooterTreeMap = new InterpolatingDoubleTreeMap();
     static {
-        shooterTreeMap.put(1.45, 0.185);
+        shooterTreeMap.put(1.45, 0.175);
         shooterTreeMap.put(2.352, 0.13);
         shooterTreeMap.put(3.254, 0.115);
     }
