@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 2.181172810182771,
-        "y": 5.566863856374023
+        "x": 2.4337239619885365,
+        "y": 5.5472628654977685
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.2020616051410227,
-        "y": 5.869751383268669
+        "x": 2.45436458947315,
+        "y": 5.8465519640246635
       },
       "isLocked": false,
       "linkedName": "B (Belle)"
     },
     {
       "anchor": {
-        "x": 2.8266068394532997,
-        "y": 6.8946404084978985
+        "x": 2.5218225669473977,
+        "y": 6.769631009301966
       },
       "prevControl": {
-        "x": 2.4610529276838986,
-        "y": 6.539530894207624
+        "x": 0.9098760015701849,
+        "y": 5.755836238945205
       },
       "nextControl": null,
       "isLocked": false,
@@ -31,15 +31,15 @@
   "rotationTargets": [
     {
       "waypointRelativePos": 0.5,
-      "rotationDegrees": 35.0,
-      "rotateFast": false
+      "rotationDegrees": 32.95866232931945,
+      "rotateFast": true
     }
   ],
   "constraintZones": [],
   "eventMarkers": [
     {
       "name": "intakeGround",
-      "waypointRelativePos": 0.4,
+      "waypointRelativePos": 0.5,
       "command": {
         "type": "parallel",
         "data": {
@@ -48,23 +48,6 @@
               "type": "named",
               "data": {
                 "name": "intakeGround"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "name": "spoolShooter",
-      "waypointRelativePos": 0.7,
-      "command": {
-        "type": "parallel",
-        "data": {
-          "commands": [
-            {
-              "type": "named",
-              "data": {
-                "name": "spoolShooter"
               }
             }
           ]

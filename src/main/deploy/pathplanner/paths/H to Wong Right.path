@@ -3,43 +3,43 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 2.499797915707682,
-        "y": 4.269833093594284
+        "x": 7.738518022490591,
+        "y": 0.7742859122081884
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.4773813148130146,
-        "y": 4.654234335493103
+        "x": 6.272907946232269,
+        "y": 1.4648979582483805
       },
       "isLocked": false,
-      "linkedName": "C (Cinderella)"
+      "linkedName": "H (Harvey)"
     },
     {
       "anchor": {
-        "x": 2.4337239619885365,
-        "y": 5.5472628654977685
+        "x": 2.7289814579629157,
+        "y": 3.2184173459256016
       },
       "prevControl": {
-        "x": 0.9140230264481833,
-        "y": 5.569287516737483
+        "x": 4.454941070420277,
+        "y": 1.502070491529161
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "B (Belle)"
+      "linkedName": "Wong Right"
     }
   ],
   "rotationTargets": [
     {
-      "waypointRelativePos": 0.0,
-      "rotationDegrees": 0,
+      "waypointRelativePos": 0.6,
+      "rotationDegrees": -27.743723314992266,
       "rotateFast": false
     }
   ],
   "constraintZones": [],
   "eventMarkers": [
     {
-      "name": "intakeGround",
-      "waypointRelativePos": 0.8,
+      "name": "Shooting Prep",
+      "waypointRelativePos": 0.95,
       "command": {
         "type": "parallel",
         "data": {
@@ -47,7 +47,13 @@
             {
               "type": "named",
               "data": {
-                "name": "intakeGround"
+                "name": "spoolShooter"
+              }
+            },
+            {
+              "type": "named",
+              "data": {
+                "name": "prepareShooterLower"
               }
             }
           ]
@@ -63,13 +69,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 0,
+    "rotation": -35.0,
     "rotateFast": false
   },
   "reversed": false,
-  "folder": "C (Cinderella)",
+  "folder": "H (Herucles) ",
   "previewStartingState": {
-    "rotation": -32.47119229084851,
+    "rotation": 0,
     "velocity": 0
   },
   "useDefaultConstraints": true

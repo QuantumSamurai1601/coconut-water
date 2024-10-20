@@ -41,6 +41,54 @@
           "data": {
             "pathName": "Sub Right to H"
           }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "H to Wong Right"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "shootNote"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Wong Right to G"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "G to Wong Left"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "shootNote"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Wong Left to F"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "F to Wong Left"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "shootNote"
+          }
         }
       ]
     }

@@ -3,40 +3,58 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 7.539148716974281,
-        "y": 4.1046482092964185
+        "x": 7.757175514351029,
+        "y": 4.113976955226638
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.766263303518977,
-        "y": 6.653081194203101
+        "x": 5.406359019985839,
+        "y": 3.563463586124705
       },
       "isLocked": false,
       "linkedName": "F (Failure) "
     },
     {
       "anchor": {
-        "x": 4.332718690882675,
-        "y": 6.517304026974466
+        "x": 3.65,
+        "y": 5.41
       },
       "prevControl": {
-        "x": 5.982933492584543,
-        "y": 6.673969989161352
+        "x": 4.7974357494169535,
+        "y": 4.626385341861593
       },
       "nextControl": null,
       "isLocked": false,
       "linkedName": "Wong Left"
     }
   ],
-  "rotationTargets": [
+  "rotationTargets": [],
+  "constraintZones": [],
+  "eventMarkers": [
     {
-      "waypointRelativePos": 0.5,
-      "rotationDegrees": 20.0,
-      "rotateFast": false
+      "name": "Shooter Prep",
+      "waypointRelativePos": 0.9,
+      "command": {
+        "type": "parallel",
+        "data": {
+          "commands": [
+            {
+              "type": "named",
+              "data": {
+                "name": "spoolShooter"
+              }
+            },
+            {
+              "type": "named",
+              "data": {
+                "name": "prepareShooter"
+              }
+            }
+          ]
+        }
+      }
     }
   ],
-  "constraintZones": [],
-  "eventMarkers": [],
   "globalConstraints": {
     "maxVelocity": 3.0,
     "maxAcceleration": 3.0,
@@ -45,7 +63,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 13.495733280795884,
+    "rotation": 0.0,
     "rotateFast": false
   },
   "reversed": false,

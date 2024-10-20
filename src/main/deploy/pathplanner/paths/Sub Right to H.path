@@ -16,12 +16,12 @@
     },
     {
       "anchor": {
-        "x": 5.839998626385171,
-        "y": 1.358648125221874
+        "x": 7.757175514351029,
+        "y": 0.7929434040686271
       },
       "prevControl": {
-        "x": 4.839998626385171,
-        "y": 1.358648125221874
+        "x": 6.757175514351029,
+        "y": 0.7929434040686271
       },
       "nextControl": null,
       "isLocked": false,
@@ -32,7 +32,7 @@
   "constraintZones": [],
   "eventMarkers": [
     {
-      "name": "intakeground",
+      "name": "intakeGround",
       "waypointRelativePos": 0.75,
       "command": {
         "type": "parallel",
@@ -63,7 +63,7 @@
   "reversed": false,
   "folder": "Sub Right",
   "previewStartingState": {
-    "rotation": -59.03624346792648,
+    "rotation": -60.0,
     "velocity": 0
   },
   "useDefaultConstraints": true
